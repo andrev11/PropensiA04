@@ -4,20 +4,18 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\PembelianSearch */
+/* @var $searchModel app\models\PembayaranOutSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Pembelian');
+$this->title = Yii::t('app', 'Pembayaran Keluar');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="pembelian-index">
+<div class="pembayaran-out-index">
 
     
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
-        <?= Html::a(Yii::t('app', 'Create Pembelian'), ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+   
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -25,17 +23,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            //'idbeli',
             //'idbayar',
-            'produk',
-            'tgl_beli',
-            'tgl_terima',
-            'cara_terima',
-            'cara_bayar',
-            'status_del',
-            'harga_total',
-            'karton',
-            'kilo',
+            'tgl_trans',
+            'supplier',
+            'status_bayar',
+            'tgl_bayar',
+            'jumlahbayar',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

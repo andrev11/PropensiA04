@@ -4,13 +4,13 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Pembelian */
+/* @var $model app\models\PembayaranOut */
 
-$this->title = Yii::t('app', 'Create Pembelian');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Pembelians'), 'url' => ['index']];
+$this->title = Yii::t('app', 'Create Pembayaran Out');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Pembayaran Outs'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="pembelian-create">
+<div class="pembayaran-out-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

@@ -12,11 +12,6 @@
 		die("Could not connect to database");
 	}
 	
-	// Test
-	$namapengguna = pg_fetch_array(pg_query("select nama from pengguna  ;"));
-	$rows = pg_query("select nama from pengguna;");
-	echo pg_num_rows($rows);
-	echo $namapengguna [0];
 	
 	session_start();
 	
@@ -28,10 +23,10 @@
 	
 	// tanggal pembelian
 	$tglBeli = date('Y-m-d');
-	echo "<br>";
-	echo "Tanggal pembelian: ";
-	echo $tglBeli;
-	echo "<br>";
+	//echo "<br>";
+	//echo "Tanggal pembelian: ";
+	//echo $tglBeli;
+	//echo "<br>";
 
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		//supplierName
@@ -49,7 +44,7 @@
 
 		//produk
 		if (empty($_POST["produk"])) {
-			$produk = "Produk is required";
+			$produkErr = "Produk is required";
 			$produkB = "";
 		}
 		else {
@@ -122,40 +117,53 @@
 		
 		
 	}
-	/*
+	
 	if(empty($supplierNameErr) && empty($produkErr) && empty($jmlKiloErr) && empty($jmlKartonErr) && empty($tglTerimaErr) && empty($caraTerimaErr) && empty($caraBayarErr))
 	{
 
 		//bikin id beli
 		$increments = pg_fetch_array(pg_query("select max(idbeli) from pembelian;"));
-		echo $increments[0];
+		//echo "<br>";
+		//echo "Maksimal ID Pembelian: ";
+		//echo $increments[0];
 		$idpembelian=$increments[0] + 1 ;
 		
 		// bikin id bayar pakai if
 		// SELECT idbayar FROM pembayaran_out WHERE tgl_trans = '2016-04-05' AND supplier = 'PT. Indoguna';
 		$ambilIdBayar = "SELECT idbayar FROM pembayaran_out WHERE tgl_trans = '".$tglBeli."' AND supplier = '".$supplierName."';";
 		//$ambilIdBayar = "SELECT idbayar FROM pembayaran_out WHERE tgl_trans = '".$tglBeli."' AND supplier = 'PT. Indoguna';";
-
-		//$kueriIdBayar = pg_fetch_array(pg_query($ambilIdBayar));
+		$kueriIdBayar = pg_fetch_array(pg_query($ambilIdBayar));
+		//echo "<br>";
 		//echo $kueriIdBayar[0];
 
-		/*
-		if(pg_num_rows(pg_query($ambilIdBayar) == 0))
-		{
-			$increments2 = pg_fetch_array(pg_query("select max(idbayar) from pembayaran_out;"));
-			echo $increments2[0];
-			$idPembayaran=$increments2[0] + 1 ;
-			echo "belum ada";
-			$cobamasukan = "INSERT INTO PEMBAYARAN_OUT VALUES ('".$idPembayaran."', '".$supplierName."', '".$tglBeli."', null, null, null);";
-			$cobaresult = pg_query($cobamasukan);
-		}
-		else
-		{
-			$idPembayaran=$kueriIdBayar[0];
-			echo "sudah ada";	
-			echo $idPembayaran;
-		}
-		//echo $idPembayaran;
+		// bikin status bayar pakai default belum
+		$statusBayar = "Hutang";
+
+			if(pg_num_rows(pg_query($ambilIdBayar)) == 0)
+			{
+				$increments2 = pg_fetch_array(pg_query("select max(idbayar) from pembayaran_out;"));
+				//echo "<br>";
+				//echo "Maksimal ID Pembayaran: ";
+				//echo $increments2[0];
+				$idPembayaran=$increments2[0] + 1 ;
+				//echo "<br>";
+				//echo "belum ada";
+				if(!empty($idpembelian) && !empty($idPembayaran) && !empty($supplierName) && !empty($produk) && !empty($jmlKilo) && !empty($jmlKarton) && !empty($tglBeli) && !empty($tglTerima) && !empty($caraTerima) && !empty($caraBayar))
+				{
+					$cobamasukan = "INSERT INTO PEMBAYARAN_OUT VALUES ('".$idPembayaran."', '".$supplierName."', '".$tglBeli."', null, null, '".$statusBayar."');";
+					$cobaresult = pg_query($cobamasukan);
+				}
+			}
+			else
+			{
+				$idPembayaran=$kueriIdBayar[0];
+				//echo "<br>";
+				//echo "sudah ada";
+				//echo "Id Bayar ke 0: ";
+				//echo "<br>";	
+				//echo $idPembayaran;
+			}
+			//echo $idPembayaran;
 
 		// bikin status delivery pakai default belum
 		$statusDelivery = "Belum Diterima";
@@ -168,18 +176,18 @@
 		}
 
 		$ambilHargaProduk = "SELECT harga_beli FROM produk WHERE namaProduk = '".$produk."';";
-		$hargaProduk = pg_query($ambilHargaProduk);
-		$harga_total= kali($hargaProduk, $jmlKilo);
+		$hargaProduk = pg_fetch_array(pg_query($ambilHargaProduk));
+		$harga_total= kali($hargaProduk[0], $jmlKilo);
 
-		echo "<br>";
-		echo "5 * 10 = " . kali(5, 10) . "<br>";
-		$a=5;
-		$b=6;
-		$cobaKali= kali($a,$b);
-		echo "<br>";
-		echo $cobaKali;
-		
-		//masukin ke db
+		///echo "<br>";
+		//echo "5 * 10 = " . kali(5, 10) . "<br>";
+		//$a=5;
+		//$b=6;
+		//$cobaKali= kali($a,$b);
+		//echo "<br>";
+		///echo $harga_total;
+
+		//masukin ke dbmoi
 
 		if(!empty($idpembelian) && !empty($idPembayaran) && !empty($supplierName) && !empty($produk) && !empty($jmlKilo) && !empty($jmlKarton) && !empty($tglBeli) && !empty($tglTerima) && !empty($caraTerima) && !empty($caraBayar))
 		{
@@ -194,7 +202,7 @@
 	}
 		
 		//$result = pg_query($masukan);
-	*/
+	
 	
 		
 	function test_input($data) {
@@ -205,7 +213,8 @@
 	}
 	
 		
-	pg_close($database);	
+	pg_close($database);
+	//a href="<?php echo Yii::$app->request->baseUrl;		
 ?>
 
 <!DOCTYPE html>
@@ -218,7 +227,15 @@
 
 <body>
 	<!-- Tanggal hari ini -->
-		
+	<p> <h1>Create Purchase Order</h1>
+	
+<p> <h3>The end of the day? Record your transaction!</h1>
+	
+	<form action="totalHarga.php" method="get">
+	<input type="submit" value="DONE">
+	</form>
+	<br><br>
+
 	<div class="form2">	
 	
 		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" autocomplete="on" id="search-form" novalidate>
@@ -230,51 +247,106 @@
 		<!-- supplier dropdown -->
 		<label for="supplierName"> Supplier <span class="error"><?php echo $supplierNameB;?></span></label>
 		<br><span class="error"><?php echo $supplierNameErr;?></span>
-		<input class ="input" type="text" name="supplierName" placeholder="Choose your supplier name" id="supplierName" required autofocus> 
-				
+		<select class ="input" type="text" name="supplierName" id="supplierName" required autofocus>
+		<?php
+			$myHost = "localhost";
+			$myUser = "postgres";
+			$myPassword = "1234";
+			$myPort = "5432";
+	
+			// Create connection
+			$conn = "host = ".$myHost." user = ".$myUser." password = ".$myPassword." port = ".$myPort." dbname = sitrans";
+			// Check connection
+			if (!$database = pg_connect($conn)) {
+				die("Could not connect to database");
+			}
+
+			//echo '<select class="input" name="supplierName" id="supplierName" required autofocus>'; // Open your drop down box
+
+			$result = pg_query(sprintf("select namaSupplier from supplier;"));
+
+			// Loop through the query results, outputing the options one by one
+			while ($row = pg_fetch_assoc($result)) {
+				echo '<option value="'.$row['namasupplier'].'">'.$row['namasupplier'].'</option>';
+			}
+			//echo '</select>';
+			
+			pg_close($database);
+	    ?>
+	    </select>
+	    	
 		<br><br>
 
 		<!-- produk dropdown -->
 		<label for="produk"> Produk <span class="error"><?php echo $produkB;?></span></label>
 		<br><span class="error"><?php echo $produkErr;?></span>
-		<input class ="input" type="text" name="produk" placeholder="Choose the product name" id="produk" required autofocus> 
+		<select class ="input" type="text" name="produk" id="produk" required autofocus>
+		<?php
+			$myHost = "localhost";
+			$myUser = "postgres";
+			$myPassword = "1234";
+			$myPort = "5432";
+	
+			// Create connection
+			$conn = "host = ".$myHost." user = ".$myUser." password = ".$myPassword." port = ".$myPort." dbname = sitrans";
+			// Check connection
+			if (!$database = pg_connect($conn)) {
+				die("Could not connect to database");
+			}
+
+			//echo '<select class="input" name="supplierName" id="supplierName" required autofocus>'; // Open your drop down box
+
+			$result = pg_query(sprintf("select namaproduk from produk;"));
+
+			// Loop through the query results, outputing the options one by one
+			while ($row = pg_fetch_assoc($result)) {
+				echo '<option name="produk" id="produk" value="'.$row['namaproduk'].'">'.$row['namaproduk'].'</option>';
+			}
+			//echo '</select>';
+			
+			pg_close($database);
+			
+
+	    ?>
+	    </select>
+	    		
 				
 		<br><br>		
 				
 		<!-- jumlah berat dalam kilo -->
 		<label for="jmlKilo"> Jumlah Kilo <span class="error"><?php echo $jmlKiloB;?></span></label>
 		<br><span class="error"><?php echo $jmlKiloErr;?></span>
-		<input class ="input" type="number" min="1" max="30" name="jmlKilo" placeholder="Enter how many kilo you order" id="jmlKilo" required autofocus> 
+		<br><input class ="input" type="number" min="1" max="30" name="jmlKilo" placeholder="Enter how many kilo you order" id="jmlKilo" required autofocus> 
 		
 		<br><br>
 		
 		<!-- jumlah berat dalam karton -->
 		<label for="jmlKarton"> Jumlah Karton <span class="error"><?php echo $jmlKartonB;?></span></label>
 		<br><span class="error"><?php echo $jmlKartonErr;?></span>
-		<input class ="input" type="number" min="1" max="30" name="jmlKarton" placeholder="Enter how many karton you order" id="jmlKarton" required autofocus> 
+		<br><input class ="input" type="number" min="1" max="30" name="jmlKarton" placeholder="Enter how many karton you order" id="jmlKarton" required autofocus> 
 		
 		<br><br>
 
 		<!-- permintaan tanggal diterima -->
 		<label for="tglTerima"> Tanggal Terima <span class="error"><?php echo $tglTerimaB;?></span></label>
 		<br><span class="error"><?php echo $tglTerimaErr;?></span>
-		<input class ="input" type="date" name="tglTerima" placeholder="Enter your delivery date" id="tglTerima" required autofocus> 
+		<br><input class ="input" type="date" name="tglTerima" placeholder="Enter your delivery date" id="tglTerima" required autofocus> 
 		
 		<br><br>
 
 		<!-- cara terima diantar/dijemput-->
 		<label for="caraTerima"> Cara Terima <span class="error"><?php echo $caraTerimaB;?></span></label>
 		<br><span class="error"><?php echo $caraTerimaErr;?></span>
-		<input class ="input" type="radio" name="caraTerima" <?php if (isset($caraTerima) && $caraTerima=="diantar") echo "checked";?> value="diantar" id="caraTerima" required autofocus>Diantar
-		<input class ="input" type="radio" name="caraTerima" <?php if (isset($caraTerima) && $caraTerima=="dijemput") echo "checked";?> value="dijemput" id="caraTerima" required autofocus>Dijemput
+		<br><input class ="input" type="radio" name="caraTerima" <?php if (isset($caraTerima) && $caraTerima=="diantar") echo "checked";?> value="Diantar" id="caraTerima" required autofocus>Diantar
+		<input class ="input" type="radio" name="caraTerima" <?php if (isset($caraTerima) && $caraTerima=="dijemput") echo "checked";?> value="Dijemput" id="caraTerima" required autofocus>Dijemput
 
 		<br><br>
 
 		<!-- cara bayar tunai/transfer -->
 		<label for="caraBayar"> Cara Bayar <span class="error"><?php echo $caraBayarB;?></span></label>
 		<br><span class="error"><?php echo $caraBayarErr;?></span>
-		<input class ="input" type="radio" name="caraBayar" <?php if (isset($caraBayar) && $caraBayar=="cash") echo "checked";?>  value="cash" id="caraBayar" required autofocus>Cash
-		<input class ="input" type="radio" name="caraBayar" <?php if (isset($caraBayar) && $caraBayar=="transfer") echo "checked";?>  value="transfer" id="caraBayar" required autofocus>Transfer
+		<br><input class ="input" type="radio" name="caraBayar" <?php if (isset($caraBayar) && $caraBayar=="cash") echo "checked";?>  value="Cash" id="caraBayar" required autofocus>Cash
+		<input class ="input" type="radio" name="caraBayar" <?php if (isset($caraBayar) && $caraBayar=="transfer") echo "checked";?>  value="Transfer" id="caraBayar" required autofocus>Transfer
 
 				
 		<br><br>
@@ -285,28 +357,10 @@
 			
 				
 	</div>	
-		<!-- Test Inputan -->
-		<?php
-			echo "<h2>Your Input:</h2>";
-			echo $supplierName;
-			echo "<br>";
-			echo $produk;
-			echo "<br>";
-			echo $jmlKilo;
-			echo "<br>";
-			echo $jmlKarton;
-			echo "<br>";
-			echo $tglTerima;
-			echo "<br>";
-			echo $caraTerima;
-			echo "<br>";
-			echo $caraBayar;
-			echo "<br>";
-			
-		?>
-			
+
+	
 	<footer>
-		<h5> Created by Fauziah Raihani. 1306383016.</h5>	
+		
 	</footer>
 	
 </body>

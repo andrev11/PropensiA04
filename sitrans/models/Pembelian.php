@@ -53,17 +53,17 @@ class Pembelian extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'idbeli' => 'Idbeli',
-            'idbayar' => 'Idbayar',
+            //'idbeli' => 'Idbeli',
+            //'idbayar' => 'Idbayar',
             'produk' => 'Produk',
-            'tgl_beli' => 'Tgl Beli',
-            'tgl_terima' => 'Tgl Terima',
+            'tgl_beli' => 'Tanggal Beli',
+            'tgl_terima' => 'Tanggal Terima',
             'cara_terima' => 'Cara Terima',
             'cara_bayar' => 'Cara Bayar',
-            'status_del' => 'Status Del',
+            'status_del' => 'Status Delivery',
             'harga_total' => 'Harga Total',
-            'karton' => 'Karton',
-            'kilo' => 'Kilo',
+            'karton' => 'Jumlah Karton',
+            'kilo' => 'Jumlah Kilo',
         ];
     }
 

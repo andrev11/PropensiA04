@@ -58,7 +58,7 @@ class ActionColumn extends Column
      *
      * @see buttons
      */
-    public $template = '{view} {update} {delete}';
+    public $template = '{view} {update} {delete} {confirm}';
     /**
      * @var array button rendering callbacks. The array keys are the button names (without curly brackets),
      * and the values are the corresponding button rendering callbacks. The callbacks should use the following
@@ -116,6 +116,18 @@ class ActionColumn extends Column
      * @var array html options to be applied to the [[initDefaultButtons()|default buttons]].
      * @since 2.0.4
      */
+/*
+    'confirm' => function ($url, $model) {
+    return Html::a(
+        '<span class="glyphicon glyphicon-arrow-download"></span>',
+        ['another-controller/anotner-action', 'id' => $model->id], 
+        [
+            'title' => 'Download',
+            'data-pjax' => '0',
+        ]
+    );
+},
+*/
     public $buttonOptions = [];
 
 
@@ -163,6 +175,19 @@ class ActionColumn extends Column
                     'data-pjax' => '0',
                 ], $this->buttonOptions);
                 return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url, $options);
+            };
+        }
+        if (!isset($this->buttons['confirm'])) {
+            $this->buttons['confirm'] = function ($url, $model, $key) {
+                $options = array_merge([
+                    'title' => Yii::t('yii', 'Confirm'),
+                    'aria-label' => Yii::t('yii', 'Confirm'),
+                    'data-confirm' => Yii::t('yii', 'Are you sure you want to confirm this item?'),
+                    'data-method' => 'post',
+                    'data-pjax' => '0',
+                ], $this->buttonOptions);
+                return Html::a('<span class="glyphicon glyphicon-ok"></span>', $url, $options);
+                //return Html::a('Confirm',$url,$options);
             };
         }
     }

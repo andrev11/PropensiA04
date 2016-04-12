@@ -5,12 +5,16 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Pembelian */
 
-$this->title = 'Update Pembelian: ' . ' ' . $model->idbeli;
-$this->params['breadcrumbs'][] = ['label' => 'Pembelian', 'url' => ['index']];
+$this->title = Yii::t('app', 'Update {modelClass}: ', [
+    'modelClass' => 'Pembelian',
+]) . ' ' . $model->idbeli;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Pembelians'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->idbeli, 'url' => ['view', 'id' => $model->idbeli]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 ?>
 <div class="pembelian-update">
+
+   
 
     <?= $this->render('_form', [
         'model' => $model,

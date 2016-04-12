@@ -3,16 +3,17 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Pembelian;
-use app\models\PembelianSearch;
+use app\models\PembayaranOut;
+use app\models\PembayaranOutSearch;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\db\Query;
+
 /**
- * PembelianController implements the CRUD actions for Pembelian model.
+ * PembayaranOutController implements the CRUD actions for PembayaranOut model.
  */
-class PembelianController extends Controller
+class PembayaranOutController extends Controller
 {
     public function behaviors()
     {
@@ -27,12 +28,12 @@ class PembelianController extends Controller
     }
 
     /**
-     * Lists all Pembelian models.
+     * Lists all PembayaranOut models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new PembelianSearch();
+        $searchModel = new PembayaranOutSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -43,43 +44,25 @@ class PembelianController extends Controller
 
     public function actionIndex2()
     {
-      /**
-        //$myHost = "localhost";
-        //$myUser = "postgres";
-        //$myPassword = "1234";
-        //$myPort = "5432";
-        $blm = "Belum Diterima";
-        // Create connection
-        //$connection = new \yii\db\Connection(["host = ".$myHost." user = ".$myUser." password = ".$myPassword." port = ".$myPort." dbname = sitrans" ]);
-        
-        //$conn = "host = ".$myHost." user = ".$myUser." password = ".$myPassword." port = ".$myPort." dbname = sitrans";
-            // Check connection
-          //  if (!$database = pg_connect($conn)) {
-            //    die("Connection failed");
-            //}
-        //$connection = new \Yii::$app->db;
-        //$connection-> open();
-        //$command = $connection->createCommand('SELECT * FROM PEMBELIAN P, PEMBAYARAN_OUT B, SUPPLIER S WHERE P.idbayar=B.idbayar AND S.namasupplier = B.supplier AND P.status_del="'.$blm.'";');     
-        //$result = $command->queryAll();
-
+        /**
         $dataProvider = new ActiveDataProvider([
-            'query' => Pembelian::find()
-                      ->WHERE ("status_del= 'Belum Diterima'")
-                      ->all()
+            'query' => PembayaranOut::find(),
         ]);
-      **/
 
-      $beli2 = Pembelian::find()
-          ->where("status_del= 'Belum Diterima'")
+        return $this->render('index2', [
+            'dataProvider' => $dataProvider,
+        ]);
+        **/
+
+        $hutang = PembayaranOut::find()
+          ->where("status_bayar= 'Hutang'")
           ->all();
         return $this->render('index2', [
-            'beli2' => $beli2,
+            'hutang' => $hutang,
         ]);
-
     }
-
     /**
-     * Displays a single Pembelian model.
+     * Displays a single PembayaranOut model.
      * @param integer $id
      * @return mixed
      */
@@ -91,25 +74,25 @@ class PembelianController extends Controller
     }
 
     /**
-     * Creates a new Pembelian model.
+     * Creates a new PembayaranOut model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Pembelian();
+        $model = new PembayaranOut();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idbeli]);
+            return $this->redirect(['view', 'id' => $model->idbayar]);
         } else {
-            return $this->render('createpembelian', [
+            return $this->render('create', [
                 'model' => $model,
             ]);
         }
     }
 
     /**
-     * Updates an existing Pembelian model.
+     * Updates an existing PembayaranOut model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -119,7 +102,7 @@ class PembelianController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idbeli]);
+            return $this->redirect(['view', 'id' => $model->idbayar]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -128,7 +111,7 @@ class PembelianController extends Controller
     }
 
     /**
-     * Deletes an existing Pembelian model.
+     * Deletes an existing PembayaranOut model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -151,6 +134,7 @@ class PembelianController extends Controller
             $myUser = "postgres";
             $myPassword = "1234";
             $myPort = "5432";
+            $tglBayar = date('Y-m-d');
             // Create connection
             $conn = "host = ".$myHost." user = ".$myUser." password = ".$myPassword." port = ".$myPort." dbname = sitrans";
             // Check connection
@@ -159,8 +143,10 @@ class PembelianController extends Controller
             }
             
             //$ambilStatus = "SELECT status_del FROM pembelian WHERE idbeli = '".$id."';";
-            $ubahStatus = "UPDATE PEMBELIAN SET status_del = 'Diterima' WHERE idbeli = '".$id."';";
+            $ubahStatus = "UPDATE PEMBAYARAN_OUT SET status_bayar = 'Lunas' WHERE idbayar = '".$id."';";
+            $ubahTanggal = "UPDATE PEMBAYARAN_OUT SET tgl_bayar = '".$tglBayar."' WHERE idbayar = '".$id."';";
             $masukin = pg_query($ubahStatus);
+            $masukin2 = pg_query($ubahTanggal);
 
 
                 return $this->render('view', [
@@ -178,15 +164,15 @@ class PembelianController extends Controller
     }
 
     /**
-     * Finds the Pembelian model based on its primary key value.
+     * Finds the PembayaranOut model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Pembelian the loaded model
+     * @return PembayaranOut the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Pembelian::findOne($id)) !== null) {
+        if (($model = PembayaranOut::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
