@@ -42,14 +42,14 @@ use app\themes\adminLTE\components\ThemeNav;
                   'items' => [
                       ['label'=>Yii::t('app','MAIN NAVIGITION'), 'options'=>['class'=>'header']],
                       ['label' => ThemeNav::link('Dashboard', 'fa fa-dashboard'), 'url' => ['site/index'], 'visible'=>!Yii::$app->user->isGuest],
-					  ['label' => ThemeNav::link('Pengguna', 'fa fa-book'), 'url' => ['pengguna/index'], 'visible'=>!Yii::$app->user->isGuest],
-					  ['label' => ThemeNav::link('Customer', 'fa fa-edit'), 'url' => ['customer/index'], 'visible'=>!Yii::$app->user->isGuest],
-					  ['label' => ThemeNav::link('Supplier', 'fa fa-table'), 'url' => ['supplier/index'], 'visible'=>!Yii::$app->user->isGuest],
-					  ['label' => ThemeNav::link('Merk', 'fa fa-table'), 'url' => ['merk/index'], 'visible'=>!Yii::$app->user->isGuest],
-					  ['label' => ThemeNav::link('Jenis', 'fa fa-table'), 'url' => ['jenis/index'], 'visible'=>!Yii::$app->user->isGuest],
-					  ['label' => ThemeNav::link('Produk', 'fa fa-table'), 'url' => ['produk/index'], 'visible'=>!Yii::$app->user->isGuest],
-					  ['label' => ThemeNav::link('Pembelian', 'fa fa-table'), 'url' => ['pembelian/index'], 'visible'=>!Yii::$app->user->isGuest],
-					  ['label' => ThemeNav::link('Penjualan', 'fa fa-table'), 'url' => ['penjualan/index'], 'visible'=>!Yii::$app->user->isGuest],
+					  ['label' => ThemeNav::link('Pengguna', 'fa fa-book'), 'url' => ['pengguna/index'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->username == 'admin'],
+					  ['label' => ThemeNav::link('Customer', 'fa fa-book'), 'url' => ['customer/index'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->username == 'sm01','sm02'],
+					  ['label' => ThemeNav::link('Supplier', 'fa fa-book'), 'url' => ['supplier/index'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->username == 'purchasing01','purchasing02'],
+					  ['label' => ThemeNav::link('Merk', 'fa fa-table'), 'url' => ['merk/index'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->username == 'purchasing01','purchasing02'],
+					  ['label' => ThemeNav::link('Jenis', 'fa fa-table'), 'url' => ['jenis/index'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->username == 'purchasing01','purchasing02'],
+					  ['label' => ThemeNav::link('Produk', 'fa fa-table'), 'url' => ['produk/index'], 'visible'=>!Yii::$app->user->isGuest && !Yii::$app->user->identity->username == 'admin'],
+					  ['label' => ThemeNav::link('Pembelian', 'fa fa-circle-o text-red'), 'url' => ['pembelian/index'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->username == 'purchasing01','purchasing02'],
+					  ['label' => ThemeNav::link('Penjualan', 'fa fa-circle-o text-green'), 'url' => ['penjualan/index'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->username == 'sm01','sm02'],
                   ],
                 ]);
             ?>
