@@ -32,7 +32,7 @@ class Jenis extends \yii\db\ActiveRecord
     {
         return [
             [['idjenis'], 'required'],
-            [['idjenis', 'rop'], 'integer'],
+            [['idjenis', 'rop'], 'integer','min' => 0],
             [['stok_kilo', 'stok_karton'], 'number'],
             [['namajenis'], 'string', 'max' => 50]
         ];
