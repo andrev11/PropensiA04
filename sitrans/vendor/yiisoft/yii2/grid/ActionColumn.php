@@ -58,7 +58,7 @@ class ActionColumn extends Column
      *
      * @see buttons
      */
-    public $template = '{view} {update} {delete} {confirm}';
+    public $template = '{view} {update} {delete}';
     /**
      * @var array button rendering callbacks. The array keys are the button names (without curly brackets),
      * and the values are the corresponding button rendering callbacks. The callbacks should use the following
@@ -177,6 +177,7 @@ class ActionColumn extends Column
                 return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url, $options);
             };
         }
+        /**
         if (!isset($this->buttons['confirm'])) {
             $this->buttons['confirm'] = function ($url, $model, $key) {
                 $options = array_merge([
@@ -190,6 +191,7 @@ class ActionColumn extends Column
                 //return Html::a('Confirm',$url,$options);
             };
         }
+        **/
     }
 
     /**
