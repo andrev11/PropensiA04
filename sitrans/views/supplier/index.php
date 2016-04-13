@@ -10,6 +10,7 @@ $this->title = Yii::t('app', 'Supplier');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="supplier-index">
+    
 
     <p>
         <?= Html::a(Yii::t('app', 'Create Supplier'), ['create'], ['class' => 'btn btn-success']) ?>

@@ -8,7 +8,6 @@ use Yii;
  * This is the model class for table "produk".
  *
  * @property integer $idmerk
- * @property integer $idsupplier
  * @property integer $idjenis
  * @property string $lokasi
  * @property string $namaproduk
@@ -38,12 +37,11 @@ class Produk extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['idmerk', 'idsupplier', 'idjenis', 'lokasi'], 'required'],
-            [['idmerk', 'idsupplier', 'idjenis', 'harga_beli', 'harga_jual'], 'integer'],
+            [['idmerk', 'idjenis', 'lokasi'], 'required'],
+            [['idmerk', 'idjenis', 'harga_beli', 'harga_jual'], 'integer'],
             [['kilo', 'karton'], 'number'],
             [['lokasi'], 'string', 'max' => 25],
             [['namaproduk'], 'string', 'max' => 50],
-            [['namaproduk'], 'unique']
         ];
     }
 
@@ -54,7 +52,6 @@ class Produk extends \yii\db\ActiveRecord
     {
         return [
             'idmerk' => Yii::t('app', 'Merk'),
-            'idsupplier' => Yii::t('app', 'Supplier'),
             'idjenis' => Yii::t('app', 'Jenis'),
             'lokasi' => Yii::t('app', 'Lokasi'),
             'namaproduk' => Yii::t('app', 'Nama Produk'),
@@ -94,6 +91,6 @@ class Produk extends \yii\db\ActiveRecord
      */
     public function getIdmerk0()
     {
-        return $this->hasOne(Merk::className(), ['idmerk' => 'idmerk', 'idsupplier' => 'idsupplier']);
+        return $this->hasOne(Merk::className(), ['idmerk' => 'idmerk']);
     }
 }

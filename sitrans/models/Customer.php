@@ -33,7 +33,6 @@ class Customer extends \yii\db\ActiveRecord
             [['idcustomer'], 'required'],
             [['idcustomer'], 'integer'],
             [['namacustomer', 'telponcustomer', 'alamatcustomer'], 'string', 'max' => 50],
-            [['namacustomer'], 'unique']
         ];
     }
 

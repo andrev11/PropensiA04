@@ -17,8 +17,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'idmerk') ?>
 
-    <?= $form->field($model, 'idsupplier') ?>
-
     <?= $form->field($model, 'idjenis') ?>
 
     <?= $form->field($model, 'lokasi') ?>

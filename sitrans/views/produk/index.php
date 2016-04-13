@@ -31,7 +31,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             //'idmerk',
-            //'idsupplier',
             //'idjenis',
             'namaproduk',
             'harga_beli',

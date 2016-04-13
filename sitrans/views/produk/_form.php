@@ -19,11 +19,6 @@ use app\models\Jenis;
         ['prompt'=>'Select Merk']
     ) ?>
 
-     <?= $form->field($model, 'idsupplier')->dropDownList(
-        ArrayHelper::map(Merk::find()->all(),'idsupplier','namasupplier'),
-        ['prompt'=>'Select Supplier']
-    ) ?>
-
      <?= $form->field($model, 'idjenis')->dropDownList(
         ArrayHelper::map(Jenis::find()->all(),'idjenis','namajenis'),
         ['prompt'=>'Select Jenis']

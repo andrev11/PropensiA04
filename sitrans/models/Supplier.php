@@ -36,7 +36,6 @@ class Supplier extends \yii\db\ActiveRecord
             [['idsupplier'], 'integer'],
             [['namasupplier', 'telponsupplier', 'no_rekening'], 'string', 'max' => 50],
             [['alamatsupplier'], 'string', 'max' => 100],
-            [['namasupplier'], 'unique']
         ];
     }
 
