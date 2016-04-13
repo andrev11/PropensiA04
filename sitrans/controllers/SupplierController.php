@@ -69,7 +69,24 @@ class SupplierController extends Controller
      */
     public function actionCreate()
     {
+        $myHost = "localhost";
+        $myUser = "postgres";
+        $myPassword = "1234";
+        $myPort = "5432";
+        // Create connection
+        $conn = "host = ".$myHost." user = ".$myUser." password = ".$myPassword." port = ".$myPort." dbname = sitrans";
+        // Check connection
+        if (!$database = pg_connect($conn)) {
+            die("Connection failed");
+        }
+        
+        $increments = pg_fetch_array(pg_query("select max(idsupplier) from supplier ;"));
+        
+        $id=$increments[0] + 1 ;
+
+
         $model = new Supplier();
+        $model->idsupplier=$id;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->idsupplier]);
