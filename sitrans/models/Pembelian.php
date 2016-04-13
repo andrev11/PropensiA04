@@ -53,8 +53,8 @@ class Pembelian extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            //'idbeli' => 'Idbeli',
-            //'idbayar' => 'Idbayar',
+            //'idbeli' => 'Id beli',
+            //'idbayar' => 'Id bayar',
             'produk' => 'Produk',
             'tgl_beli' => 'Tanggal Beli',
             'tgl_terima' => 'Tanggal Terima',
