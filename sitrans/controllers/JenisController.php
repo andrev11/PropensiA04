@@ -81,7 +81,7 @@ class JenisController extends Controller
 		}
 		
 		$increments = pg_fetch_array(pg_query("select max(idjenis) from jenis ;"));
-		echo $increments[0];
+		//echo $increments[0];
 		$id=$increments[0] + 1 ;
 		
         $model = new Jenis();

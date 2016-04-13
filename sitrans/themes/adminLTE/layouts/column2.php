@@ -53,6 +53,7 @@ use app\themes\adminLTE\components\ThemeNav;
 					  ['label' => ThemeNav::link('Barang Masuk', 'fa fa-circle-o text-blue'), 'url' => ['pembelian/index2'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'admin inventori'],
 					  ['label' => ThemeNav::link('Daftar Hutang', 'fa fa-circle-o text-red'), 'url' => ['pembayaran-out/index2'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'finance'],
 					  ['label' => ThemeNav::link('CPO', 'fa fa-circle-o text-blue'), 'url' => ['../views/site/createpembelian.php'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'purchasing'],
+					  ['label' => ThemeNav::link('Pembayaran Keluar', 'fa fa-circle-o text-yellow'), 'url' => ['pembayaran-out/index'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'finance'],
                   ],
                 ]);
             ?>
