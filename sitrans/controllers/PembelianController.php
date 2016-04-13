@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\db\Query;
+use mPDF;
 /**
  * PembelianController implements the CRUD actions for Pembelian model.
  */
@@ -88,6 +89,65 @@ class PembelianController extends Controller
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
+    }
+
+    public function actionPrint()
+    {  
+
+         // get your HTML raw content without any layouts or scripts
+    //$content = $this->renderPartial('_reportView');
+
+   ini_set('memory_limit','3000M');//extending php memory
+    $pdf=new mPDF('win-1252','A4','','',15,10,16,10,10,10);//A4 size page in landscape orientation
+    date_default_timezone_set("Asia/Bangkok");
+    $pdf->SetHeader(date('H:i:s'));
+    $pdf->setFooter('{PAGENO}');
+    $pdf->useOnlyCoreFonts = true;    // false is default
+    //$mpdf->SetWatermarkText("any text");
+    //$mpdf->showWatermarkText = true;
+    //$mpdf->watermark_font = 'DejaVuSansCondensed';
+    //$mpdf->watermarkTextAlpha = 0.1;
+    $pdf->SetDisplayMode('fullpage');
+    //$pdf->SetWatermarkImage('logo.png');
+    //$pdf->showWatermarkImage = true;
+
+    // setup kartik\mpdf\Pdf component
+    //$pdf = new mPDF('utf-8', 'A4');
+    //$pdf->allow_charset_conversion = true;
+    //$pdf->WriteHTML('$html');
+
+    // Buffer the following html with PHP so we can store it to a variable later
+ob_start();
+?>
+<?php include "../views/pembelian/_reportPembelian.php";//The php page you want to convert to pdf
+ // asasas?>
+
+<?php 
+$html = ob_get_contents();
+
+ob_end_clean();
+
+// send the captured HTML from the output buffer to the mPDF class for processing
+
+$pdf->WriteHTML($html);
+//$mpdf->SetProtection(array(), 'mawiahl', 'password');//for password protecting your pdf
+
+
+
+    // return the pdf output as per the destination setting
+     $pdf->Output(); 
+
+      /*  $model = new Produk();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'idmerk' => $model->idmerk, 'idsupplier' => $model->idsupplier, 'idjenis' => $model->idjenis, 'lokasi' => $model->lokasi]);
+        } else {
+            return $this->render('print', [
+                'model' => $model,
+            ]);
+        }
+
+        */
     }
 
     /**
