@@ -7,20 +7,14 @@ use yii\widgets\DetailView;
 /* @var $model app\models\Pengguna */
 
 $this->title = $model->username;
-$this->params['breadcrumbs'][] = ['label' => 'Pengguna', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Pengguna'];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="pengguna-view">
 
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->username], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->username], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
+        
     </p>
 
     <?= DetailView::widget([
@@ -28,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'username',
             'nama',
-            'password',
+            
             'role',
         ],
     ]) ?>
