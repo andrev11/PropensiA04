@@ -83,9 +83,12 @@ class JenisController extends Controller
 		$increments = pg_fetch_array(pg_query("select max(idjenis) from jenis ;"));
 		//echo $increments[0];
 		$id=$increments[0] + 1 ;
+		$nol=0;
 		
         $model = new Jenis();
 		$model->idjenis=$id;
+		$model->stok_kilo=$nol;
+		$model->stok_karton=$nol;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->idjenis]);
