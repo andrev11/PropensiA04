@@ -15,8 +15,12 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Produk'), ['create'], ['class' => 'btn btn-success']) ?>
-        <?= Html::a(Yii::t('app', 'Print'), ['print'], ['class' => 'btn btn-success']) ?>
+        <!--<?= Html::a(Yii::t('app', 'Create Produk'), ['create'], ['class' => 'btn btn-success']) ?> -->
+        
+		<?php if (Yii::$app->user->identity->role == 'admin inventori') 
+			echo Html::a(Yii::t('app', 'Print'), ['print'], ['class' => 'btn btn-success']);
+			?>
+			
     </p>
 
     <?= GridView::widget([
@@ -35,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'karton',
             'lokasi',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn', 'visible' => Yii::$app->user->identity->role == 'admin inventori'],
         ],
     ]); ?>
 
