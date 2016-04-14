@@ -8,12 +8,13 @@ use app\models\Jenis;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Produk */
-/* @var $form yii\widgets\ActiveForm */
+/*@var $form yii\widgets\ActiveForm */
 ?>
 
 <div class="produk-form">
 
     <?php $form = ActiveForm::begin(); ?>
+    <!--
     <?= $form->field($model, 'idmerk')->dropDownList(
         ArrayHelper::map(Merk::find()->all(),'idmerk','namasupplier'),
         ['prompt'=>'Select Merk']
@@ -28,13 +29,15 @@ use app\models\Jenis;
         array('Bekasi'=>'Bekasi','Cakung'=>'Cakung'),
         ['prompt' => 'Select Lokasi']
         )
-     ?> 
-    <?= $form->field($model, 'namaproduk')->textInput(['maxlength' => true]) ?>
+     ?> -->
+    <?= $form->field($model, 'namaproduk')->textInput(['readonly'=>!$model->isNewRecord]) ?>
+    <!--
 
     <?= $form->field($model, 'harga_beli')->textInput() ?>
 
     <?= $form->field($model, 'harga_jual')->textInput() ?>
-
+    
+    -->
     <?= $form->field($model, 'kilo')->textInput() ?>
 
     <?= $form->field($model, 'karton')->textInput() ?>

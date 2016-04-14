@@ -51,6 +51,9 @@ class Merk extends \yii\db\ActiveRecord
         ];
     }
 
+    public function getSupplierName() {
+        return $this->supplier->name;
+    }
     /**
      * @return \yii\db\ActiveQuery
      */

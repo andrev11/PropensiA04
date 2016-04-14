@@ -28,7 +28,7 @@ class Pengguna extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['username'], 'required'],
+            [['username','password', 'role','nama'], 'required'],
             [['username', 'password', 'role'], 'string', 'max' => 25],
             [['nama'], 'string', 'max' => 50]
         ];
