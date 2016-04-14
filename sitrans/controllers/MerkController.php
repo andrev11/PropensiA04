@@ -85,7 +85,7 @@ class MerkController extends Controller
         
         $id=$increments[0] + 1 ;
         
-       $model = new Merk();
+        $model = new Merk();
         $model->idmerk=$id;
         $model->status='aktif';
 
