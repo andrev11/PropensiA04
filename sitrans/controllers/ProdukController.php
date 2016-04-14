@@ -151,9 +151,30 @@ $pdf->WriteHTML($html);
      */
     public function actionUpdate($idmerk, $idjenis, $lokasi)
     {
-        $model = $this->findModel($idmerk, $idjenis, $lokasi);
+        /**$myHost = "localhost";
+        $myUser = "postgres";
+        $myPassword = "1234";
+        $myPort = "5432";
+        // Create connection
+        $conn = "host = ".$myHost." user = ".$myUser." password = ".$myPassword." port = ".$myPort." dbname = sitrans";
+        // Check connection
+        if (!$database = pg_connect($conn)) {
+            die("Connection failed");
+        }
+        
+        
+        $idjenis=$model->idjenis;
 
+        $currentStok = pg_fetch_array(pg_query("select stok_kilo from jenis where idjenis =".$idjenis.";"));
+        **/
+         $model = $this->findModel($idmerk, $idjenis, $lokasi);       
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+           
+           /** $stokcurrent= $currentStok[0];
+            $updatestok=$stokcurrent - $kilo;
+            $updateQuery="update "
+            **/
+
             return $this->redirect(['view', 'idmerk' => $model->idmerk, 'idjenis' => $model->idjenis, 'lokasi' => $model->lokasi]);
         } else {
             return $this->render('update', [

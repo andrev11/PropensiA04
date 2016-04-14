@@ -30,6 +30,7 @@ class Pengguna extends \yii\db\ActiveRecord
         return [
             [['username','password', 'role','nama'], 'required'],
             [['username', 'password', 'role'], 'string', 'max' => 25],
+            [['password'], 'string', 'min' => 6],
             [['nama'], 'string', 'max' => 50],
             [['repeatpassword'], 'compare', 'compareAttribute' => 'password','message' => 'Your password doesnt match']
         ];

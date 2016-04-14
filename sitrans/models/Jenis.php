@@ -24,7 +24,6 @@ class Jenis extends \yii\db\ActiveRecord
     {
         return 'jenis';
     }
-
     /**
      * @inheritdoc
      */
