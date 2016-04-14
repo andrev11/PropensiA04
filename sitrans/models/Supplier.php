@@ -14,7 +14,6 @@ use Yii;
  * @property string $no_rekening
  *
  * @property Merk[] $merks
- * @property PembayaranOut[] $pembayaranOuts
  */
 class Supplier extends \yii\db\ActiveRecord
 {
@@ -32,10 +31,10 @@ class Supplier extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['idsupplier'], 'required'],
+            [['idsupplier','namasupplier','telponsupplier','alamatsupplier'], 'required'],
             [['idsupplier'], 'integer'],
             [['namasupplier', 'telponsupplier', 'no_rekening'], 'string', 'max' => 50],
-            [['alamatsupplier'], 'string', 'max' => 100],
+            [['alamatsupplier'], 'string', 'max' => 100]
         ];
     }
 
@@ -45,11 +44,11 @@ class Supplier extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'idsupplier' => Yii::t('app', 'ID'),
-            'namasupplier' => Yii::t('app', 'Nama'),
-            'telponsupplier' => Yii::t('app', 'Nomor Telepon'),
+            'idsupplier' => Yii::t('app', 'Id Supplier'),
+            'namasupplier' => Yii::t('app', 'Nama Supplier'),
+            'telponsupplier' => Yii::t('app', 'Telpon'),
             'alamatsupplier' => Yii::t('app', 'Alamat'),
-            'no_rekening' => Yii::t('app', 'No. Rekening'),
+            'no_rekening' => Yii::t('app', 'No Rekening'),
         ];
     }
 
@@ -59,13 +58,5 @@ class Supplier extends \yii\db\ActiveRecord
     public function getMerks()
     {
         return $this->hasMany(Merk::className(), ['idsupplier' => 'idsupplier']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getPembayaranOuts()
-    {
-        return $this->hasMany(PembayaranOut::className(), ['supplier' => 'namasupplier']);
     }
 }

@@ -21,7 +21,7 @@ class Pengguna extends \yii\db\ActiveRecord
     {
         return 'pengguna';
     }
-
+    public $repeatpassword;
     /**
      * @inheritdoc
      */
@@ -30,7 +30,8 @@ class Pengguna extends \yii\db\ActiveRecord
         return [
             [['username','password', 'role','nama'], 'required'],
             [['username', 'password', 'role'], 'string', 'max' => 25],
-            [['nama'], 'string', 'max' => 50]
+            [['nama'], 'string', 'max' => 50],
+            [['repeatpassword'], 'compare', 'compareAttribute' => 'password','message' => 'Your password doesnt match']
         ];
     }
 
@@ -44,6 +45,7 @@ class Pengguna extends \yii\db\ActiveRecord
             'nama' => Yii::t('app', 'Nama'),
             'password' => Yii::t('app', 'Password'),
             'role' => Yii::t('app', 'Role'),
+            'repeatpassword'=>  'Repeat Password'
         ];
     }
 }

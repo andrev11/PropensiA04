@@ -31,7 +31,7 @@ class Merk extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['idmerk', 'idsupplier'], 'required'],
+            [['idmerk', 'idsupplier','namasupplier'], 'required'],
             [['idmerk', 'idsupplier'], 'integer'],
             [['namasupplier'], 'string', 'max' => 50],
             [['status'], 'string', 'max' => 25]

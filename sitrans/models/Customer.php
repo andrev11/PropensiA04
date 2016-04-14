@@ -30,9 +30,10 @@ class Customer extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['idcustomer'], 'required'],
+            [['idcustomer','namacustomer','alamatcustomer','telponcustomer'], 'required'],
             [['idcustomer'], 'integer'],
             [['namacustomer', 'telponcustomer', 'alamatcustomer'], 'string', 'max' => 50],
+            ['repeatpassword', 'compare', 'compareAttribute' => 'password'],
         ];
     }
 

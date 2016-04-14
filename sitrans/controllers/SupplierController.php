@@ -4,7 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Supplier;
-use yii\data\ActiveDataProvider;
+use app\models\SupplierSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -16,14 +16,14 @@ class SupplierController extends Controller
 {
     public function beforeAction($action)
         {
-		if (Yii::$app->user->isGuest){
-			return $this->redirect(Yii::$app->user->loginUrl);
-		} else {
-			return true;
-		}
+        if (Yii::$app->user->isGuest){
+            return $this->redirect(Yii::$app->user->loginUrl);
+        } else {
+            return true;
+        }
     }
-	
-	public function behaviors()
+    
+    public function behaviors()
     {
         return [
             'verbs' => [
@@ -41,11 +41,11 @@ class SupplierController extends Controller
      */
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Supplier::find(),
-        ]);
+        $searchModel = new SupplierSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
+            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -81,12 +81,10 @@ class SupplierController extends Controller
         }
         
         $increments = pg_fetch_array(pg_query("select max(idsupplier) from supplier ;"));
-        
         $id=$increments[0] + 1 ;
-
-
-        $model = new Supplier();
+        $model = new Supplier();        
         $model->idsupplier=$id;
+            
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->idsupplier]);
