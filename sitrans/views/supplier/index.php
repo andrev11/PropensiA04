@@ -7,12 +7,12 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\SupplierSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Suppliers');
+$this->title = Yii::t('app', 'Supplier');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="supplier-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>

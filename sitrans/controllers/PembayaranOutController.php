@@ -9,6 +9,7 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\controllers\SiteController;
 
 /**
  * PembayaranOutController implements the CRUD actions for PembayaranOut model.
@@ -130,7 +131,7 @@ class PembayaranOutController extends Controller
         //if ($model->load(Yii::$app->request->post()) && $model->save()) {
             //return $this->redirect(['view', 'id' => $model->idbeli]);
       
-            $myHost = "localhost";
+            /***$myHost = "localhost";
             $myUser = "postgres";
             $myPassword = "1234";
             $myPort = "5432";
@@ -141,7 +142,8 @@ class PembayaranOutController extends Controller
             if (!$database = pg_connect($conn)) {
                 die("Connection failed");
             }
-            
+            **/
+             echo SiteController::connect(); 
             //$ambilStatus = "SELECT status_del FROM pembelian WHERE idbeli = '".$id."';";
             $ubahStatus = "UPDATE PEMBAYARAN_OUT SET status_bayar = 'Lunas' WHERE idbayar = '".$id."';";
             $ubahTanggal = "UPDATE PEMBAYARAN_OUT SET tgl_bayar = '".$tglBayar."' WHERE idbayar = '".$id."';";

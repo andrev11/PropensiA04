@@ -8,6 +8,7 @@ use app\models\CustomerSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\controllers\SiteController;
 
 /**
  * CustomerController implements the CRUD actions for Customer model.
@@ -69,7 +70,7 @@ class CustomerController extends Controller
      * @return mixed
      */
     public function actionCreate()
-    {
+    {   /***
 		$myHost = "localhost";
 		$myUser = "postgres";
 		$myPassword = "1234";
@@ -80,7 +81,9 @@ class CustomerController extends Controller
 		if (!$database = pg_connect($conn)) {
 			die("Connection failed");
 		}
-		
+		**/
+        
+        echo SiteController::connect(); 
 		$increments = pg_fetch_array(pg_query("select max(idcustomer) from customer ;"));
 		
 		$id=$increments[0] + 1 ;

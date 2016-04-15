@@ -8,6 +8,8 @@ use app\models\MerkSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\controllers\SiteController;
+
 
 /**
  * MerkController implements the CRUD actions for Merk model.
@@ -70,6 +72,7 @@ class MerkController extends Controller
      */
     public function actionCreate()
     {
+        /***
         $myHost = "localhost";
         $myUser = "postgres";
         $myPassword = "1234";
@@ -79,8 +82,8 @@ class MerkController extends Controller
         // Check connection
         if (!$database = pg_connect($conn)) {
             die("Connection failed");
-        }
-        
+        } **/
+         echo SiteController::connect(); 
         $increments = pg_fetch_array(pg_query("select max(idmerk) from merk ;"));
         
         $id=$increments[0] + 1 ;

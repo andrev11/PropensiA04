@@ -8,6 +8,9 @@ use app\models\JenisSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\controllers\SiteController; 
+
+
 
 /**
  * JenisController implements the CRUD actions for Jenis model.
@@ -49,7 +52,13 @@ class JenisController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
-
+    public function actionSetrop()
+    {
+        $jenis2 = Jenis::find()->all();
+            return $this->render('setrop', [
+                'jenis2' => $jenis2,
+            ]);
+    }
     /**
      * Displays a single Jenis model.
      * @param integer $id
@@ -69,7 +78,8 @@ class JenisController extends Controller
      */
     public function actionCreate()
     {	
-		$myHost = "localhost";
+		/***
+        $myHost = "localhost";
 		$myUser = "postgres";
 		$myPassword = "1234";
 		$myPort = "5432";
@@ -78,17 +88,14 @@ class JenisController extends Controller
 		// Check connection
 		if (!$database = pg_connect($conn)) {
 			die("Connection failed");
-		}
-		
+		} **/
+		echo SiteController::connect(); 
 		$increments = pg_fetch_array(pg_query("select max(idjenis) from jenis ;"));
-		//echo $increments[0];
-		$id=$increments[0] + 1 ;
-		$nol=0;
-		
+		$id=$increments[0] + 1 ;		
         $model = new Jenis();
 		$model->idjenis=$id;
-		$model->stok_kilo=$nol;
-		$model->stok_karton=$nol;
+		$model->stok_kilo=0;
+		$model->stok_karton=0;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->idjenis]);

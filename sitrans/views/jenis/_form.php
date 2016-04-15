@@ -12,10 +12,25 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'namajenis')->textInput(['readonly'=>!$model->isNewRecord]) ?>
-
-    <?= $form->field($model, 'rop')->textInput(['maxlength' => true]) ?>
-
+   <!--<?= $form->field($model, 'namajenis')->textInput(['readonly'=>!$model->isNewRecord]) ?>
+    <?= $form->field($model, 'stok_kilo')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'stok_karton')->textInput(['maxlength' => true]) ?> -->
+ 
+   <?php 
+	   if(Yii::$app->user->identity->role == 'purchasing') {
+	     echo $form->field($model,'namajenis')->textInput();
+	   } else {
+	   	 echo $form->field($model, 'namajenis')->textInput(['readonly'=>!$model->isNewRecord]);	
+		 }
+    ?>
+     <?php 
+	   if(Yii::$app->user->identity->role == 'sales marketing') {
+	     echo $form->field($model,'rop')->textInput();
+	   } else {
+	   	 echo $form->field($model, 'rop')->textInput(['readonly'=>!$model->isNewRecord]);	
+		 }
+    ?>
+   
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>

@@ -49,7 +49,16 @@ class PenggunaController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
+    public function actionResetpassadmin($username){
 
+            $ubahpassword = "UPDATE PENGGUNA SET password = 'password123' WHERE username = '".$username."';";
+            $ubah = pg_query($ubahpassword);
+
+
+                return $this->render('view', [
+                        'model' => $this->findModel($username),
+                    ]);
+    } 
      public function actionResetpassword()
     {
         $user=Yii::$app->user->identity;

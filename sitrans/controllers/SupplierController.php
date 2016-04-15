@@ -8,6 +8,8 @@ use app\models\SupplierSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\controllers\SiteController;
+
 
 /**
  * SupplierController implements the CRUD actions for Supplier model.
@@ -69,6 +71,7 @@ class SupplierController extends Controller
      */
     public function actionCreate()
     {
+        /***
         $myHost = "localhost";
         $myUser = "postgres";
         $myPassword = "1234";
@@ -78,8 +81,8 @@ class SupplierController extends Controller
         // Check connection
         if (!$database = pg_connect($conn)) {
             die("Connection failed");
-        }
-        
+        } **/
+         echo SiteController::connect(); 
         $increments = pg_fetch_array(pg_query("select max(idsupplier) from supplier ;"));
         $id=$increments[0] + 1 ;
         $model = new Supplier();        

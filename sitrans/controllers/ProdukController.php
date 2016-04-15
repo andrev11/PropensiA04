@@ -9,6 +9,8 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use mPDF;
+use app\controllers\SiteController;
+use app\models\Jenis;
 
 /**
  * ProdukController implements the CRUD actions for Produk model.
@@ -151,30 +153,30 @@ $pdf->WriteHTML($html);
      */
     public function actionUpdate($idmerk, $idjenis, $lokasi)
     {
-        /**$myHost = "localhost";
-        $myUser = "postgres";
-        $myPassword = "1234";
-        $myPort = "5432";
-        // Create connection
-        $conn = "host = ".$myHost." user = ".$myUser." password = ".$myPassword." port = ".$myPort." dbname = sitrans";
-        // Check connection
-        if (!$database = pg_connect($conn)) {
-            die("Connection failed");
-        }
+         echo SiteController::connect(); 
+         $model = $this->findModel($idmerk, $idjenis, $lokasi);   
+            
+         $idjenis=$model->idjenis;
+         $currentStokkiloJenis = pg_fetch_array(pg_query("select stok_kilo from jenis where idjenis =".$idjenis.";"));
+         $currentStokkartonJenis = pg_fetch_array(pg_query("select stok_karton from jenis where idjenis =".$idjenis.";"));
+         $currentkiloProduk=$model->kilo;
+         $currentkartonProduk=$model->karton;
         
-        
-        $idjenis=$model->idjenis;
-
-        $currentStok = pg_fetch_array(pg_query("select stok_kilo from jenis where idjenis =".$idjenis.";"));
-        **/
-         $model = $this->findModel($idmerk, $idjenis, $lokasi);       
+    
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $kiloupdated=$model->kilo;
+            $kartonupdated=$model->karton;
+            $updatekilo=$currentkiloProduk-$kiloupdated;
+            $updatekarton=$currentkartonProduk-$kartonupdated;
+            $stokcurrentkilo= $currentStokkiloJenis[0];
+            $stokcurrentkarton= $currentStokkartonJenis[0]; 
+            $updatestokkilo=$stokcurrentkilo - $updatekilo;
+            $updatestokkarton=$stokcurrentkarton - $updatekarton;
+            $updateQueryKilo="update jenis  set stok_kilo=".$updatestokkilo." where idjenis =".$idjenis.";";
+            $updateQueryKarton="update jenis  set stok_karton=".$updatestokkarton." where idjenis =".$idjenis.";";
+            pg_query($updateQueryKilo);
+            pg_query($updateQueryKarton);           
            
-           /** $stokcurrent= $currentStok[0];
-            $updatestok=$stokcurrent - $kilo;
-            $updateQuery="update "
-            **/
-
             return $this->redirect(['view', 'idmerk' => $model->idmerk, 'idjenis' => $model->idjenis, 'lokasi' => $model->lokasi]);
         } else {
             return $this->render('update', [
