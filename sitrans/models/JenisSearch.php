@@ -63,7 +63,7 @@ class JenisSearch extends Jenis
             'stok_karton' => $this->stok_karton,
         ]);
 
-        $query->andFilterWhere(['like', 'namajenis', $this->namajenis]);
+        $query->andFilterWhere(['ilike', 'namajenis', $this->namajenis]);
 
         return $dataProvider;
     }

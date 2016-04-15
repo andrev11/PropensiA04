@@ -60,8 +60,8 @@ class MerkSearch extends Merk
             'idsupplier' => $this->idsupplier,
         ]);
 
-        $query->andFilterWhere(['like', 'namasupplier', $this->namasupplier])
-            ->andFilterWhere(['like', 'status', $this->status]);
+        $query->andFilterWhere(['ilike', 'namasupplier', $this->namasupplier])
+            ->andFilterWhere(['ilike', 'status', $this->status]);
 
         return $dataProvider;
     }

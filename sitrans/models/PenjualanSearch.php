@@ -68,10 +68,10 @@ class PenjualanSearch extends Penjualan
             'kilo' => $this->kilo,
         ]);
 
-        $query->andFilterWhere(['like', 'produk', $this->produk])
-            ->andFilterWhere(['like', 'cara_kirim', $this->cara_kirim])
-            ->andFilterWhere(['like', 'cara_bayar', $this->cara_bayar])
-            ->andFilterWhere(['like', 'status_del', $this->status_del]);
+        $query->andFilterWhere(['ilike', 'produk', $this->produk])
+            ->andFilterWhere(['ilike', 'cara_kirim', $this->cara_kirim])
+            ->andFilterWhere(['ilike', 'cara_bayar', $this->cara_bayar])
+            ->andFilterWhere(['ilike', 'status_del', $this->status_del]);
 
         return $dataProvider;
     }

@@ -59,10 +59,10 @@ class SupplierSearch extends Supplier
             'idsupplier' => $this->idsupplier,
         ]);
 
-        $query->andFilterWhere(['like', 'namasupplier', $this->namasupplier])
-            ->andFilterWhere(['like', 'telponsupplier', $this->telponsupplier])
-            ->andFilterWhere(['like', 'alamatsupplier', $this->alamatsupplier])
-            ->andFilterWhere(['like', 'no_rekening', $this->no_rekening]);
+        $query->andFilterWhere(['ilike', 'namasupplier', $this->namasupplier])
+            ->andFilterWhere(['ilike', 'telponsupplier', $this->telponsupplier])
+            ->andFilterWhere(['ilike', 'alamatsupplier', $this->alamatsupplier])
+            ->andFilterWhere(['ilike', 'no_rekening', $this->no_rekening]);
 
         return $dataProvider;
     }

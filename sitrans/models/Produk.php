@@ -37,9 +37,9 @@ class Produk extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['idmerk', 'idjenis', 'lokasi'], 'required'],
+            [['idmerk', 'idjenis', 'lokasi','kilo','karton'], 'required'],
             [['idmerk', 'idjenis', 'harga_beli', 'harga_jual'], 'integer'],
-            [['kilo', 'karton'], 'number'],
+            [['kilo', 'karton'], 'number','min'=>0],
             [['lokasi'], 'string', 'max' => 25],
             [['namaproduk'], 'string', 'max' => 50],
         ];
@@ -57,8 +57,8 @@ class Produk extends \yii\db\ActiveRecord
             'namaproduk' => Yii::t('app', 'Nama Produk'),
             'harga_beli' => Yii::t('app', 'Harga Beli'),
             'harga_jual' => Yii::t('app', 'Harga Jual'),
-            'kilo' => Yii::t('app', 'Kilo'),
-            'karton' => Yii::t('app', 'Karton'),
+            'kilo' => Yii::t('app', 'Stok Kilo'),
+            'karton' => Yii::t('app', 'Stok Karton'),
         ];
     }
 

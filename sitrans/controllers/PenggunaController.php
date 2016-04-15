@@ -8,6 +8,7 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\controllers\SiteController; 
 
 /**
  * PenggunaController implements the CRUD actions for Pengguna model.
@@ -49,16 +50,30 @@ class PenggunaController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
+    public function actionListuser()
+    {
+        $user = Pengguna::find()->all();
+            return $this->render('listuser', [
+                'user' => $user,
+            ]);
+    }
     public function actionResetpassadmin($username){
 
+            echo SiteController::connect();
             $ubahpassword = "UPDATE PENGGUNA SET password = 'password123' WHERE username = '".$username."';";
             $ubah = pg_query($ubahpassword);
+             
+            $user = Pengguna::find()->all();
+            return $this->render('listuser', [
+                'user' => $user,
+            ]);
 
-
-                return $this->render('view', [
+                /***return $this->render('view', [
                         'model' => $this->findModel($username),
                     ]);
-    } 
+                **/
+    }
+
      public function actionResetpassword()
     {
         $user=Yii::$app->user->identity;

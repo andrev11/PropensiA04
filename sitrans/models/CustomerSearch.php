@@ -59,9 +59,9 @@ class CustomerSearch extends Customer
             'idcustomer' => $this->idcustomer,
         ]);
 
-        $query->andFilterWhere(['like', 'namacustomer', $this->namacustomer])
-            ->andFilterWhere(['like', 'telponcustomer', $this->telponcustomer])
-            ->andFilterWhere(['like', 'alamatcustomer', $this->alamatcustomer]);
+        $query->andFilterWhere(['ilike', 'namacustomer', $this->namacustomer])
+            ->andFilterWhere(['ilike', 'telponcustomer', $this->telponcustomer])
+            ->andFilterWhere(['ilike', 'alamatcustomer', $this->alamatcustomer]);
 
         return $dataProvider;
     }

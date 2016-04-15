@@ -65,8 +65,8 @@ class ProdukSearch extends Produk
             'karton' => $this->karton,
         ]);
 
-        $query->andFilterWhere(['like', 'lokasi', $this->lokasi])
-            ->andFilterWhere(['like', 'namaproduk', $this->namaproduk]);
+        $query->andFilterWhere(['ilike', 'lokasi', $this->lokasi])
+            ->andFilterWhere(['ilike', 'namaproduk', $this->namaproduk]);
 
         return $dataProvider;
     }
