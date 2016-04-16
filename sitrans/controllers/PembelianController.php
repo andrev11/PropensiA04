@@ -67,17 +67,19 @@ class PembelianController extends Controller
         $id=$increments[0] + 1 ;  
         $model->idbeli=$id;
         $model->tgl_beli = date('Y-m-d');
-        $model->status_del="Belum Diterim"; 
+        $model->status_del="Belum Diterima"; 
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $supplier=$model->supplier;
             $tglbeli=$model->tgl_beli;
              $idbeli = $model->idbeli;
             echo PembelianController::insertIdBayar($supplier, $tglbeli,$idbeli);
-           
             $jumlahkilo=$model->kilo;
+            $jumlahkarton=$model->karton;
             $namaproduk=$model->produk;
             echo PembelianController::insertTotalPrice($jumlahkilo, $namaproduk, $idbeli);
+            echo PembelianController::updateStokProduk($namaproduk, $jumlahkilo, $jumlahkarton);
+            echo PembelianController::updateStokJenis($namaproduk, $jumlahkilo, $jumlahkarton);
             return $this->redirect(['view', 'id' => $model->idbeli]);
         } else {
             return $this->render('create', [
@@ -85,12 +87,31 @@ class PembelianController extends Controller
             ]);
         }
     }
-    public function updateProduk($namaproduk){
+    public function updateStokProduk($namaproduk, $jumlahkilo, $jumlahkarton){
         $queryprodukkilo="select kilo from produk where namaproduk ='".$namaproduk."';";
         $queryprodukkarton="select karton from produk where namaproduk ='".$namaproduk."';";
-        $kilo = pg_fetch_array(pg_query($queryprodukkilo))[0];
-        $karton = pg_fetch_array(pg_query($queryprodukkarton))[0];
-        
+        $currentkilo = pg_fetch_array(pg_query($queryprodukkilo))[0];
+        $currentkarton = pg_fetch_array(pg_query($queryprodukkarton))[0];
+        $updateKilo=$currentkilo + $jumlahkilo;
+        $updateKarton=$currentkarton + $jumlahkarton;
+        $queryupdatekilo="Update produk set kilo=".$updateKilo." where namaproduk='".$namaproduk."';";
+        $queryupdatekarton="Update produk set karton=".$updateKarton." where namaproduk='".$namaproduk."';";
+        pg_query($queryupdatekilo);
+        pg_query($queryupdatekarton);
+    }
+    public function updateStokJenis($namaproduk, $jumlahkilo, $jumlahkarton){
+        $queryidjenis="select idjenis from produk where namaproduk='".$namaproduk."';";
+        $idjenis =pg_fetch_array(pg_query($queryidjenis))[0];
+        $queryjeniskilo="select stok_kilo from jenis where idjenis ='".$idjenis."';";
+        $queryjeniskarton="select stok_karton from jenis where idjenis ='".$idjenis."';";
+        $currentkilo = pg_fetch_array(pg_query($queryjeniskilo))[0];
+        $currentkarton = pg_fetch_array(pg_query($queryjeniskarton))[0];
+        $updateKilo=$currentkilo + $jumlahkilo;
+        $updateKarton=$currentkarton + $jumlahkarton;
+        $queryupdatekilo="Update jenis set stok_kilo=".$updateKilo." where idjenis='".$idjenis."';";
+        $queryupdatekarton="Update jenis set stok_karton=".$updateKarton." where idjenis='".$idjenis."';";
+        pg_query($queryupdatekilo);
+        pg_query($queryupdatekarton);
     }
     public function insertTotalPrice($jumlahkilo, $namaproduk, $idbeli){
         $queryproduk="select harga_beli from produk where namaproduk='".$namaproduk."';";
