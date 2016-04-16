@@ -20,9 +20,11 @@ class SupplierController extends Controller
         {
         if (Yii::$app->user->isGuest){
             return $this->redirect(Yii::$app->user->loginUrl);
-        } else {
-            return true;
-        }
+        } else if (Yii::$app->user->identity->role == 'purchasing'){
+			return true;
+		} else {
+			return $this->redirect(Yii::$app->user->loginUrl);
+		}
     }
     
     public function behaviors()

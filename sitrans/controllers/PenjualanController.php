@@ -18,8 +18,10 @@ class PenjualanController extends Controller
         {
 		if (Yii::$app->user->isGuest){
 			return $this->redirect(Yii::$app->user->loginUrl);
-		} else {
+		} else if (Yii::$app->user->identity->role == 'sales marketing'){
 			return true;
+		} else {
+			return $this->redirect(Yii::$app->user->loginUrl);
 		}
     }
 	

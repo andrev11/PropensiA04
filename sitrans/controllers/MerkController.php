@@ -20,8 +20,10 @@ class MerkController extends Controller
         {
 		if (Yii::$app->user->isGuest){
 			return $this->redirect(Yii::$app->user->loginUrl);
-		} else {
+		} else if (Yii::$app->user->identity->role == 'purchasing'){
 			return true;
+		} else {
+			return $this->redirect(Yii::$app->user->loginUrl);
 		}
     }
 	

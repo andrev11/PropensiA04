@@ -47,7 +47,7 @@ use app\themes\adminLTE\components\ThemeNav;
 					  ['label' => ThemeNav::link('Supplier', 'fa fa-book'), 'url' => ['supplier/index'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'purchasing'],
 					  ['label' => ThemeNav::link('Merk', 'fa fa-table'), 'url' => ['merk/index'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'purchasing'],
 					  ['label' => ThemeNav::link('Jenis', 'fa fa-table'), 'url' => ['jenis/index'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'purchasing'],
-            ['label' => ThemeNav::link('Set ROP', 'fa fa-table'), 'url' => ['jenis/index'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'sales marketing'],
+					  ['label' => ThemeNav::link('Set ROP', 'fa fa-table'), 'url' => ['jenis/index'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'sales marketing'],
 					  ['label' => ThemeNav::link('Produk', 'fa fa-table'), 'url' => ['produk/index'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role != 'admin'],
 					  ['label' => ThemeNav::link('Pembelian', 'fa fa-circle-o text-red'), 'url' => ['pembelian/index'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'purchasing'],
 					  ['label' => ThemeNav::link('Penjualan', 'fa fa-circle-o text-green'), 'url' => ['penjualan/index'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'sales marketing'],
