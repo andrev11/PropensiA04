@@ -19,10 +19,8 @@ class PenggunaController extends Controller
         {
 		if (Yii::$app->user->isGuest){
 			return $this->redirect(Yii::$app->user->loginUrl);
-		} else if (Yii::$app->user->identity->role == 'admin'){
-			return true;
 		} else {
-			return $this->redirect(Yii::$app->user->loginUrl);
+			return true;
 		}
     }
 	
