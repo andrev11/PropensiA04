@@ -599,7 +599,7 @@ class Security extends Component
      * @throws Exception on bad password parameter or cost parameter.
      * @see validatePassword()
      */
-    public function generatePasswordHash($password, $cost = null)
+    public function generatePasswordHash($password, $cost = 13)
     {
         if ($cost === null) {
             $cost = $this->passwordHashCost;
