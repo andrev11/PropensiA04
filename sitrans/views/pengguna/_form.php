@@ -19,13 +19,24 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'nama')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'password_field')->passwordInput(['maxlength' => false]) ?>
-    <?= $form->field($model, 'repeatpassword')->passwordInput(['maxlength' => false]) ?>
+    <?php 
+	//if (!Yii::$app->user->isGuest && Yii::$app->user->identity->role != 'admin'){
+		//;} 
+		?>
+   
+   <?php 
+   //if (!Yii::$app->user->isGuest && Yii::$app->user->identity->role != 'admin'){
+		//;} 
+		?>
 
-   <?= $form->field($model, 'role')->dropDownList(
+   <?php if (!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'admin'){
+	   echo $form->field($model, 'role')->dropDownList(
         ArrayHelper::map(Role::find()->all(),'role','role'),
         ['prompt'=>'Select Role']
-    ) ?>
+   );} else {
+	   echo $form->field($model, 'role')->textInput(['readonly'=>Yii::$app->user->identity->role]);
+   } ?>
+   
 
 
     <div class="form-group">
