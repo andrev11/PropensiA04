@@ -30,11 +30,6 @@ use yii\helpers\ArrayHelper;
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-		<?php if (Yii::$app->user->identity->role == 'admin') {
-			echo Html::a(Yii::t('app', 'Reset Password'), ['resetpassadmin', 'username' => $model->username], 
-			['class' => 'btn btn-primary', 'data' => ['confirm' => 'Are you sure you want to reset password ?', 'method' => 'post',],]);
-		}
-		?>
     </div>
 
     <?php ActiveForm::end(); ?>
