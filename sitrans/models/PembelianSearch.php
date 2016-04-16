@@ -66,11 +66,11 @@ class PembelianSearch extends Pembelian
             'kilo' => $this->kilo,
         ]);
 
-        $query->andFilterWhere(['like', 'supplier', $this->supplier])
-            ->andFilterWhere(['like', 'produk', $this->produk])
-            ->andFilterWhere(['like', 'cara_terima', $this->cara_terima])
-            ->andFilterWhere(['like', 'cara_bayar', $this->cara_bayar])
-            ->andFilterWhere(['like', 'status_del', $this->status_del]);
+        $query->andFilterWhere(['ilike', 'supplier', $this->supplier])
+            ->andFilterWhere(['ilike', 'produk', $this->produk])
+            ->andFilterWhere(['ilike', 'cara_terima', $this->cara_terima])
+            ->andFilterWhere(['ilike', 'cara_bayar', $this->cara_bayar])
+            ->andFilterWhere(['ilike', 'status_del', $this->status_del]);
 
         return $dataProvider;
     }
