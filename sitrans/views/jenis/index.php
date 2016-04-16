@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			?>
     </p>
 
-    <?= GridView::widget([
+    <?php echo GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'stok_kilo',
             'stok_karton',
 
-            ['class' => 'yii\grid\ActionColumn', 'visible' => !Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'purchasing' ||Yii::$app->user->identity->role == 'sales marketing'
+            ['class' => 'yii\grid\ActionColumn', 'visible' => !Yii::$app->user->isGuest && (Yii::$app->user->identity->role == 'purchasing' ||Yii::$app->user->identity->role == 'sales marketing')
             ],
         ],
     ]); ?>
