@@ -52,7 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
 									],
 								])
 								 ?></td>
-							 <td ><?= Html::a(Yii::t('app', 'Update ROP'), ['update', 'username' => $model->username], ['class' => 'btn btn-primary']) ?></td>
+							 <td ><?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->username], ['class' => 'btn btn-primary']) ?></td>
                
 							</tr>
 						<?php endforeach; ?>
