@@ -62,7 +62,7 @@ class PenggunaController extends Controller
             echo SiteController::connect();
             $ubahpassword = "UPDATE PENGGUNA SET password = 'password123' WHERE username = '".$username."';";
             $ubah = pg_query($ubahpassword);
-             
+
             $user = Pengguna::find()->all();
             return $this->render('listuser', [
                 'user' => $user,
@@ -76,7 +76,7 @@ class PenggunaController extends Controller
 
      public function actionResetpassword()
     {
-        $user=Yii::$app->user->identity;
+        $currentPassword=Yii::$app->user->identity->password;
         $loadedPost =$user->load(Yii::$app->request->post());
         if($loadedPost && $user->validate()){
 
