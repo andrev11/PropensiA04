@@ -42,7 +42,7 @@ class Pembelian extends \yii\db\ActiveRecord
             [['idbeli', 'idbayar'], 'integer'],
             [['tgl_beli', 'tgl_terima'], 'safe'],
             [['harga_total',], 'number'],
-            [[ 'karton', 'kilo'],'number', 'min'=>0]
+            [[ 'karton', 'kilo'],'number', 'min'=>0],
             [['supplier', 'produk'], 'string', 'max' => 50],
             [['cara_terima', 'cara_bayar', 'status_del'], 'string', 'max' => 25]
         ];
