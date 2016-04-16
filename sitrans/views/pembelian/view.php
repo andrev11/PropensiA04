@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\Pembelian */
 
 $this->title = $model->idbeli;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Pembelians'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Pembelian'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="pembelian-view">

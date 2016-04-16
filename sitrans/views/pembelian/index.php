@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\PembelianSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Pembelians');
+$this->title = Yii::t('app', 'Pembelian');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="pembelian-index">
