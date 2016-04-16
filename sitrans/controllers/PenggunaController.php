@@ -109,14 +109,16 @@ class PenggunaController extends Controller
     public function actionCreate()
     {
         $model = new Pengguna();
+		$post = Yii::$app->request->post();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->username]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
-        }
+		if ($model->load($post)) {
+			if ($model->save()) {
+				return $this->redirect(['view', 'id' => $model->username]);
+			}
+		}
+		return $this->render('create', [
+			'model' => $model,
+		]);
     }
 
     /**

@@ -22,21 +22,39 @@ class Pengguna extends \yii\db\ActiveRecord
         return 'pengguna';
     }
     public $repeatpassword;
+	public $password_field;
+
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['username','password', 'role','nama'], 'required'],
-            [['username', 'password', 'role'], 'string', 'max' => 25],
-            [['password'], 'string', 'min' => 6],
+            [['username','password_field', 'role','nama'], 'required'],
+            [['username', 'role'], 'string', 'max' => 25],
+            [['password_field'], 'string', 'min' => 6],
             [['nama'], 'string', 'max' => 50],
-            [['repeatpassword'], 'compare', 'compareAttribute' => 'password','message' => 'Your password doesnt match']
+            [['repeatpassword'], 'compare', 'compareAttribute' => 'password_field', 'message' => 'Your password doesnt match']
         ];
     }
-
-    /**
+	
+	/**
+	 * Generates password hash from password and sets it to the model
+	 *
+	 * @param string $password
+	 */
+	public function beforeSave($insert) {
+		if(isset($this->password_field)) {
+			$hash = Yii::$app->getSecurity()::generatePasswordHash($this->password_field);
+			$this->password = $hash;
+		} else {
+			$this->password = $this->password_field."huft";
+		}
+		
+		return parent::beforeSave($insert);
+	}
+	
+	/**
      * @inheritdoc
      */
     public function attributeLabels()
@@ -44,7 +62,7 @@ class Pengguna extends \yii\db\ActiveRecord
         return [
             'username' => Yii::t('app', 'Username'),
             'nama' => Yii::t('app', 'Nama'),
-            'password' => Yii::t('app', 'Password'),
+            'password_field' => Yii::t('app', 'Password'),
             'role' => Yii::t('app', 'Role'),
             'repeatpassword'=>  'Repeat Password'
         ];
