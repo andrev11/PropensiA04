@@ -21,11 +21,13 @@ use yii\helpers\ArrayHelper;
 
     <?php 
 	//if (!Yii::$app->user->isGuest && Yii::$app->user->identity->role != 'admin'){
+		echo $form->field($model, 'password_field')->passwordInput(['maxlength' => false])
 		//;} 
 		?>
    
    <?php 
    //if (!Yii::$app->user->isGuest && Yii::$app->user->identity->role != 'admin'){
+		echo $form->field($model, 'repeatpassword')->passwordInput(['maxlength' => false])
 		//;} 
 		?>
 
