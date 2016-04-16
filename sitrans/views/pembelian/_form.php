@@ -20,12 +20,35 @@ use app\models\Carabayar;
         ArrayHelper::map(Supplier::find()->all(),'namasupplier','namasupplier'),
         ['prompt'=>'Pilih Supplier']
     ) ?>
+
+    <?php 
+        if($model->isNewRecord) {
+            $form->field($model, 'supplier')->dropDownList(
+            ArrayHelper::map(Supplier::find()->all(),'namasupplier','namasupplier'),
+            ['prompt'=>'Pilih Supplier']
+            );
+        } else {
+            echo $form->field($model, 'supplier')->textInput(['readonly'=>!$model->isNewRecord]); 
+        }
+    ?>
+
     <?= $form->field($model, 'produk')->dropDownList(
         ArrayHelper::map(Produk::find()->all(),'namaproduk','namaproduk'),
         ['prompt'=>'Pilih Produk']
     ) ?>
+
+    <?php 
+        if($model->isNewRecord) {
+            $form->field($model, 'produk')->dropDownList(
+            ArrayHelper::map(Produk::find()->all(),'namaproduk','namaproduk'),
+            ['prompt'=>'Pilih Produk']
+            ) ;
+        } else {
+            echo $form->field($model, 'produk')->textInput(['readonly'=>!$model->isNewRecord]); 
+        }
+    ?>
    
-    <?= $form->field($model, 'tgl_terima')->textInput() ?>
+    <?= $form->field($model, 'tgl_terima')->textInput(['type' => 'date']) ?>
     <?= $form->field($model, 'cara_terima')->dropDownList(
         ArrayHelper::map(Caraterima::find()->all(),'caraterima','caraterima'),
         ['prompt'=>'Pilih Cara Terima']

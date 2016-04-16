@@ -53,18 +53,17 @@ class Pembelian extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'idbeli' => Yii::t('app', 'Idbeli'),
-            'idbayar' => Yii::t('app', 'Idbayar'),
-            'supplier' => Yii::t('app', 'Supplier'),
-            'produk' => Yii::t('app', 'Produk'),
-            'tgl_beli' => Yii::t('app', 'Tgl Beli'),
-            'tgl_terima' => Yii::t('app', 'Tgl Terima'),
-            'cara_terima' => Yii::t('app', 'Cara Terima'),
-            'cara_bayar' => Yii::t('app', 'Cara Bayar'),
-            'status_del' => Yii::t('app', 'Status Del'),
-            'harga_total' => Yii::t('app', 'Harga Total'),
-            'karton' => Yii::t('app', 'Karton'),
-            'kilo' => Yii::t('app', 'Kilo'),
+            //'idbeli' => 'Id beli',
+            //'idbayar' => 'Id bayar',
+            'produk' => 'Produk',
+            'tgl_beli' => 'Tanggal Beli',
+            'tgl_terima' => 'Tanggal Terima',
+            'cara_terima' => 'Cara Terima',
+            'cara_bayar' => 'Cara Bayar',
+            'status_del' => 'Status Delivery',
+            'harga_total' => 'Harga Total',
+            'karton' => 'Jumlah Karton',
+            'kilo' => 'Jumlah Kilo',
         ];
     }
 

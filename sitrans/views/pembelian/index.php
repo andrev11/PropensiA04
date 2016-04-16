@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\PembelianSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Pembelians');
+$this->title = Yii::t('app', 'Pembelian');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="pembelian-index">
@@ -17,6 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a(Yii::t('app', 'Create Pembelian'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Recapitulation'), ['recap'], ['class' => 'btn btn-success']) ?>
         <?= Html::a(Yii::t('app', 'Print'), ['print'], ['class' => 'btn btn-success']) ?>
     </p>
 
@@ -26,18 +27,18 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'idbeli',
-            'idbayar',
+            //'idbeli',
+            //'idbayar',
             'supplier',
             'produk',
             'tgl_beli',
-            // 'tgl_terima',
-            // 'cara_terima',
-            // 'cara_bayar',
-            // 'status_del',
-            // 'harga_total',
-            // 'karton',
-            // 'kilo',
+            'tgl_terima',
+            'cara_terima',
+            'cara_bayar',
+            'status_del',
+            'harga_total',
+            'karton',
+            'kilo',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

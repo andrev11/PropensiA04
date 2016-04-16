@@ -5,10 +5,12 @@ namespace app\controllers;
 use Yii;
 use app\models\Pembelian;
 use app\models\PembelianSearch;
+use app\models\PembayaranOut;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\controllers\SiteController;
+use app\controllers\PembayaranOutController;
 use yii\db\Query;
 use mPDF;
 
@@ -111,45 +113,45 @@ class PembelianController extends Controller
          // get your HTML raw content without any layouts or scripts
     //$content = $this->renderPartial('_reportView');
 
-   ini_set('memory_limit','3000M');//extending php memory
-    $pdf=new mPDF('win-1252','A4','','',15,10,16,10,10,10);//A4 size page in landscape orientation
-    date_default_timezone_set("Asia/Bangkok");
-    $pdf->SetHeader(date('H:i:s'));
-    $pdf->setFooter('{PAGENO}');
-    $pdf->useOnlyCoreFonts = true;    // false is default
-    //$mpdf->SetWatermarkText("any text");
-    //$mpdf->showWatermarkText = true;
-    //$mpdf->watermark_font = 'DejaVuSansCondensed';
-    //$mpdf->watermarkTextAlpha = 0.1;
-    $pdf->SetDisplayMode('fullpage');
-    //$pdf->SetWatermarkImage('logo.png');
-    //$pdf->showWatermarkImage = true;
+            ini_set('memory_limit','3000M');//extending php memory
+            $pdf=new mPDF('win-1252','A4','','',15,10,16,10,10,10);//A4 size page in landscape orientation
+            date_default_timezone_set("Asia/Bangkok");
+            $pdf->SetHeader(date('H:i:s'));
+            $pdf->setFooter('{PAGENO}');
+            $pdf->useOnlyCoreFonts = true;    // false is default
+            //$mpdf->SetWatermarkText("any text");
+            //$mpdf->showWatermarkText = true;
+            //$mpdf->watermark_font = 'DejaVuSansCondensed';
+            //$mpdf->watermarkTextAlpha = 0.1;
+            $pdf->SetDisplayMode('fullpage');
+            //$pdf->SetWatermarkImage('logo.png');
+            //$pdf->showWatermarkImage = true;
 
-    // setup kartik\mpdf\Pdf component
-    //$pdf = new mPDF('utf-8', 'A4');
-    //$pdf->allow_charset_conversion = true;
-    //$pdf->WriteHTML('$html');
+            // setup kartik\mpdf\Pdf component
+            //$pdf = new mPDF('utf-8', 'A4');
+            //$pdf->allow_charset_conversion = true;
+            //$pdf->WriteHTML('$html');
 
-    // Buffer the following html with PHP so we can store it to a variable later
-ob_start();
-?>
-<?php include "../views/pembelian/_reportPembelian.php";//The php page you want to convert to pdf
- // asasas?>
+            // Buffer the following html with PHP so we can store it to a variable later
+        ob_start();
+        ?>
+        <?php include "../views/pembelian/_reportPembelian.php";//The php page you want to convert to pdf
+         // asasas?>
 
-<?php 
-$html = ob_get_contents();
+        <?php 
+        $html = ob_get_contents();
 
-ob_end_clean();
+        ob_end_clean();
 
-// send the captured HTML from the output buffer to the mPDF class for processing
+        // send the captured HTML from the output buffer to the mPDF class for processing
 
-$pdf->WriteHTML($html);
-//$mpdf->SetProtection(array(), 'mawiahl', 'password');//for password protecting your pdf
+        $pdf->WriteHTML($html);
+        //$mpdf->SetProtection(array(), 'mawiahl', 'password');//for password protecting your pdf
 
 
 
-    // return the pdf output as per the destination setting
-     $pdf->Output(); 
+            // return the pdf output as per the destination setting
+             $pdf->Output(); 
 
       /*  $model = new Produk();
 
@@ -177,7 +179,7 @@ $pdf->WriteHTML($html);
         $id=$increments[0] + 1 ;  
         $model->idbeli=$id;
         $model->tgl_beli = date('Y-m-d');
-        $model->status_del="Belum Diterim"; 
+        $model->status_del="Belum Diterima"; 
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $supplier=$model->supplier;
@@ -217,7 +219,7 @@ $pdf->WriteHTML($html);
         if(pg_num_rows(pg_query($querypembayaranout)) ==0){
             $increments = pg_fetch_array(pg_query("select max(idbayar) from pembayaran_out;"));
             $IdBayar =$increments[0] +1;
-            $masukan = "INSERT INTO PEMBAYARAN_OUT VALUES ('".$IdBayar."', '".$supplier."', '".$tanggalbeli."', null, null, null);";
+            $masukan = "INSERT INTO PEMBAYARAN_OUT VALUES ('".$IdBayar."', '".$supplier."', '".$tanggalbeli."', null, null, 'Hutang');";
             pg_query($masukan); 
 
         }   else {
@@ -228,9 +230,33 @@ $pdf->WriteHTML($html);
         $querypembelian="Update Pembelian set idbayar='".$IdBayar."' where idbeli='".$idbeli."';";
         pg_query($querypembelian);
     }
-    //public function updateProduk(){
 
-    //}
+    public function actionRecap(){
+        $model = PembayaranOut::find()->all();
+        echo SiteController::connect(); 
+        $tgl_beli = date('Y-m-d');
+               
+        echo PembelianController::insertJumlahBayar($tgl_beli);
+
+        $searchModel = new PembelianSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+            
+    }
+    public function insertJumlahBayar($tanggalBeli){
+        $queryTotalBayar = pg_query(("SELECT idbayar, SUM(harga_total) FROM PEMBELIAN WHERE tgl_beli = '".$tanggalBeli."' GROUP BY idbayar;"));
+        //echo pg_num_rows($queryTotalBayar);
+            
+        while ($row = pg_fetch_row($queryTotalBayar)) {
+            //echo $row[0];
+            //echo $row[1];
+            $update = "UPDATE PEMBAYARAN_OUT SET JumlahBayar = '".$row[1]."' WHERE IdBayar ='".$row[0]."';";
+            $todb = pg_query($update);
+        }
+    }
     /**
      * Updates an existing Pembelian model.
      * If update is successful, the browser will be redirected to the 'view' page.

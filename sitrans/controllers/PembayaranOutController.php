@@ -4,7 +4,8 @@ namespace app\controllers;
 
 use Yii;
 use app\models\PembayaranOut;
-use app\models\PembelianOutSearch;
+use app\models\PembayaranOutSearch;
+use app\models\PembelianSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -45,7 +46,7 @@ class PembayaranOutController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new PembelianOutSearch();
+        $searchModel = new PembayaranOutSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -147,7 +148,7 @@ class PembayaranOutController extends Controller
             $myUser = "postgres";
             $myPassword = "1234";
             $myPort = "5432";
-            $tglBayar = date('Y-m-d');
+            
             // Create connection
             $conn = "host = ".$myHost." user = ".$myUser." password = ".$myPassword." port = ".$myPort." dbname = sitrans";
             // Check connection
@@ -155,7 +156,8 @@ class PembayaranOutController extends Controller
                 die("Connection failed");
             }
             **/
-             echo SiteController::connect(); 
+             echo SiteController::connect();
+             $tglBayar = date('Y-m-d'); 
             //$ambilStatus = "SELECT status_del FROM pembelian WHERE idbeli = '".$id."';";
             $ubahStatus = "UPDATE PEMBAYARAN_OUT SET status_bayar = 'Lunas' WHERE idbayar = '".$id."';";
             $ubahTanggal = "UPDATE PEMBAYARAN_OUT SET tgl_bayar = '".$tglBayar."' WHERE idbayar = '".$id."';";
