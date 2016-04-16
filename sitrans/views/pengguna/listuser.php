@@ -66,16 +66,19 @@ $this->params['breadcrumbs'][] = $this->title;
         <thead>
             <!-- <th> idbeli </th> -->
             <!-- <th> idbayar </th>-->
+            <th align="center">#</th>
             <th align="center">Username</th>
             <th align="center">Nama</th>
             <th align="center">Password</th>
-            <th align="center">Role</th>
+            
 
         </thead>
         <tbody>
-            <?php foreach ($user as $model): ?>
-                <tr>
-
+            <?php $number=1;
+            foreach ($user as $model): ?>
+                
+                <tr> 
+                    <td><?= $number++?></td>
                     <td><?= $model->username ?></td>
                     <td><?= $model->nama ?></td>
                     <td ><?= md5($model->password) ?></td>

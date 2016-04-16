@@ -19,11 +19,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'idbayar') ?>
 
+    <?= $form->field($model, 'supplier') ?>
+
     <?= $form->field($model, 'produk') ?>
 
     <?= $form->field($model, 'tgl_beli') ?>
 
-    <?= $form->field($model, 'tgl_terima') ?>
+    <?php // echo $form->field($model, 'tgl_terima') ?>
 
     <?php // echo $form->field($model, 'cara_terima') ?>
 

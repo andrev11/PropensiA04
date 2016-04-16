@@ -11,14 +11,16 @@ use yii\widgets\ActiveForm;
 <div class="pembelian-form">
 
     <?php $form = ActiveForm::begin(); ?>
-    
-    <?= $form->field($model, 'idbeli')->textInput(['readonly'=>!$model->isNewRecord]) ?>
 
-    <?= $form->field($model, 'idbayar')->textInput(['readonly'=>!$model->isNewRecord]) ?>
+    <?= $form->field($model, 'idbeli')->textInput() ?>
 
-    <?= $form->field($model, 'produk')->textInput(['readonly'=>!$model->isNewRecord]) ?>
+    <?= $form->field($model, 'idbayar')->textInput() ?>
 
-    <?= $form->field($model, 'tgl_beli')->textInput(['readonly'=>!$model->isNewRecord]) ?>
+    <?= $form->field($model, 'supplier')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'produk')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'tgl_beli')->textInput() ?>
 
     <?= $form->field($model, 'tgl_terima')->textInput() ?>
 
@@ -28,14 +30,14 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'status_del')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'harga_total')->textInput(['readonly'=>!$model->isNewRecord]) ?>
+    <?= $form->field($model, 'harga_total')->textInput() ?>
 
-    <?= $form->field($model, 'karton')->textInput(['readonly'=>!$model->isNewRecord]) ?>
+    <?= $form->field($model, 'karton')->textInput() ?>
 
-    <?= $form->field($model, 'kilo')->textInput(['readonly'=>!$model->isNewRecord]) ?>
+    <?= $form->field($model, 'kilo')->textInput() ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

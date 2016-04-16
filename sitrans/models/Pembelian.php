@@ -9,6 +9,7 @@ use Yii;
  *
  * @property integer $idbeli
  * @property integer $idbayar
+ * @property string $supplier
  * @property string $produk
  * @property string $tgl_beli
  * @property string $tgl_terima
@@ -20,7 +21,6 @@ use Yii;
  * @property string $kilo
  *
  * @property PembayaranOut $idbayar0
- * @property Produk $produk0
  */
 class Pembelian extends \yii\db\ActiveRecord
 {
@@ -42,7 +42,7 @@ class Pembelian extends \yii\db\ActiveRecord
             [['idbeli', 'idbayar'], 'integer'],
             [['tgl_beli', 'tgl_terima'], 'safe'],
             [['harga_total', 'karton', 'kilo'], 'number'],
-            [['produk'], 'string', 'max' => 50],
+            [['supplier', 'produk'], 'string', 'max' => 50],
             [['cara_terima', 'cara_bayar', 'status_del'], 'string', 'max' => 25]
         ];
     }
@@ -53,17 +53,18 @@ class Pembelian extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            //'idbeli' => 'Id beli',
-            //'idbayar' => 'Id bayar',
-            'produk' => 'Produk',
-            'tgl_beli' => 'Tanggal Beli',
-            'tgl_terima' => 'Tanggal Terima',
-            'cara_terima' => 'Cara Terima',
-            'cara_bayar' => 'Cara Bayar',
-            'status_del' => 'Status Delivery',
-            'harga_total' => 'Harga Total',
-            'karton' => 'Jumlah Karton',
-            'kilo' => 'Jumlah Kilo',
+            'idbeli' => Yii::t('app', 'Idbeli'),
+            'idbayar' => Yii::t('app', 'Idbayar'),
+            'supplier' => Yii::t('app', 'Supplier'),
+            'produk' => Yii::t('app', 'Produk'),
+            'tgl_beli' => Yii::t('app', 'Tgl Beli'),
+            'tgl_terima' => Yii::t('app', 'Tgl Terima'),
+            'cara_terima' => Yii::t('app', 'Cara Terima'),
+            'cara_bayar' => Yii::t('app', 'Cara Bayar'),
+            'status_del' => Yii::t('app', 'Status Del'),
+            'harga_total' => Yii::t('app', 'Harga Total'),
+            'karton' => Yii::t('app', 'Karton'),
+            'kilo' => Yii::t('app', 'Kilo'),
         ];
     }
 
@@ -73,13 +74,5 @@ class Pembelian extends \yii\db\ActiveRecord
     public function getIdbayar0()
     {
         return $this->hasOne(PembayaranOut::className(), ['idbayar' => 'idbayar']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getProduk0()
-    {
-        return $this->hasOne(Produk::className(), ['namaproduk' => 'produk']);
     }
 }
