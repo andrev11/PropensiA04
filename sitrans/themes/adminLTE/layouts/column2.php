@@ -42,7 +42,7 @@ use app\themes\adminLTE\components\ThemeNav;
                   'items' => [
                       ['label'=>Yii::t('app','MAIN NAVIGITION'), 'options'=>['class'=>'header']],
                       ['label' => ThemeNav::link('Dashboard', 'fa fa-dashboard'), 'url' => ['site/index'], 'visible'=>!Yii::$app->user->isGuest],
-					  ['label' => ThemeNav::link('Pengguna', 'fa fa-book'), 'url' => ['pengguna/listuser'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'admin'],
+					  ['label' => ThemeNav::link('Pengguna', 'fa fa-book'), 'url' => ['pengguna/index'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'admin'],
 					  ['label' => ThemeNav::link('Customer', 'fa fa-book'), 'url' => ['customer/index'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'sales marketing'],
 					  ['label' => ThemeNav::link('Supplier', 'fa fa-book'), 'url' => ['supplier/index'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'purchasing'],
 					  ['label' => ThemeNav::link('Merk', 'fa fa-table'), 'url' => ['merk/index'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'purchasing'],
