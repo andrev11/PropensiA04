@@ -47,7 +47,7 @@ class Pengguna extends \yii\db\ActiveRecord
 	 */
 	public function beforeSave($insert) {
 		if(isset($this->password_field)) {
-			$hash = Yii::$app->getSecurity()::generatePasswordHash($this->password_field);
+			$hash = Yii::$app->getSecurity()->generatePasswordHash($this->password_field);
 			$this->password = $hash;
 		} 
 		
