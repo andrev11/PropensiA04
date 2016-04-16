@@ -63,10 +63,12 @@ class PenggunaController extends Controller
             $password = Yii::$app->getSecurity()->generatePasswordHash('password123');
             $ubahpassword = "UPDATE PENGGUNA SET password = '".$password."' WHERE username = '".$username."';";
             $ubah = pg_query($ubahpassword);
+            $dataProvider = new ActiveDataProvider([
+            'query' => Pengguna::find(),
+            ]);
 
-            $user = Pengguna::find()->all();
-            return $this->render('listuser', [
-                'user' => $user,
+            return $this->render('index', [
+                'dataProvider' => $dataProvider,
             ]);
 
                 /***return $this->render('view', [

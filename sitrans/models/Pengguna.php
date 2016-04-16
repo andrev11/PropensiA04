@@ -23,6 +23,7 @@ class Pengguna extends \yii\db\ActiveRecord
     }
     public $repeatpassword;
 	public $password_field;
+    
 
     /**
      * @inheritdoc
