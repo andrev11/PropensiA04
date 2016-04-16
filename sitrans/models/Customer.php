@@ -32,7 +32,8 @@ class Customer extends \yii\db\ActiveRecord
         return [
             [['idcustomer','namacustomer','alamatcustomer','telponcustomer'], 'required'],
             [['idcustomer'], 'integer'],
-            [['namacustomer', 'telponcustomer', 'alamatcustomer'], 'string', 'max' => 50],
+            [['telponcustomer'],'integer','min'=>0],
+            [['namacustomer',  'alamatcustomer'], 'string', 'max' => 50],
             
         ];
     }
