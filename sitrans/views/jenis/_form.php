@@ -27,7 +27,8 @@ use yii\widgets\ActiveForm;
 	   if(Yii::$app->user->identity->role == 'sales marketing') {
 	     echo $form->field($model,'rop')->textInput();
 	   } else {
-	   	 echo $form->field($model, 'rop')->textInput(['readonly'=>!$model->isNewRecord]);	
+            if($model->isNewRecord)
+	   	 echo $form->field($model, 'rop')->textInput();	
 		 }
     ?>
    
