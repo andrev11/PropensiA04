@@ -30,11 +30,13 @@ class Pengguna extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['username','password_field', 'role','nama'], 'required'],
+			[['username'], 'unique'],
+            [['username','password_field', 'repeatpassword', 'role','nama'], 'required'],
             [['username', 'role'], 'string', 'max' => 25],
             [['password_field'], 'string', 'min' => 6],
             [['nama'], 'string', 'max' => 50],
             [['repeatpassword'], 'compare', 'compareAttribute' => 'password_field', 'message' => 'Your password doesnt match']
+			
         ];
     }
 	
@@ -47,9 +49,7 @@ class Pengguna extends \yii\db\ActiveRecord
 		if(isset($this->password_field)) {
 			$hash = Yii::$app->getSecurity()::generatePasswordHash($this->password_field);
 			$this->password = $hash;
-		} else {
-			$this->password = $this->password_field."huft";
-		}
+		} 
 		
 		return parent::beforeSave($insert);
 	}
