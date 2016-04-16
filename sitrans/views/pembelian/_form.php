@@ -16,10 +16,7 @@ use app\models\Carabayar;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'supplier')->dropDownList(
-        ArrayHelper::map(Supplier::find()->all(),'namasupplier','namasupplier'),
-        ['prompt'=>'Pilih Supplier']
-    ) ?>
+   
 
     <?php 
         if($model->isNewRecord) {
@@ -32,10 +29,7 @@ use app\models\Carabayar;
         }
     ?>
 
-    <?= $form->field($model, 'produk')->dropDownList(
-        ArrayHelper::map(Produk::find()->all(),'namaproduk','namaproduk'),
-        ['prompt'=>'Pilih Produk']
-    ) ?>
+   
 
     <?php 
         if($model->isNewRecord) {
