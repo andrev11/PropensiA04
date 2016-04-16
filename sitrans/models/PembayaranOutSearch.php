@@ -8,9 +8,9 @@ use yii\data\ActiveDataProvider;
 use app\models\PembayaranOut;
 
 /**
- * PembelianOutSearch represents the model behind the search form about `app\models\PembayaranOut`.
+ * PembayaranOutSearch represents the model behind the search form about `app\models\PembayaranOut`.
  */
-class PembelianOutSearch extends PembayaranOut
+class PembayaranOutSearch extends PembayaranOut
 {
     /**
      * @inheritdoc
@@ -63,8 +63,8 @@ class PembelianOutSearch extends PembayaranOut
             'jumlahbayar' => $this->jumlahbayar,
         ]);
 
-        $query->andFilterWhere(['like', 'supplier', $this->supplier])
-            ->andFilterWhere(['like', 'status_bayar', $this->status_bayar]);
+        $query->andFilterWhere(['ilike', 'supplier', $this->supplier])
+            ->andFilterWhere(['ilike', 'status_bayar', $this->status_bayar]);
 
         return $dataProvider;
     }
