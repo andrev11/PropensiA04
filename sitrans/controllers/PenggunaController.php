@@ -60,7 +60,7 @@ class PenggunaController extends Controller
     public function actionResetpassadmin($username){
 
             echo SiteController::connect();
-            $password = Yii::$app->getSecurity()::generatePasswordHash('password123');
+            $password = Yii::$app->getSecurity()->generatePasswordHash('password123');
             $ubahpassword = "UPDATE PENGGUNA SET password = '".$password."' WHERE username = '".$username."';";
             $ubah = pg_query($ubahpassword);
 

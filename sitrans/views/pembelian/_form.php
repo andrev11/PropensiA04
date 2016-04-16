@@ -31,7 +31,7 @@ use app\models\Carabayar;
         ['prompt'=>'Pilih Cara Terima']
     ) ?>
     <?= $form->field($model, 'cara_bayar')->dropDownList(
-        ArrayHelper::map(Carabayar::find()->all(),'carabayar','carabayar'),
+        ArrayHelper::map(Carabayar::find()->all(),'caraterima','caraterima'),
         ['prompt'=>'Pilih Cara Bayar']
     ) ?>
     <?= $form->field($model, 'karton')->textInput(['readonly'=>!$model->isNewRecord]) ?>
