@@ -15,7 +15,10 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Jenis'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?php if (!\Yii::$app->user->isGuest){
+			if (Yii::$app->user->identity->role == 'purchasing')
+				echo Html::a(Yii::t('app', 'Create Jenis'), ['create'], ['class' => 'btn btn-success']);} 
+			?>
     </p>
 
     <?= GridView::widget([
