@@ -2,6 +2,9 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+use app\models\Supplier;
+use app\models\Produk; 
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Pembelian */
@@ -12,10 +15,14 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'supplier')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'produk')->textInput(['maxlength' => true]) ?>
-
+    <?= $form->field($model, 'supplier')->dropDownList(
+        ArrayHelper::map(Supplier::find()->all(),'namasupplier','namasupplier'),
+        ['prompt'=>'Select Supplier']
+    ) ?>
+    <?= $form->field($model, 'produk')->dropDownList(
+        ArrayHelper::map(Produk::find()->all(),'namaproduk','namaproduk'),
+        ['prompt'=>'Select Produk']
+    ) ?>
     <?= $form->field($model, 'tgl_terima')->textInput() ?>
 
     <?= $form->field($model, 'cara_terima')->textInput(['maxlength' => true]) ?>

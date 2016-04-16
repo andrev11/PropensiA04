@@ -72,9 +72,9 @@ class PembelianController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $supplier=$model->supplier;
             $tglbeli=$model->tgl_beli;
-            $idbayar= echo PembelianController::getIdBayar($supplier, $tglbeli);
-            $idbeli = $model->idbeli;
-            echo PembelianController::insertIdBayar($idbayar, $idbeli);
+             $idbeli = $model->idbeli;
+            echo PembelianController::insertIdBayar($supplier, $tglbeli,$idbeli);
+           
             $jumlahkilo=$model->kilo;
             $namaproduk=$model->produk;
             echo PembelianController::insertTotalPrice($jumlahkilo, $namaproduk, $idbeli);
@@ -85,33 +85,42 @@ class PembelianController extends Controller
             ]);
         }
     }
+    public function updateProduk($namaproduk){
+        $queryprodukkilo="select kilo from produk where namaproduk ='".$namaproduk."';";
+        $queryprodukkarton="select karton from produk where namaproduk ='".$namaproduk."';";
+        $kilo = pg_fetch_array(pg_query($queryprodukkilo))[0];
+        $karton = pg_fetch_array(pg_query($queryprodukkarton))[0];
+        
+    }
     public function insertTotalPrice($jumlahkilo, $namaproduk, $idbeli){
         $queryproduk="select harga_beli from produk where namaproduk='".$namaproduk."';";
         $hargabeli = pg_fetch_array(pg_query($queryproduk))[0];
         $hargatotal= $jumlahkilo * $hargabeli;
         $queryhargatotal ="Update pembelian set harga_total=".$hargatotal." where idbeli=".$idbeli.";";
+        pg_query($queryhargatotal); 
     }
-    public function insertIdBayar($idbayar, $idbeli){
-        $query="Update Pembelian set idbayar='".$idbayar."' where idbeli='".$idbeli."';";
-        pg_query($query);
-
-    }
-    public function getIdBayar($supplier, $tanggalbeli){
-        $query = "select idbayar from pembayaran_out where supplier='".$supplier."' AND tgl_trans = '".$tanggalbeli."';";
-        $ambilIdBayar = pg_fetch_array(pg_query($query));
+    
+    public function insertIdBayar($supplier, $tanggalbeli, $idbeli){
+        $querypembayaranout = "select idbayar from pembayaran_out where supplier='".$supplier."' AND tgl_trans = '".$tanggalbeli."';";
+        $ambilIdBayar = pg_fetch_array(pg_query($querypembayaranout));
         $IdBayar;
-        if(pg_num_rows(pg_query($query)) ==0){
+        if(pg_num_rows(pg_query($querypembayaranout)) ==0){
             $increments = pg_fetch_array(pg_query("select max(idbayar) from pembayaran_out;"));
             $IdBayar =$increments[0] +1;
             $masukan = "INSERT INTO PEMBAYARAN_OUT VALUES ('".$IdBayar."', '".$supplier."', '".$tanggalbeli."', null, null, null);";
+            pg_query($masukan); 
 
         }   else {
 
             $IdBayar = $ambilIdBayar[0];
         }
-        return $IdBayar;
-    }
 
+        $querypembelian="Update Pembelian set idbayar='".$IdBayar."' where idbeli='".$idbeli."';";
+        pg_query($querypembelian);
+    }
+    public function updateProduk(){
+
+    }
     /**
      * Updates an existing Pembelian model.
      * If update is successful, the browser will be redirected to the 'view' page.
