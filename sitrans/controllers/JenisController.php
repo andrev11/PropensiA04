@@ -21,7 +21,7 @@ class JenisController extends Controller
         {
 		if (Yii::$app->user->isGuest){
 			return $this->redirect(Yii::$app->user->loginUrl);
-		} else if (Yii::$app->user->identity->role == 'purchasing'){
+		} else if (Yii::$app->user->identity->role == 'purchasing' || Yii::$app->user->identity->role == 'sales marketing'){
 			return true;
 		} else {
 			return $this->redirect(Yii::$app->user->loginUrl);
