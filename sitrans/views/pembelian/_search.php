@@ -25,7 +25,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'tgl_beli') ?>
 
-    <?php // echo $form->field($model, 'tgl_terima') ?>
+    <?= $form->field($model, 'tgl_terima') ?>
 
     <?php // echo $form->field($model, 'cara_terima') ?>
 

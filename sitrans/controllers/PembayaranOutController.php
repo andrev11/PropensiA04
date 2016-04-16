@@ -8,6 +8,8 @@ use app\models\PembelianOutSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\data\ActiveDataProvider;
+use app\controllers\SiteController;
 
 /**
  * PembayaranOutController implements the CRUD actions for PembayaranOut model.
@@ -38,6 +40,26 @@ class PembayaranOutController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionIndex2()
+    {
+        /**
+        $dataProvider = new ActiveDataProvider([
+            'query' => PembayaranOut::find(),
+        ]);
+
+        return $this->render('index2', [
+            'dataProvider' => $dataProvider,
+        ]);
+        **/
+
+        $hutang = PembayaranOut::find()
+          ->where("status_bayar= 'Hutang'")
+          ->all();
+        return $this->render('index2', [
+            'hutang' => $hutang,
         ]);
     }
 
@@ -101,6 +123,47 @@ class PembayaranOutController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    public function actionConfirm($id)
+    {
+        //$model = $this->findModel($id);
+
+        //if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            //return $this->redirect(['view', 'id' => $model->idbeli]);
+      
+            /***$myHost = "localhost";
+            $myUser = "postgres";
+            $myPassword = "1234";
+            $myPort = "5432";
+            $tglBayar = date('Y-m-d');
+            // Create connection
+            $conn = "host = ".$myHost." user = ".$myUser." password = ".$myPassword." port = ".$myPort." dbname = sitrans";
+            // Check connection
+            if (!$database = pg_connect($conn)) {
+                die("Connection failed");
+            }
+            **/
+             echo SiteController::connect(); 
+            //$ambilStatus = "SELECT status_del FROM pembelian WHERE idbeli = '".$id."';";
+            $ubahStatus = "UPDATE PEMBAYARAN_OUT SET status_bayar = 'Lunas' WHERE idbayar = '".$id."';";
+            $ubahTanggal = "UPDATE PEMBAYARAN_OUT SET tgl_bayar = '".$tglBayar."' WHERE idbayar = '".$id."';";
+            $masukin = pg_query($ubahStatus);
+            $masukin2 = pg_query($ubahTanggal);
+
+
+                return $this->render('view', [
+                        'model' => $this->findModel($id),
+                    ]);
+
+
+
+
+       // } else {
+        //    return $this->render('confirm', [
+                //'model' => $model,
+        //    ]);
+        //}
     }
 
     /**
