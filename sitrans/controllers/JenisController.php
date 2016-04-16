@@ -80,17 +80,7 @@ class JenisController extends Controller
      */
     public function actionCreate()
     {	
-		/***
-        $myHost = "localhost";
-		$myUser = "postgres";
-		$myPassword = "1234";
-		$myPort = "5432";
-		// Create connection
-		$conn = "host = ".$myHost." user = ".$myUser." password = ".$myPassword." port = ".$myPort." dbname = sitrans";
-		// Check connection
-		if (!$database = pg_connect($conn)) {
-			die("Connection failed");
-		} **/
+		
 		echo SiteController::connect(); 
 		$increments = pg_fetch_array(pg_query("select max(idjenis) from jenis ;"));
 		$id=$increments[0] + 1 ;		

@@ -12,25 +12,15 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'idbeli')->textInput() ?>
-
-    <?= $form->field($model, 'idbayar')->textInput() ?>
-
     <?= $form->field($model, 'supplier')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'produk')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'tgl_beli')->textInput() ?>
 
     <?= $form->field($model, 'tgl_terima')->textInput() ?>
 
     <?= $form->field($model, 'cara_terima')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'cara_bayar')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'status_del')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'harga_total')->textInput() ?>
 
     <?= $form->field($model, 'karton')->textInput() ?>
 
