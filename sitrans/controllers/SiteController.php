@@ -74,7 +74,7 @@ class SiteController extends Controller
     {
         if (!\Yii::$app->user->isGuest && Yii::$app->user->identity->role != 'deactivated'){
 			return $this->render('index');
-		} else if (Yii::$app->user->identity->role == 'deactivated'){
+		} else if (!\Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'deactivated'){
 			return $this->render('tolak');
 		} else {
 			return $this->redirect(Yii::$app->user->loginUrl);
