@@ -159,10 +159,7 @@ $pdf->WriteHTML($html);
     {
          echo SiteController::connect(); 
          $model = $this->findModel($idmerk, $idjenis, $lokasi);   
-            
          $idjenis=$model->idjenis;
-         $currentStokkiloJenis = pg_fetch_array(pg_query("select stok_kilo from jenis where idjenis =".$idjenis.";"));
-         $currentStokkartonJenis = pg_fetch_array(pg_query("select stok_karton from jenis where idjenis =".$idjenis.";"));
          $currentkiloProduk=$model->kilo;
          $currentkartonProduk=$model->karton;
         
@@ -170,6 +167,19 @@ $pdf->WriteHTML($html);
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $kiloupdated=$model->kilo;
             $kartonupdated=$model->karton;
+           echo ProdukController::actionUpdateStok($currentkiloProduk, $currentkartonProduk, $kiloupdated, $kartonupdated, $idjenis);
+            return $this->redirect(['view', 'idmerk' => $model->idmerk, 'idjenis' => $model->idjenis, 'lokasi' => $model->lokasi]);
+        } else {
+            return $this->render('update', [
+                'model' => $model,
+            ]);
+        }
+    }
+
+    public function actionUpdateStok($currentkiloProduk, $currentkartonProduk, $kiloupdated, $kartonupdated, $idjenis)
+    { 
+            $currentStokkiloJenis = pg_fetch_array(pg_query("select stok_kilo from jenis where idjenis =".$idjenis.";"));
+            $currentStokkartonJenis = pg_fetch_array(pg_query("select stok_karton from jenis where idjenis =".$idjenis.";"));
             $updatekilo=$currentkiloProduk-$kiloupdated;
             $updatekarton=$currentkartonProduk-$kartonupdated;
             $stokcurrentkilo= $currentStokkiloJenis[0];
@@ -180,13 +190,6 @@ $pdf->WriteHTML($html);
             $updateQueryKarton="update jenis  set stok_karton=".$updatestokkarton." where idjenis =".$idjenis.";";
             pg_query($updateQueryKilo);
             pg_query($updateQueryKarton);           
-           
-            return $this->redirect(['view', 'idmerk' => $model->idmerk, 'idjenis' => $model->idjenis, 'lokasi' => $model->lokasi]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
-        }
     }
 
     /**
