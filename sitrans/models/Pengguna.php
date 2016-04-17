@@ -34,8 +34,11 @@ class Pengguna extends \yii\db\ActiveRecord
 			[['username'], 'unique'],
             [['username','password_field', 'repeatpassword', 'role','nama'], 'required'],
             [['username', 'role'], 'string', 'max' => 25],
+            [['username'],'match', 'not' => true, 'pattern' => '/[^a-zA-Z_0-9]/', 'message' => 'Invalid characters in username'],
+            [['password_field'],'match', 'not' => true, 'pattern' => '/[^a-zA-Z_0-9]/', 'message' => 'Invalid characters in password'],
             [['password_field'], 'string', 'min' => 6],
             [['nama'], 'string', 'max' => 50],
+            [['nama'],'match', 'not' => true, 'pattern' => '/[^a-zA-Z ]/', 'message' => 'Only letters allowed'],
             [['repeatpassword'], 'compare', 'compareAttribute' => 'password_field', 'message' => 'Your password doesnt match']
 			
         ];

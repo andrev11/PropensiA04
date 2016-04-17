@@ -34,7 +34,8 @@ class Supplier extends \yii\db\ActiveRecord
             [['idsupplier','namasupplier','telponsupplier','alamatsupplier'], 'required'],
             [['idsupplier'], 'integer'],
             [['namasupplier'], 'string', 'max' => 50],
-            [['telponsupplier', 'no_rekening'],'integer', 'min'=>0],
+            [['telponsupplier', 'no_rekening'],'string', 'max'=>50],
+            [['telponsupplier','no_rekening'],'match', 'not' => true, 'pattern' => '/[^0-9]/', 'message' => 'Only number allowed'],
             [['alamatsupplier'], 'string', 'max' => 100]
         ];
     }
