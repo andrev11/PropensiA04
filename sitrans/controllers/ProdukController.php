@@ -23,6 +23,8 @@ class ProdukController extends Controller
 			return $this->redirect(Yii::$app->user->loginUrl);
 		} else if (Yii::$app->user->identity->role == 'admin'){
 			return $this->redirect(Yii::$app->user->loginUrl);
+		} else if (Yii::$app->user->identity->role == 'deactivated'){
+			return $this->redirect('../index');
 		} else {
 			return true;
 		}
