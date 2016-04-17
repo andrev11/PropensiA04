@@ -67,8 +67,8 @@ class PenggunaController extends Controller
             'query' => Pengguna::find(),
             ]);
 
-            return $this->render('index', [
-                'dataProvider' => $dataProvider,
+            return $this->render('view', [
+				'model' => $this->findModel($username),
             ]);
 
                 /***return $this->render('view', [
