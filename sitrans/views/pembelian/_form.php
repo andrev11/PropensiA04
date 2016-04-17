@@ -20,7 +20,7 @@ use app\models\Carabayar;
 
     <?php 
         if($model->isNewRecord) {
-            $form->field($model, 'supplier')->dropDownList(
+           echo  $form->field($model, 'supplier')->dropDownList(
             ArrayHelper::map(Supplier::find()->all(),'namasupplier','namasupplier'),
             ['prompt'=>'Pilih Supplier']
             );
@@ -33,7 +33,7 @@ use app\models\Carabayar;
 
     <?php 
         if($model->isNewRecord) {
-            $form->field($model, 'produk')->dropDownList(
+          echo   $form->field($model, 'produk')->dropDownList(
             ArrayHelper::map(Produk::find()->all(),'namaproduk','namaproduk'),
             ['prompt'=>'Pilih Produk']
             ) ;
