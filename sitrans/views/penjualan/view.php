@@ -12,6 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="penjualan-view">
 
+ 
     <p>
         <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->idjual], ['class' => 'btn btn-primary']) ?>
         <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->idjual], [
@@ -28,6 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'idjual',
             'idbayar',
+            'customer',
             'produk',
             'tgl_jual',
             'tgl_kirim',

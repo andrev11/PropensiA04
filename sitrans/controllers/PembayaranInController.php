@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Penjualan;
-use app\models\PenjualanSearch;
+use app\models\PembayaranIn;
+use app\models\PembayaranInSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * PenjualanController implements the CRUD actions for Penjualan model.
+ * PembayaranInController implements the CRUD actions for PembayaranIn model.
  */
-class PenjualanController extends Controller
+class PembayaranInController extends Controller
 {
     public function behaviors()
     {
@@ -27,12 +27,12 @@ class PenjualanController extends Controller
     }
 
     /**
-     * Lists all Penjualan models.
+     * Lists all PembayaranIn models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new PenjualanSearch();
+        $searchModel = new PembayaranInSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -42,7 +42,7 @@ class PenjualanController extends Controller
     }
 
     /**
-     * Displays a single Penjualan model.
+     * Displays a single PembayaranIn model.
      * @param integer $id
      * @return mixed
      */
@@ -54,16 +54,16 @@ class PenjualanController extends Controller
     }
 
     /**
-     * Creates a new Penjualan model.
+     * Creates a new PembayaranIn model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Penjualan();
+        $model = new PembayaranIn();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idjual]);
+            return $this->redirect(['view', 'id' => $model->idbayar]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -72,7 +72,7 @@ class PenjualanController extends Controller
     }
 
     /**
-     * Updates an existing Penjualan model.
+     * Updates an existing PembayaranIn model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -82,7 +82,7 @@ class PenjualanController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idjual]);
+            return $this->redirect(['view', 'id' => $model->idbayar]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -91,7 +91,7 @@ class PenjualanController extends Controller
     }
 
     /**
-     * Deletes an existing Penjualan model.
+     * Deletes an existing PembayaranIn model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -104,15 +104,15 @@ class PenjualanController extends Controller
     }
 
     /**
-     * Finds the Penjualan model based on its primary key value.
+     * Finds the PembayaranIn model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Penjualan the loaded model
+     * @return PembayaranIn the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Penjualan::findOne($id)) !== null) {
+        if (($model = PembayaranIn::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

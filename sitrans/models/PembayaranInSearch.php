@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Penjualan;
+use app\models\PembayaranIn;
 
 /**
- * PenjualanSearch represents the model behind the search form about `app\models\Penjualan`.
+ * PembayaranInSearch represents the model behind the search form about `app\models\PembayaranIn`.
  */
-class PenjualanSearch extends Penjualan
+class PembayaranInSearch extends PembayaranIn
 {
     /**
      * @inheritdoc
@@ -18,9 +18,9 @@ class PenjualanSearch extends Penjualan
     public function rules()
     {
         return [
-            [['idjual', 'idbayar'], 'integer'],
-            [['customer', 'produk', 'tgl_jual', 'tgl_kirim', 'jatuh_tempo', 'jam_kirim', 'cara_kirim', 'cara_bayar', 'status_del'], 'safe'],
-            [['harga_total', 'karton', 'kilo'], 'number'],
+            [['idbayar'], 'integer'],
+            [['customer', 'tgl_trans', 'tgl_bayar', 'status_bayar'], 'safe'],
+            [['jumlahbayar'], 'number'],
         ];
     }
 
@@ -42,7 +42,7 @@ class PenjualanSearch extends Penjualan
      */
     public function search($params)
     {
-        $query = Penjualan::find();
+        $query = PembayaranIn::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -57,22 +57,14 @@ class PenjualanSearch extends Penjualan
         }
 
         $query->andFilterWhere([
-            'idjual' => $this->idjual,
             'idbayar' => $this->idbayar,
-            'tgl_jual' => $this->tgl_jual,
-            'tgl_kirim' => $this->tgl_kirim,
-            'jatuh_tempo' => $this->jatuh_tempo,
-            'jam_kirim' => $this->jam_kirim,
-            'harga_total' => $this->harga_total,
-            'karton' => $this->karton,
-            'kilo' => $this->kilo,
+            'tgl_trans' => $this->tgl_trans,
+            'tgl_bayar' => $this->tgl_bayar,
+            'jumlahbayar' => $this->jumlahbayar,
         ]);
 
         $query->andFilterWhere(['like', 'customer', $this->customer])
-            ->andFilterWhere(['like', 'produk', $this->produk])
-            ->andFilterWhere(['like', 'cara_kirim', $this->cara_kirim])
-            ->andFilterWhere(['like', 'cara_bayar', $this->cara_bayar])
-            ->andFilterWhere(['like', 'status_del', $this->status_del]);
+            ->andFilterWhere(['like', 'status_bayar', $this->status_bayar]);
 
         return $dataProvider;
     }

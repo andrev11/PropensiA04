@@ -9,6 +9,7 @@ use Yii;
  *
  * @property integer $idjual
  * @property integer $idbayar
+ * @property string $customer
  * @property string $produk
  * @property string $tgl_jual
  * @property string $tgl_kirim
@@ -22,7 +23,6 @@ use Yii;
  * @property string $kilo
  *
  * @property PembayaranIn $idbayar0
- * @property Produk $produk0
  */
 class Penjualan extends \yii\db\ActiveRecord
 {
@@ -44,7 +44,7 @@ class Penjualan extends \yii\db\ActiveRecord
             [['idjual', 'idbayar'], 'integer'],
             [['tgl_jual', 'tgl_kirim', 'jatuh_tempo', 'jam_kirim'], 'safe'],
             [['harga_total', 'karton', 'kilo'], 'number'],
-            [['produk'], 'string', 'max' => 50],
+            [['customer', 'produk'], 'string', 'max' => 50],
             [['cara_kirim', 'cara_bayar', 'status_del'], 'string', 'max' => 25]
         ];
     }
@@ -57,6 +57,7 @@ class Penjualan extends \yii\db\ActiveRecord
         return [
             'idjual' => Yii::t('app', 'Idjual'),
             'idbayar' => Yii::t('app', 'Idbayar'),
+            'customer' => Yii::t('app', 'Customer'),
             'produk' => Yii::t('app', 'Produk'),
             'tgl_jual' => Yii::t('app', 'Tgl Jual'),
             'tgl_kirim' => Yii::t('app', 'Tgl Kirim'),
@@ -77,13 +78,5 @@ class Penjualan extends \yii\db\ActiveRecord
     public function getIdbayar0()
     {
         return $this->hasOne(PembayaranIn::className(), ['idbayar' => 'idbayar']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getProduk0()
-    {
-        return $this->hasOne(Produk::className(), ['namaproduk' => 'produk']);
     }
 }

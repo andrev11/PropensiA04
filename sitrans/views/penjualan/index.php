@@ -11,8 +11,8 @@ $this->title = Yii::t('app', 'Penjualan');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="penjualan-index">
- 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+   <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
         <?= Html::a(Yii::t('app', 'Create Penjualan'), ['create'], ['class' => 'btn btn-success']) ?>
@@ -26,9 +26,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'idjual',
             'idbayar',
+            'customer',
             'produk',
             'tgl_jual',
-            'tgl_kirim',
+            // 'tgl_kirim',
             // 'jatuh_tempo',
             // 'jam_kirim',
             // 'cara_kirim',
