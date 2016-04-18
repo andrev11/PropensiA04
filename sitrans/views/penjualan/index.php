@@ -7,13 +7,12 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\PenjualanSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Penjualans');
+$this->title = Yii::t('app', 'Penjualan');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="penjualan-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+   <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
         <?= Html::a(Yii::t('app', 'Create Penjualan'), ['create'], ['class' => 'btn btn-success']) ?>
