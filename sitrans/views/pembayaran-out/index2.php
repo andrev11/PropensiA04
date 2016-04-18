@@ -14,8 +14,8 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="pembayaran-out-index2">
 
     
-    
-<table class="table">
+  <div id="w0" class="grid-view">  
+	<table class="table table-striped table-bordered">
         <thead>
             <!-- <th> idbayar </th>-->
             <th>Supplier</th>
@@ -44,5 +44,5 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php endforeach; ?>
         </tbody>    
     </table>
-
+  </div>
 </div>
