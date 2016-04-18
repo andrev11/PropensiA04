@@ -19,7 +19,7 @@ class PenjualanSearch extends Penjualan
     {
         return [
             [['idjual', 'idbayar'], 'integer'],
-            [['produk', 'tgl_jual', 'tgl_kirim', 'jatuh_tempo', 'jam_kirim', 'cara_kirim', 'cara_bayar', 'status_del'], 'safe'],
+            [['customer', 'produk', 'tgl_jual', 'tgl_kirim', 'jatuh_tempo', 'jam_kirim', 'cara_kirim', 'cara_bayar', 'status_del'], 'safe'],
             [['harga_total', 'karton', 'kilo'], 'number'],
         ];
     }
@@ -68,10 +68,11 @@ class PenjualanSearch extends Penjualan
             'kilo' => $this->kilo,
         ]);
 
-        $query->andFilterWhere(['ilike', 'produk', $this->produk])
-            ->andFilterWhere(['ilike', 'cara_kirim', $this->cara_kirim])
-            ->andFilterWhere(['ilike', 'cara_bayar', $this->cara_bayar])
-            ->andFilterWhere(['ilike', 'status_del', $this->status_del]);
+        $query->andFilterWhere(['like', 'customer', $this->customer])
+            ->andFilterWhere(['like', 'produk', $this->produk])
+            ->andFilterWhere(['like', 'cara_kirim', $this->cara_kirim])
+            ->andFilterWhere(['like', 'cara_bayar', $this->cara_bayar])
+            ->andFilterWhere(['like', 'status_del', $this->status_del]);
 
         return $dataProvider;
     }

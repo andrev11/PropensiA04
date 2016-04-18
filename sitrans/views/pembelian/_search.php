@@ -23,7 +23,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'produk') ?>
 
-    <?= $form->field($model, 'tgl_beli') ?>
+    <?= $form->field($model, 'tgl_beli')->textInput(['type' => 'date']) ?>
 
     <?= $form->field($model, 'tgl_terima') ?>
 

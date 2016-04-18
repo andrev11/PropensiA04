@@ -16,6 +16,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'idbayar')->textInput() ?>
 
+    <?= $form->field($model, 'customer')->textInput(['maxlength' => true]) ?>
+
     <?= $form->field($model, 'produk')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'tgl_jual')->textInput() ?>
