@@ -1,16 +1,6 @@
 <?php
-$myHost = "localhost";
-$myUser = "postgres";
-$myPassword = "1234";
-$myPort = "5432";
-
-// Create connection
-$conn = "host = ".$myHost." user = ".$myUser." password = ".$myPassword." port = ".$myPort." dbname = sitrans";
-
-// Check connection
-if (!$database = pg_connect($conn)) {
-	die("Could not connect to database");
-}
+use app\controllers\SiteController; 
+echo SiteController::connect();
 ?>
 
 <style type="text/css">

@@ -59,32 +59,7 @@ class PembelianController extends Controller
 
     public function actionIndex2()
     {
-      /**
-        //$myHost = "localhost";
-        //$myUser = "postgres";
-        //$myPassword = "1234";
-        //$myPort = "5432";
-        $blm = "Belum Diterima";
-        // Create connection
-        //$connection = new \yii\db\Connection(["host = ".$myHost." user = ".$myUser." password = ".$myPassword." port = ".$myPort." dbname = sitrans" ]);
-        
-        //$conn = "host = ".$myHost." user = ".$myUser." password = ".$myPassword." port = ".$myPort." dbname = sitrans";
-            // Check connection
-          //  if (!$database = pg_connect($conn)) {
-            //    die("Connection failed");
-            //}
-        //$connection = new \Yii::$app->db;
-        //$connection-> open();
-        //$command = $connection->createCommand('SELECT * FROM PEMBELIAN P, PEMBAYARAN_OUT B, SUPPLIER S WHERE P.idbayar=B.idbayar AND S.namasupplier = B.supplier AND P.status_del="'.$blm.'";');     
-        //$result = $command->queryAll();
-
-        $dataProvider = new ActiveDataProvider([
-            'query' => Pembelian::find()
-                      ->WHERE ("status_del= 'Belum Diterima'")
-                      ->all()
-        ]);
-      **/
-
+     
       $beli2 = Pembelian::find()
           ->where("status_del= 'Belum Diterima'")
           ->all();
