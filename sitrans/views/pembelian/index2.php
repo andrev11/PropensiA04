@@ -14,8 +14,8 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="pembelian-index2">
 
-   
-    <table class="table">
+   <div id="w0" class="grid-view">
+    <table class="table table-striped table-bordered">
         <thead>
             <!-- <th> idbeli </th> -->
             <!-- <th> idbayar </th>-->
@@ -55,4 +55,5 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php endforeach; ?>
         </tbody>    
     </table>
+   </div>
 </div>
