@@ -59,32 +59,6 @@ class PembelianController extends Controller
 
     public function actionIndex2()
     {
-      /**
-        //$myHost = "localhost";
-        //$myUser = "postgres";
-        //$myPassword = "1234";
-        //$myPort = "5432";
-        $blm = "Belum Diterima";
-        // Create connection
-        //$connection = new \yii\db\Connection(["host = ".$myHost." user = ".$myUser." password = ".$myPassword." port = ".$myPort." dbname = sitrans" ]);
-        
-        //$conn = "host = ".$myHost." user = ".$myUser." password = ".$myPassword." port = ".$myPort." dbname = sitrans";
-            // Check connection
-          //  if (!$database = pg_connect($conn)) {
-            //    die("Connection failed");
-            //}
-        //$connection = new \Yii::$app->db;
-        //$connection-> open();
-        //$command = $connection->createCommand('SELECT * FROM PEMBELIAN P, PEMBAYARAN_OUT B, SUPPLIER S WHERE P.idbayar=B.idbayar AND S.namasupplier = B.supplier AND P.status_del="'.$blm.'";');     
-        //$result = $command->queryAll();
-
-        $dataProvider = new ActiveDataProvider([
-            'query' => Pembelian::find()
-                      ->WHERE ("status_del= 'Belum Diterima'")
-                      ->all()
-        ]);
-      **/
-
       $beli2 = Pembelian::find()
           ->where("status_del= 'Belum Diterima'")
           ->all();
@@ -110,35 +84,19 @@ class PembelianController extends Controller
     public function actionPrint()
     {  
 
-         // get your HTML raw content without any layouts or scripts
-    //$content = $this->renderPartial('_reportView');
-
-            ini_set('memory_limit','3000M');//extending php memory
-            $pdf=new mPDF('win-1252','A4','','',15,10,16,10,10,10);//A4 size page in landscape orientation
-            date_default_timezone_set("Asia/Bangkok");
-            $pdf->SetHeader(date('H:i:s'));
-            $pdf->setFooter('{PAGENO}');
-            $pdf->useOnlyCoreFonts = true;    // false is default
-            //$mpdf->SetWatermarkText("any text");
-            //$mpdf->showWatermarkText = true;
-            //$mpdf->watermark_font = 'DejaVuSansCondensed';
-            //$mpdf->watermarkTextAlpha = 0.1;
-            $pdf->SetDisplayMode('fullpage');
-            //$pdf->SetWatermarkImage('logo.png');
-            //$pdf->showWatermarkImage = true;
-
-            // setup kartik\mpdf\Pdf component
-            //$pdf = new mPDF('utf-8', 'A4');
-            //$pdf->allow_charset_conversion = true;
-            //$pdf->WriteHTML('$html');
-
-            // Buffer the following html with PHP so we can store it to a variable later
+        ini_set('memory_limit','3000M');//extending php memory
+        $pdf=new mPDF('win-1252','A4','','',15,10,16,10,10,10);//A4 size page in landscape orientation
+        date_default_timezone_set("Asia/Bangkok");
+        $pdf->SetHeader(date('H:i:s'));
+        $pdf->setFooter('{PAGENO}');
+        $pdf->useOnlyCoreFonts = true;    // false is default
+        $pdf->SetDisplayMode('fullpage');
+       
         ob_start();
-        ?>
-        <?php include "../views/pembelian/_reportPembelian.php";//The php page you want to convert to pdf
-         // asasas?>
-
-        <?php 
+ 
+        include "../views/pembelian/_reportPembelian.php";//The php page you want to convert to pdf
+         // asasas
+        
         $html = ob_get_contents();
 
         ob_end_clean();
@@ -148,22 +106,8 @@ class PembelianController extends Controller
         $pdf->WriteHTML($html);
         //$mpdf->SetProtection(array(), 'mawiahl', 'password');//for password protecting your pdf
 
-
-
             // return the pdf output as per the destination setting
              $pdf->Output(); 
-
-      /*  $model = new Produk();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'idmerk' => $model->idmerk, 'idsupplier' => $model->idsupplier, 'idjenis' => $model->idjenis, 'lokasi' => $model->lokasi]);
-        } else {
-            return $this->render('print', [
-                'model' => $model,
-            ]);
-        }
-
-        */
     }
 
     /**

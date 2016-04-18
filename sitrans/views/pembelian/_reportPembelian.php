@@ -63,7 +63,13 @@ echo date("d F Y");
     <th class="tg-9hbo">Jumlah Karton</th>
     <th class="tg-9hbo">Jumlah Kilo</th>
   </tr>
-<?php $result = pg_query("SELECT * FROM PEMBELIAN;"); 
+<?php 
+$tgl_beli = Yii::$app->request->get('tgl_beli');
+$query = "SELECT * FROM pembelian ";
+if(null !== $tgl_beli){ 
+	$query = $query."WHERE tgl_beli = '".$tgl_beli."'";
+}
+$result = pg_query($query.";"); 
 	$i = 1;
 	while($row = pg_fetch_assoc($result)) { ?>
   <tr>

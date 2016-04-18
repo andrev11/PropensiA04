@@ -6,13 +6,13 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\PembayaranOut */
 
-$this->title = $model->idbayar;
+$this->title = Yii::t('app', 'ID {modelClass}: ', [
+    'modelClass' => 'Pembayaran',
+]) . ' ' . $model->idbayar;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Pembayaran Outs'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="pembayaran-out-view">
-
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
         <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->idbayar], ['class' => 'btn btn-primary']) ?>
