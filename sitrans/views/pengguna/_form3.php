@@ -28,24 +28,6 @@ use yii\helpers\ArrayHelper;
 		echo $form->field($model, 'nama')->textInput(['readonly'=>Yii::$app->user->identity->nama]);
 		}
 			 ?>
-			 
-	<?php 
-	//if (!Yii::$app->user->isGuest && Yii::$app->user->identity->role != 'admin'){
-	//	echo $form->field($model, 'passwordlama')->passwordInput(['maxlength' => false])
-	//	;} 
-		?>		 
-			 
-	<?php 
-	//if (!Yii::$app->user->isGuest && Yii::$app->user->identity->role != 'admin'){
-		echo $form->field($model, 'password_field')->passwordInput(['maxlength' => false])
-		//;} 
-		?>
-   
-   <?php 
-   //if (!Yii::$app->user->isGuest && Yii::$app->user->identity->role != 'admin'){
-		echo $form->field($model, 'repeatpassword')->passwordInput(['maxlength' => false])
-		//;} 
-		?>
 
    <?php if (!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'admin'){
 	   echo $form->field($model, 'role')->dropDownList(ArrayHelper::map(Role::find()->all(),'role','role'),['prompt'=>'Select Role']);

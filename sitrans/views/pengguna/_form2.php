@@ -31,7 +31,7 @@ use yii\helpers\ArrayHelper;
 			 
 	<?php 
 	//if (!Yii::$app->user->isGuest && Yii::$app->user->identity->role != 'admin'){
-	//	echo $form->field($model, 'passwordlama')->passwordInput(['maxlength' => false])
+		echo $form->field($model, 'passwordlama')->passwordInput(['maxlength' => false])
 	//	;} 
 		?>		 
 			 

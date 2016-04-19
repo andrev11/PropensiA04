@@ -143,7 +143,25 @@ class PenggunaController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+		if (!Yii::$app->user->isGuest && Yii::$app->user->identity->role != 'admin'){
+			$model = $this->findModel($id);
+
+			if ($model->load(Yii::$app->request->post()) && $model->save()) {
+				return $this->redirect(['view', 'id' => $model->username]);
+			} else {
+				return $this->render('update', [
+					'model' => $model,
+				]);
+			}
+		} else if (!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'admin'){
+			return $this->redirect(['update-admin', 'id' => $id]);
+		}
+    }
+	
+	public function actionUpdateAdmin($id)
+    {
+        //echo SiteController::connect();
+		$model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->username]);
