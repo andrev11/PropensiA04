@@ -47,10 +47,14 @@ class PenggunaController extends Controller
         $dataProvider = new ActiveDataProvider([
             'query' => Pengguna::find(),
         ]);
-
-        return $this->render('index', [
-            'dataProvider' => $dataProvider,
-        ]);
+		
+		if (!\Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'admin'){
+			return $this->render('index', [
+				'dataProvider' => $dataProvider,
+			]);
+		} else {
+			return $this->redirect(Yii::$app->user->loginUrl);
+		}
     }
     public function actionListuser()
     {
@@ -121,9 +125,14 @@ class PenggunaController extends Controller
 				return $this->redirect(['view', 'id' => $model->username]);
 			}
 		}
-		return $this->render('create', [
-			'model' => $model,
-		]);
+		
+		if (!\Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'admin'){
+			return $this->render('create', [
+				'model' => $model,
+			]);
+		} else {
+			return $this->redirect(Yii::$app->user->loginUrl);
+		}
     }
 
     /**

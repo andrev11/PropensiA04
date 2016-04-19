@@ -15,11 +15,20 @@ use yii\helpers\ArrayHelper;
     <?php $form = ActiveForm::begin(); ?>
 	
 
-    <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
+    <?php if (!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'admin'){
+		echo $form->field($model, 'username')->textInput(['maxlength' => true]);
+		} else {
+		echo $form->field($model, 'username')->textInput(['readonly'=>Yii::$app->user->identity->username]);
+		}
+			?>
 
-    <?= $form->field($model, 'nama')->textInput(['maxlength' => true]) ?>
-
-    <?php 
+    <?php if (!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'admin'){
+		echo $form->field($model, 'nama')->textInput(['maxlength' => true]);
+		} else {
+		echo $form->field($model, 'nama')->textInput(['readonly'=>Yii::$app->user->identity->nama]);
+		}
+			 ?>
+	<?php 
 	//if (!Yii::$app->user->isGuest && Yii::$app->user->identity->role != 'admin'){
 		echo $form->field($model, 'password_field')->passwordInput(['maxlength' => false])
 		//;} 
@@ -32,10 +41,8 @@ use yii\helpers\ArrayHelper;
 		?>
 
    <?php if (!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'admin'){
-	   echo $form->field($model, 'role')->dropDownList(
-        ArrayHelper::map(Role::find()->all(),'role','role'),
-        ['prompt'=>'Select Role']
-   );} else {
+	   echo $form->field($model, 'role')->dropDownList(ArrayHelper::map(Role::find()->all(),'role','role'),['prompt'=>'Select Role']);
+	   } else {
 	   echo $form->field($model, 'role')->textInput(['readonly'=>Yii::$app->user->identity->role]);
    } ?>
    
