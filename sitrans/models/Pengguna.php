@@ -53,7 +53,7 @@ class Pengguna extends \yii\db\ActiveRecord
 	
 	public function findPasswords($attribute, $params){
 		
-	
+		$this->scenario = 'update';
 		
         $user = Pengguna::find()->where(['username'=>Yii::$app->user->identity->username])->one();
 		$password = $user->password;

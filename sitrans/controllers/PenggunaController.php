@@ -118,6 +118,7 @@ class PenggunaController extends Controller
     public function actionCreate()
     {
         $model = new Pengguna();
+		$model->scenario = 'create';
 		$post = Yii::$app->request->post();
 
 		if ($model->load($post)) {
@@ -145,6 +146,8 @@ class PenggunaController extends Controller
     {
 		if (!Yii::$app->user->isGuest && Yii::$app->user->identity->role != 'admin'){
 			$model = $this->findModel($id);
+			
+			$model->scenario = 'update';
 
 			if ($model->load(Yii::$app->request->post()) && $model->save()) {
 				return $this->redirect(['view', 'id' => $model->username]);
