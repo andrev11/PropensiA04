@@ -42,7 +42,7 @@ use app\models\Carabayar;
         }
     ?>
    
-    <?= $form->field($model, 'tgl_terima')->textInput(['type' => 'date']) ?>
+    <?= $form->field($model, 'tgl_terima')->textInput(['type' => 'date', 'min' => date('Y-m-d')]) ?>
     <?= $form->field($model, 'cara_terima')->dropDownList(
         ArrayHelper::map(Caraterima::find()->all(),'caraterima','caraterima'),
         ['prompt'=>'Pilih Cara Terima']
