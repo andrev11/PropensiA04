@@ -51,10 +51,14 @@ class PembelianController extends Controller
         $searchModel = new PembelianSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+		if (!\Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'purchasing'){
+			return $this->render('index', [
+				'searchModel' => $searchModel,
+				'dataProvider' => $dataProvider,
+			]);
+		} else {
+			return $this->redirect(Yii::$app->user->loginUrl);
+		}
     }
 
     public function actionIndex2()
@@ -63,10 +67,14 @@ class PembelianController extends Controller
       $beli2 = Pembelian::find()
           ->where("status_del= 'Belum Diterima'")
           ->all();
-        return $this->render('index2', [
-            'beli2' => $beli2,
-        ]);
-
+        
+		if (!\Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'admin inventori'){
+			return $this->render('index2', [
+				'beli2' => $beli2,
+			]);
+		} else {
+			return $this->redirect(Yii::$app->user->loginUrl);
+		}
     }
 
 

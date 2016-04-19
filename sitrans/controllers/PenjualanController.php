@@ -14,7 +14,18 @@ use yii\filters\VerbFilter;
  */
 class PenjualanController extends Controller
 {
-    public function behaviors()
+    public function beforeAction($action)
+        {
+		if (Yii::$app->user->isGuest){
+			return $this->redirect(Yii::$app->user->loginUrl);
+		} else if (Yii::$app->user->identity->role == 'sales marketing'){
+			return true;
+		} else {
+			return $this->redirect(Yii::$app->user->loginUrl);
+		}
+    }
+	
+	public function behaviors()
     {
         return [
             'verbs' => [
