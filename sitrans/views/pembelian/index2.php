@@ -19,6 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <thead>
             <!-- <th> idbeli </th> -->
             <!-- <th> idbayar </th>-->
+             <th align="center">#</th>
             <th align="center">Nama Produk</th>
             <th align="center">Tanggal Pembelian</th>
             <th align="center">Tanggal Terima</th>
@@ -30,10 +31,13 @@ $this->params['breadcrumbs'][] = $this->title;
             <th align="center">Jumlah Kilo</th>
         </thead>
         <tbody>
-            <?php foreach ($beli2 as $beli): ?>
+                                          
+            <?php $number=1;
+            foreach ($beli2 as $beli): ?>
                 <tr>
                     <!--<td><?= $beli->idbeli ?></td>-->
                     <!--<td><?= $beli->idbayar ?></td>-->
+                    <td><?= $number++ ?></td>
                     <td><?= $beli->produk ?></td>
                     <td align="center"><?= $beli->tgl_beli ?></td>
                     <td align="center"><?= $beli->tgl_terima ?></td>

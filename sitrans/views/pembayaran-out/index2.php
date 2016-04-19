@@ -18,6 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	<table class="table table-striped table-bordered">
         <thead>
             <!-- <th> idbayar </th>-->
+            <th>#</th>
             <th>Supplier</th>
             <th>Tanggal Pembelian</th>
             <th>Tanggal Pembayaran</th>
@@ -25,8 +26,10 @@ $this->params['breadcrumbs'][] = $this->title;
             <th>Jumlah Hutang</th>
         </thead>
         <tbody>
-            <?php foreach ($hutang as $hutang): ?>
+            <?php  $number=1;
+            foreach ($hutang as $hutang): ?>
                 <tr>
+                    <td><?= $number++ ?></td>
                     <td><?= $hutang->supplier ?></td>
                     <td align="center"><?= $hutang->tgl_trans ?></td>
                     <td align="center"><?= $hutang->tgl_bayar ?></td>
