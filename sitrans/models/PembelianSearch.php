@@ -19,7 +19,8 @@ class PembelianSearch extends Pembelian
     {
         return [
             [['idbeli', 'idbayar'], 'integer'],
-            [['supplier', 'produk', 'tgl_beli', 'tgl_terima', 'cara_terima', 'cara_bayar', 'status_del'], 'safe'],
+			[['tgl_beli', 'tgl_terima'], 'safe'],
+            [['supplier', 'produk', 'cara_terima', 'cara_bayar', 'status_del'], 'safe'],
             [['harga_total', 'karton', 'kilo'], 'number'],
         ];
     }
