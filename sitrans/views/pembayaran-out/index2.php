@@ -15,14 +15,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
     
   <div id="w0" class="grid-view">  
-	<table class="table table-striped table-bordered">
-        <thead>
+	<table align="center" class="table table-striped table-bordered">
+        <thead align="center">
             <!-- <th> idbayar </th>-->
             <th>#</th>
             <th>Supplier</th>
             <th>Tanggal Pembelian</th>
-            <th>Tanggal Pembayaran</th>
-            <th>Status Pembayaran</th>
+            <!-- <th>Tanggal Pembayaran</th>-->
+            <!-- <th>Status Pembayaran</th>-->
             <th>Jumlah Hutang</th>
         </thead>
         <tbody>
@@ -31,11 +31,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 <tr>
                     <td><?= $number++ ?></td>
                     <td><?= $hutang->supplier ?></td>
-                    <td align="center"><?= $hutang->tgl_trans ?></td>
-                    <td align="center"><?= $hutang->tgl_bayar ?></td>
-                    <td align="center"><?= $hutang->status_bayar ?></td>
-                    <td align="center"><?= $hutang->jumlahbayar ?></td>
-                    <td><?= Html::a('View', ['view', 'id' => $hutang->idbayar], ['class' => 'btn btn-primary']) ?></td>
+                    <td><?= $hutang->tgl_trans ?></td>
+                    <!-- <td align="center"><?= $hutang->tgl_bayar ?></td>-->
+                    <!-- <td align="center"><?= $hutang->status_bayar ?></td>-->
+                    <td><?= $hutang->jumlahbayar ?></td>
+                    
                     <td><?= Html::a('Confirm', ['confirm', 'id' => $hutang->idbayar], [
                         'class' => 'btn btn-danger',
                         'data' => [
