@@ -27,27 +27,16 @@ class Jenis extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    
-	public $newrop;
-	
-	public function rules()
+    public function rules()
     {
         return [
             [['idjenis','namajenis','rop'], 'required'],
-            [['idjenis', 'rop', 'newrop'], 'integer','min' => 0],
+            [['idjenis', 'rop'], 'integer','min' => 0],
             [['stok_kilo', 'stok_karton'], 'number'],
-            [['namajenis'], 'string', 'max' => 50],
-			[['newrop'], 'beforeSave']
+            [['namajenis'], 'string', 'max' => 50]
         ];
     }
-	
-	public function beforeSave($insert){
-		if(isset($this->newrop)){
-			$this->rop = $this->newrop;
-		}
-		return parent::beforeSave($insert);
-	}
-	
+
     /**
      * @inheritdoc
      */
@@ -57,7 +46,6 @@ class Jenis extends \yii\db\ActiveRecord
             'idjenis' => Yii::t('app', 'Id'),
             'namajenis' => Yii::t('app', 'Nama Jenis'),
             'rop' => Yii::t('app', 'ROP (kg)'),
-			'newrop' => ('New ROP (kg)'),
             'stok_kilo' => Yii::t('app', 'Stok Kilo'),
             'stok_karton' => Yii::t('app', 'Stok Karton'),
         ];

@@ -25,19 +25,11 @@ use yii\widgets\ActiveForm;
     ?>
      <?php 
 	   if(!\Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'sales marketing') {
-	     echo $form->field($model,'rop')->textInput(['readonly'=>!$model->isNewRecord]);
+	     echo $form->field($model,'rop')->textInput();
 	   } else {
             if($model->isNewRecord)
 	   	 echo $form->field($model, 'rop')->textInput();	
 		 }
-    ?>
-	
-	<?php 
-	   if(!\Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'sales marketing') {
-	     if(!$model->isNewRecord){
-			echo $form->field($model,'newrop')->textInput();
-		 }
-	   }
     ?>
    
     <div class="form-group">
