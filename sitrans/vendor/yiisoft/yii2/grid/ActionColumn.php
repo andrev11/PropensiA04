@@ -165,6 +165,7 @@ class ActionColumn extends Column
                 return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, $options);
             };
         }
+		/***
         if (!isset($this->buttons['delete'])) {
             $this->buttons['delete'] = function ($url, $model, $key) {
                 $options = array_merge([
@@ -176,7 +177,7 @@ class ActionColumn extends Column
                 ], $this->buttonOptions);
                 return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url, $options);
             };
-        }
+        } **/
         /**
         if (!isset($this->buttons['confirm'])) {
             $this->buttons['confirm'] = function ($url, $model, $key) {
