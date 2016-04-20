@@ -17,14 +17,14 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'stok_karton')->textInput(['maxlength' => true]) ?> -->
  
    <?php 
-	   if(Yii::$app->user->identity->role == 'purchasing') {
+	   if(!\Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'purchasing') {
 	     echo $form->field($model,'namajenis')->textInput();
 	   } else {
 	   	 echo $form->field($model, 'namajenis')->textInput(['readonly'=>!$model->isNewRecord]);	
 		 }
     ?>
      <?php 
-	   if(Yii::$app->user->identity->role == 'sales marketing') {
+	   if(!\Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'sales marketing') {
 	     echo $form->field($model,'rop')->textInput();
 	   } else {
             if($model->isNewRecord)
