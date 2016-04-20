@@ -38,7 +38,7 @@ class Pembelian extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['idbeli'], 'required'],
+            [['idbeli','tgl_terima', 'kilo','karton', 'supplier','produk'], 'required'],
             [['idbeli', 'idbayar'], 'integer'],
             [['tgl_beli', 'tgl_terima'], 'safe'],
             [['harga_total'], 'number'],
