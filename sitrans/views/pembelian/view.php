@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Pembelians'), 'url' 
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="pembelian-view">
-
+    <!--
     <p>
         <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->idbeli], ['class' => 'btn btn-primary']) ?>
         <?
@@ -27,7 +27,8 @@ $this->params['breadcrumbs'][] = $this->title;
         //])
 		?>
     </p>
-
+    -->
+    
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [

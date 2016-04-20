@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Pembayaran Outs'), '
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="pembayaran-out-view">
-
+    <!--
     <p>
         <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->idbayar], ['class' => 'btn btn-primary']) ?>
         <?
@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
         //]) 
 		?>
     </p>
-
+    -->
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
