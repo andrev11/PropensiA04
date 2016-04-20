@@ -157,7 +157,20 @@ class PembelianController extends Controller
             ]);
         }
     }
+    public function checkLokasiProduk($namaproduk,$lokasi){
+        $query="Select * from produk where namaproduk='".$namaproduk"' AND lokasi='".$lokasi"';";
+        $ambilProduk = pg_fetch_array(pg_query($query));
+        if(pg_num_rows(pg_query($query)) ==0){
+            $increments = pg_fetch_array(pg_query("select max(idbayar) from pembayaran_out;"));
+            $IdBayar =$increments[0] +1;
+            $masukan = "INSERT INTO PEMBAYARAN_OUT VALUES ('".$IdBayar."', '".$supplier."', '".$tanggalbeli."', null, null, 'Hutang');";
+            pg_query($masukan); 
+            //Belum Selesai
 
+        }
+        if()
+
+    }
      public function updateStokProduk($namaproduk, $jumlahkilo, $jumlahkarton, $lokasi){
         $queryprodukkilo="select kilo from produk where namaproduk ='".$namaproduk."'AND lokasi='".$lokasi."';";
         $queryprodukkarton="select karton from produk where namaproduk ='".$namaproduk."'AND lokasi='".$lokasi."';";
