@@ -108,7 +108,6 @@ class PembelianController extends Controller
         ob_start();
  
         include "../views/pembelian/_reportPembelian.php";//The php page you want to convert to pdf
-         // asasas
         
         $html = ob_get_contents();
 

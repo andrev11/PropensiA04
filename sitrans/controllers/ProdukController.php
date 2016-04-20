@@ -101,18 +101,7 @@ class ProdukController extends Controller
     $pdf->SetHeader(date('H:i:s'));
     $pdf->setFooter('{PAGENO}');
     $pdf->useOnlyCoreFonts = true;    // false is default
-    //$mpdf->SetWatermarkText("any text");
-    //$mpdf->showWatermarkText = true;
-    //$mpdf->watermark_font = 'DejaVuSansCondensed';
-    //$mpdf->watermarkTextAlpha = 0.1;
     $pdf->SetDisplayMode('fullpage');
-    //$pdf->SetWatermarkImage('logo.png');
-    //$pdf->showWatermarkImage = true;
-
-    // setup kartik\mpdf\Pdf component
-    //$pdf = new mPDF('utf-8', 'A4');
-    //$pdf->allow_charset_conversion = true;
-    //$pdf->WriteHTML('$html');
 
     // Buffer the following html with PHP so we can store it to a variable later
 ob_start();
@@ -130,22 +119,9 @@ ob_end_clean();
 $pdf->WriteHTML($html);
 //$mpdf->SetProtection(array(), 'mawiahl', 'password');//for password protecting your pdf
 
-
-
     // return the pdf output as per the destination setting
      $pdf->Output(); 
 
-      /*  $model = new Produk();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'idmerk' => $model->idmerk, 'idjenis' => $model->idjenis, 'lokasi' => $model->lokasi]);
-        } else {
-            return $this->render('print', [
-                'model' => $model,
-            ]);
-        }
-
-        */
     }
     /**
      * Updates an existing Produk model.
