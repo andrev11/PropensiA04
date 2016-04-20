@@ -141,8 +141,7 @@ class PembelianController extends Controller
             $supplier=$model->supplier;
             $tglbeli=$model->tgl_beli;
              $idbeli = $model->idbeli;
-            echo PembelianController::insertIdBayar($supplier, $tglbeli,$idbeli);
-           
+            echo PembelianController::insertIdBayar($supplier, $tglbeli,$idbeli);           
             $jumlahkilo=$model->kilo;
             $jumlahkarton=$model->karton;
             $namaproduk=$model->produk;

@@ -45,7 +45,7 @@ class Jenis extends \yii\db\ActiveRecord
         return [
             'idjenis' => Yii::t('app', 'Id'),
             'namajenis' => Yii::t('app', 'Nama Jenis'),
-            'rop' => Yii::t('app', 'ROP'),
+            'rop' => Yii::t('app', 'ROP (kg)'),
             'stok_kilo' => Yii::t('app', 'Stok Kilo'),
             'stok_karton' => Yii::t('app', 'Stok Karton'),
         ];
