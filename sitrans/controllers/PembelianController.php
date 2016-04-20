@@ -167,8 +167,8 @@ class PembelianController extends Controller
         $currentkarton = pg_fetch_array(pg_query($queryprodukkarton))[0];
         $updateKilo=$currentkilo + $jumlahkilo;
         $updateKarton=$currentkarton + $jumlahkarton;
-        $queryupdatekilo="Update produk set kilo=".$updateKilo." where namaproduk='".$namaproduk."';";
-        $queryupdatekarton="Update produk set karton=".$updateKarton." where namaproduk='".$namaproduk."';";
+        $queryupdatekilo="Update produk set kilo=".$updateKilo." where namaproduk='".$namaproduk."' AND lokasi='".$lokasi."';";
+        $queryupdatekarton="Update produk set karton=".$updateKarton." where namaproduk='".$namaproduk."' AND lokasi='".$lokasi."';";
          pg_query($queryupdatekilo);
          pg_query($queryupdatekarton);
        }
