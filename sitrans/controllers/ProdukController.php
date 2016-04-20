@@ -80,6 +80,7 @@ class ProdukController extends Controller
      */
     public function actionCreate()
     {   
+        /**
         $model = new Produk();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -89,6 +90,68 @@ class ProdukController extends Controller
                 'model' => $model,
             ]);
         }
+        **/
+
+        $model = new Produk();
+        echo SiteController::connect(); 
+        
+        
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $merk=$model->merk;
+            $jenis=$model->jenis;
+            $namaproduk=$model->namaproduk;
+            $lokasi=$model->lokasi;
+            $harga_beli=$model->harga_beli;
+            echo ProdukController::insertIdMerk($merk);           
+            echo ProdukController::insertIdJenis($jenis);  
+            return $this->redirect(['view', 'idmerk' => $model->idmerk, 'idjenis' => $model->idjenis, 'lokasi' => $model->lokasi]);
+        } else {
+            return $this->render('create', [
+                'model' => $model,
+            ]);
+        }
+
+    }
+
+    public function insertIdMerk($namasupplier){
+        $querymerk = "select idmerk from merk where namasupplier='".$namasupplier."';";
+        $queryIdSupplier = "select idsupplier from merk where namasupplier='".$namasupplier."';";
+        $ambilIdMerk = pg_fetch_array(pg_query($querymerk));
+        $ambilIdSupplier = pg_fetch_array(pg_query($queryIdSupplier));
+        $IdMerk;
+        $IdSupplier = $ambilIdSupplier[0];
+        if(pg_num_rows(pg_query($querymerk)) ==0){
+            $increments = pg_fetch_array(pg_query("select max(idmerk) from merk;"));
+            $IdMerk =$increments[0] +1;
+            $masukan = "INSERT INTO MERK VALUES ('".$IdMerk."', '".$IdSupplier."', null, 'Aktif');";
+            pg_query($masukan); 
+
+        }   else {
+
+            $IdMerk = $ambilIdMerk[0];
+        }
+
+        $queryProduk="Update Produk set idmerk='".$IdMerk."' where namasupplier='".$namasupplier."';";
+        pg_query($queryProduk);
+    }
+
+    public function insertIdJenis($namajenis){
+        $queryIdJenis = "select idjenis from jenis where namajenis='".$namajenis."';";
+        $ambilIdMerk = pg_fetch_array(pg_query($querymerk));
+        $IdJenis;
+        if(pg_num_rows(pg_query($queryIdJenis)) ==0){
+            $increments = pg_fetch_array(pg_query("select max(idjenis) from jenis;"));
+            $IdJenis =$increments[0] +1;
+            $masukan = "INSERT INTO JENIS VALUES ('".$IdJenis."', '".$namajenis."', null, null, null);";
+            pg_query($masukan); 
+
+        }   else {
+
+            $IdJenis = $ambilIdJenis[0];
+        }
+
+        $queryProduk="Update Produk set idjenis='".$IdJenis."' where namajenis='".$namajenis."';";
+        pg_query($queryProduk);
     }
 
     public function actionPrint()

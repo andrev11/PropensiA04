@@ -6,6 +6,7 @@ use Yii;
 use app\models\Pembelian;
 use app\models\PembelianSearch;
 use app\models\PembayaranOut;
+use app\models\Lokasi;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -140,13 +141,14 @@ class PembelianController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $supplier=$model->supplier;
             $tglbeli=$model->tgl_beli;
-             $idbeli = $model->idbeli;
+            $idbeli = $model->idbeli;
+            $lokasi = $model->lokasi;
             echo PembelianController::insertIdBayar($supplier, $tglbeli,$idbeli);           
             $jumlahkilo=$model->kilo;
             $jumlahkarton=$model->karton;
             $namaproduk=$model->produk;
             echo PembelianController::insertTotalPrice($jumlahkilo, $namaproduk, $idbeli);
-            echo PembelianController::updateStokProduk($namaproduk, $jumlahkilo, $jumlahkarton);
+            echo PembelianController::updateStokProduk($namaproduk, $jumlahkilo, $jumlahkarton,$lokasi);
             echo PembelianController::updateStokJenis($namaproduk, $jumlahkilo, $jumlahkarton);
             return $this->redirect(['view', 'id' => $model->idbeli]);
         } else {
@@ -155,9 +157,10 @@ class PembelianController extends Controller
             ]);
         }
     }
-     public function updateStokProduk($namaproduk, $jumlahkilo, $jumlahkarton){
-        $queryprodukkilo="select kilo from produk where namaproduk ='".$namaproduk."';";
-        $queryprodukkarton="select karton from produk where namaproduk ='".$namaproduk."';";
+
+     public function updateStokProduk($namaproduk, $jumlahkilo, $jumlahkarton, $lokasi){
+        $queryprodukkilo="select kilo from produk where namaproduk ='".$namaproduk."'AND lokasi='".$lokasi."';";
+        $queryprodukkarton="select karton from produk where namaproduk ='".$namaproduk."'AND lokasi='".$lokasi."';";
         $kilo = pg_fetch_array(pg_query($queryprodukkilo))[0];
         $karton = pg_fetch_array(pg_query($queryprodukkarton))[0];
         $currentkilo = pg_fetch_array(pg_query($queryprodukkilo))[0];

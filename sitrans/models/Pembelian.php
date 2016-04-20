@@ -32,6 +32,9 @@ class Pembelian extends \yii\db\ActiveRecord
         return 'pembelian';
     }
 
+    //public $lokasi;
+    //public $lokasi2;
+
     /**
      * @inheritdoc
      */
@@ -45,10 +48,20 @@ class Pembelian extends \yii\db\ActiveRecord
             [[ 'kilo'],'number', 'min'=>0],
             [[ 'karton'],'integer', 'min'=>0],
             [['supplier', 'produk'], 'string', 'max' => 50],
-            [['cara_terima', 'cara_bayar', 'status_del'], 'string', 'max' => 25]
+            [['cara_terima', 'cara_bayar', 'status_del'], 'string', 'max' => 25],
+            [['lokasi'], 'string', 'max' =>50],
+            //[['lokasi'], 'beforeSave'],
+
         ];
     }
-
+    /**
+    public function beforeSave($insert){
+        if(isset($this->lokasi)){
+            $lokasi2 = $this->lokasi;
+        }
+        return parent::beforeSave($insert);
+    }
+    **/
     /**
      * @inheritdoc
      */
@@ -66,6 +79,7 @@ class Pembelian extends \yii\db\ActiveRecord
             'harga_total' => 'Harga Total',
             'karton' => 'Jumlah Karton',
             'kilo' => 'Jumlah Kilo',
+            'lokasi' => 'Lokasi',
         ];
     }
 
