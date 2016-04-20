@@ -31,6 +31,7 @@ LAPORAN STOK BARANG
 <br>
 PT. HIJRAH GIZI HEWANI
 <br>
+Per Tanggal 
 <?php
 echo date("d F Y");
 ?>
