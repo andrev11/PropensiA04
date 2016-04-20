@@ -48,6 +48,9 @@ class PembayaranOutController extends Controller
     {
         $searchModel = new PembayaranOutSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider ->setSort([
+            'defaultOrder' => ['tgl_trans'=>SORT_DESC],
+            ]);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -66,13 +69,15 @@ class PembayaranOutController extends Controller
             'dataProvider' => $dataProvider,
         ]);
         **/
-
-        $hutang = PembayaranOut::find()
-          ->where("status_bayar= 'Hutang'")
-          ->all();
-        return $this->render('index2', [
-            'hutang' => $hutang,
-        ]);
+        
+            $hutang = PembayaranOut::find()
+                ->where("status_bayar= 'Hutang'")
+                ->andWhere(['not', ['jumlahbayar' => null]])
+                ->orderBy(['tgl_trans' => SORT_ASC])
+                ->all();
+            return $this->render('index2', [
+                'hutang' => $hutang,
+            ]);
     }
 
     /**

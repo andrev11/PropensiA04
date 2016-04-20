@@ -50,6 +50,9 @@ class PembelianController extends Controller
     {
         $searchModel = new PembelianSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider ->setSort([
+            'defaultOrder' => ['tgl_beli'=>SORT_DESC],
+            ]);
 
 		if (!\Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'purchasing'){
 			return $this->render('index', [
@@ -64,9 +67,10 @@ class PembelianController extends Controller
     public function actionIndex2()
     {
 
-      $beli2 = Pembelian::find()
-          ->where("status_del= 'Belum Diterima'")
-          ->all();
+        $beli2 = Pembelian::find()
+            ->where("status_del= 'Belum Diterima'")
+            ->orderBy(['tgl_terima' => SORT_DESC])
+            ->all();
         
 		if (!\Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'admin inventori'){
 			return $this->render('index2', [
