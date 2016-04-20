@@ -51,7 +51,7 @@ echo date("d F Y");
     <th class="tg-9hbo">Stok Karton</th>
     <th class="tg-9hbo">Lokasi</th>
   </tr>
-<?php $result = pg_query("SELECT * FROM produk;"); 
+<?php $result = pg_query("SELECT * FROM produk ORDER BY namaproduk ASC;"); 
 	$i = 1;
 	while($row = pg_fetch_assoc($result)) { ?>
   <tr>

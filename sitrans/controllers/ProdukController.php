@@ -50,7 +50,9 @@ class ProdukController extends Controller
     {
         $searchModel = new ProdukSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        $dataProvider ->setSort([
+            'defaultOrder' => ['namaproduk'=>SORT_ASC],
+            ]);
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
