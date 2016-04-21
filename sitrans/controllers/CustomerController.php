@@ -47,6 +47,10 @@ class CustomerController extends Controller
     {
         $searchModel = new CustomerSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider ->setSort([
+            'defaultOrder' => ['namacustomer'=>SORT_ASC],
+            ]);
+
 
         return $this->render('index', [
             'searchModel' => $searchModel,

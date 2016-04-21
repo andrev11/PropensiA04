@@ -47,6 +47,10 @@ class PenggunaController extends Controller
         $dataProvider = new ActiveDataProvider([
             'query' => Pengguna::find(),
         ]);
+         $dataProvider ->setSort([
+            'defaultOrder' => ['nama'=>SORT_ASC],
+            ]);
+
 		
 		if (!\Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'admin'){
 			return $this->render('index', [

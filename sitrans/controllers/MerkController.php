@@ -47,6 +47,10 @@ class MerkController extends Controller
     {
         $searchModel = new MerkSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+         $dataProvider ->setSort([
+            'defaultOrder' => ['namasupplier'=>SORT_ASC],
+            ]);
+
 
         return $this->render('index', [
             'searchModel' => $searchModel,

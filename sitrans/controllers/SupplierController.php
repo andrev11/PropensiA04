@@ -47,6 +47,10 @@ class SupplierController extends Controller
     {
         $searchModel = new SupplierSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+         $dataProvider ->setSort([
+            'defaultOrder' => ['namasupplier'=>SORT_ASC],
+            ]);
+
 
         return $this->render('index', [
             'searchModel' => $searchModel,

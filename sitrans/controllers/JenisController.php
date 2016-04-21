@@ -48,6 +48,10 @@ class JenisController extends Controller
     {
         $searchModel = new JenisSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+         $dataProvider ->setSort([
+            'defaultOrder' => ['namajenis'=>SORT_ASC],
+            ]);
+
 
         return $this->render('index', [
             'searchModel' => $searchModel,
