@@ -147,6 +147,7 @@ class PembelianController extends Controller
             $jumlahkilo=$model->kilo;
             $jumlahkarton=$model->karton;
             $namaproduk=$model->produk;
+            echo PembelianController::checkLokasiProduk($namaproduk,$lokasi);
             echo PembelianController::insertTotalPrice($jumlahkilo, $namaproduk, $idbeli);
             echo PembelianController::updateStokProduk($namaproduk, $jumlahkilo, $jumlahkarton,$lokasi);
             echo PembelianController::updateStokJenis($namaproduk, $jumlahkilo, $jumlahkarton);
@@ -158,17 +159,19 @@ class PembelianController extends Controller
         }
     }
     public function checkLokasiProduk($namaproduk,$lokasi){
-        $query="Select * from produk where namaproduk='".$namaproduk"' AND lokasi='".$lokasi"';";
-        $ambilProduk = pg_fetch_array(pg_query($query));
-        if(pg_num_rows(pg_query($query)) ==0){
-            $increments = pg_fetch_array(pg_query("select max(idbayar) from pembayaran_out;"));
-            $IdBayar =$increments[0] +1;
-            $masukan = "INSERT INTO PEMBAYARAN_OUT VALUES ('".$IdBayar."', '".$supplier."', '".$tanggalbeli."', null, null, 'Hutang');";
-            pg_query($masukan); 
-            //Belum Selesai
-
+        $query="Select * from produk where namaproduk='".$namaproduk."' AND lokasi='".$lokasi."';";
+        if(pg_num_rows(pg_query($query)) == 0){
+            $queryidmerk="Select idmerk from produk where namaproduk='".$namaproduk."';";
+            $queryidjenis="Select idjenis from produk where namaproduk='".$namaproduk."';";
+            $queryhargabeli="Select harga_beli from produk where namaproduk='".$namaproduk."';";
+            $queryhargajual="Select harga_jual from produk where namaproduk='".$namaproduk."';";
+            $idjenis=pg_fetch_array(pg_query($queryidjenis))[0];
+            $idmerk=pg_fetch_array(pg_query($queryidmerk))[0];
+            $hargabeli=pg_fetch_array(pg_query($queryhargabeli))[0];
+            $hargajual=pg_fetch_array(pg_query($queryhargajual))[0];
+            $queryinsert="insert into produk values (".$idmerk.", ".$idjenis.", '".$lokasi."','".$namaproduk."',".$hargabeli.", ".$hargajual.",0,0);";
+            pg_query($queryinsert);
         }
-        if()
 
     }
      public function updateStokProduk($namaproduk, $jumlahkilo, $jumlahkarton, $lokasi){
