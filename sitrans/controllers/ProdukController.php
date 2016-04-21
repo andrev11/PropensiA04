@@ -80,30 +80,13 @@ class ProdukController extends Controller
      */
     public function actionCreate()
     {   
-        /**
-        $model = new Produk();
+    
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'idmerk' => $model->idmerk, 'idjenis' => $model->idjenis, 'lokasi' => $model->lokasi]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
-        }
-        **/
-
-        $model = new Produk();
-        echo SiteController::connect(); 
-        
+        $model = new Produk();  
+        $model->kilo=0;
+        $model->karton=0;      
         
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $merk=$model->merk;
-            $jenis=$model->jenis;
-            $namaproduk=$model->namaproduk;
-            $lokasi=$model->lokasi;
-            $harga_beli=$model->harga_beli;
-            echo ProdukController::insertIdMerk($merk);           
-            echo ProdukController::insertIdJenis($jenis);  
             return $this->redirect(['view', 'idmerk' => $model->idmerk, 'idjenis' => $model->idjenis, 'lokasi' => $model->lokasi]);
         } else {
             return $this->render('create', [

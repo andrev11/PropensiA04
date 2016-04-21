@@ -37,7 +37,7 @@ class Produk extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['idmerk', 'idjenis', 'lokasi','kilo','karton'], 'required'],
+            [['idmerk', 'idjenis', 'lokasi', 'namaproduk','harga_beli'], 'required'],
             [['idmerk', 'idjenis', 'harga_beli', 'harga_jual'], 'integer'],
             [['kilo', 'karton'], 'number','min'=>0],
             [['lokasi'], 'string', 'max' => 25],
