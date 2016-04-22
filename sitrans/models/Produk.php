@@ -53,15 +53,23 @@ class Produk extends \yii\db\ActiveRecord
     }
 
     public function setkilo($insert){
-        if(isset($this->newstokkilo)){    
+        if(isset($this->newstokkilo)){ 
+            if($this->kilo < $this->newstokkilo){
+                echo 'Updated Stok Kilo must be less than current Stok Kilo';
+            } else {
                 $this->kilo=$this->newstokkilo;
+            }
         }
         //return parent::setkilo($insert);
     }
 
      public function setkarton($insert){
         if(isset($this->newstokkarton)){
+               if($this->karton < $this->newstokkarton){
+                echo 'Updated Stok Karton must be less than current Stok Karton';
+            } else {
                 $this->karton=$this->newstokkarton;
+            }
         }
         //return parent::setkarton($insert);
     }

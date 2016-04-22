@@ -24,6 +24,13 @@ class Jenis extends \yii\db\ActiveRecord
     {
         return 'jenis';
     }
+    public $newrop;
+
+    public function updateROP($insert){
+       if(isset($this->newrop)){
+           $this->rop = $this->newrop;
+       }
+    }
     /**
      * @inheritdoc
      */
@@ -31,11 +38,12 @@ class Jenis extends \yii\db\ActiveRecord
     {
         return [
             [['idjenis','namajenis','rop'], 'required'],
-            [['idjenis', 'rop'], 'integer','min' => 0],
+            [['newrop'], 'required', 'on'=>'update'],
+            [['idjenis', 'rop','newrop'], 'integer','min' => 0],
             [['stok_kilo', 'stok_karton'], 'number'],
             [['namajenis'], 'string', 'max' => 50],
-            [['namajenis'], 'unique']
-
+            [['namajenis'], 'unique'],
+            [['newrop'], 'updateROP']
         ];
     }
 
@@ -48,9 +56,10 @@ class Jenis extends \yii\db\ActiveRecord
             'idjenis' => Yii::t('app', 'Id'),
             'namajenis' => Yii::t('app', 'Nama Jenis'),
             'rop' => Yii::t('app', 'ROP (kg)'),
-            'stok_kilo' => Yii::t('app', 'Stok Kilo'),
+            'stok_kilo' => Yii::t('app', 'Stok Kilo '),
             'stok_karton' => Yii::t('app', 'Stok Karton'),
-        ];
+            'newrop' => ('New ROP (kg)')        
+            ];
     }
 
     /**

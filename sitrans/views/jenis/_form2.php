@@ -14,22 +14,11 @@ use yii\widgets\ActiveForm;
  
    <?php 
 	   if(!\Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'purchasing') {
-	       echo $form->field($model,'namajenis')->textInput();
-	   } else {
-	   	   echo $form->field($model, 'namajenis')->textInput(['readonly'=>!$model->isNewRecord]);	
-		 }
+	       echo $form->field($model,'namajenis')->textInput();           
+	   } 
     ?>
-     <?php 
-	   if(!\Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'sales marketing') {
-	        echo $form->field($model,'rop')->textInput(['readonly'=>!$model->isNewRecord]);
-            echo $form->field($model,'newrop')->textInput();
-            
-	   } else {
-            if($model->isNewRecord){
-	   	       echo $form->field($model, 'rop')->textInput();	
-		   }
-        }
-    ?>
+
+     
    
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

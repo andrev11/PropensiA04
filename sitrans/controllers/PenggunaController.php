@@ -87,20 +87,6 @@ class PenggunaController extends Controller
                 **/
     }
 
-     public function actionResetpassword()
-    {
-        $currentPassword=Yii::$app->user->identity->password;
-        $loadedPost =$user->load(Yii::$app->request->post());
-        if($loadedPost && $user->validate()){
-
-            $user->password = $user->newPassword;
-            $user->save(false);
-            Yii::$app->session->setFlash('success','You have successfully changed your password');
-            return $this->refresh();
-        }
-        return $this->render("repeatpassword", ['user' => $user,]);
-    }
-
 
     /**
      * Displays a single Pengguna model.
