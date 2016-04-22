@@ -34,6 +34,9 @@ class PembayaranInController extends Controller
     {
         $searchModel = new PembayaranInSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+         $dataProvider ->setSort([
+            'defaultOrder' => ['tgl_trans'=>SORT_DESC],
+            ]);
 
         return $this->render('index', [
             'searchModel' => $searchModel,

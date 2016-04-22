@@ -45,6 +45,10 @@ class PenjualanController extends Controller
     {
         $searchModel = new PenjualanSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider ->setSort([
+            'defaultOrder' => ['tgl_jual'=>SORT_DESC],
+            ]);
+
 
         return $this->render('index', [
             'searchModel' => $searchModel,

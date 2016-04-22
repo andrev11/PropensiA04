@@ -34,6 +34,8 @@ class Produk extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    public $newstokkilo;
+    public $newstokkarton;
     public function rules()
     {
         return [
@@ -42,7 +44,26 @@ class Produk extends \yii\db\ActiveRecord
             [['kilo', 'karton'], 'number','min'=>0],
             [['lokasi'], 'string', 'max' => 25],
             [['namaproduk'], 'string', 'max' => 50],
-        ];
+            [['newstokkilo','newstokkarton'], 'number','min'=>0],
+           [['newstokkilo'],'compare', 'compareAttribute' => 'kilo', 'operator'=>'<', 'message' => 'Updated Stok Kilo must be less than current Stok Kilo'], 
+            [['newstokkilo'],'setkilo'],
+           [['newstokkarton'],'compare', 'compareAttribute' => 'karton', 'operator'=>'<', 'message' => 'Updated Stok Karton must be less than current Stok Karton'], 
+            [['newstokkarton'],'setkarton'],
+       ];
+    }
+
+    public function setkilo($insert){
+        if(isset($this->newstokkilo)){    
+                $this->kilo=$this->newstokkilo;
+        }
+        //return parent::setkilo($insert);
+    }
+
+     public function setkarton($insert){
+        if(isset($this->newstokkarton)){
+                $this->karton=$this->newstokkarton;
+        }
+        //return parent::setkarton($insert);
     }
 
     /**
@@ -59,6 +80,8 @@ class Produk extends \yii\db\ActiveRecord
             'harga_jual' => Yii::t('app', 'Harga Jual'),
             'kilo' => Yii::t('app', 'Stok Kilo'),
             'karton' => Yii::t('app', 'Stok Karton'),
+            'newstokkilo'=> ('New Stok Kilo'),
+            'newstokkarton'=> ('New Stok Karton'),
         ];
     }
 

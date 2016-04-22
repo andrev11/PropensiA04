@@ -37,8 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'kilo',
             'karton',
             'lokasi',
-
-            ['class' => 'yii\grid\ActionColumn', 'visible' => !Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'admin inventori'],
+            ['class' => 'yii\grid\ActionColumn', 'visible' => !Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'admin inventori' || Yii::$app->user->identity->role == 'purchasing' || Yii::$app->user->identity->role == 'sales marketing'],
         ],
     ]); ?>
 

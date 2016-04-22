@@ -16,39 +16,14 @@ use app\models\Lokasi;
 <div class="produk-form">
 
     <?php $form = ActiveForm::begin(); ?>
-    <!--
-    <?= $form->field($model, 'idmerk')->dropDownList(
-        ArrayHelper::map(Merk::find()->all(),'idmerk','namasupplier'),
-        ['prompt'=>'Select Merk']
-    ) ?>
-
-     <?= $form->field($model, 'idjenis')->dropDownList(
-        ArrayHelper::map(Jenis::find()->all(),'idjenis','namajenis'),
-        ['prompt'=>'Select Jenis']
-    ) ?>
-
-        
-    
-    <?php 
-        if($model->isNewRecord) {
-          echo   $form->field($model, 'namaproduk')->dropDownList(
-            ArrayHelper::map(Produk::find()->all(),'namaproduk','namaproduk'),
-            ['prompt'=>'Pilih Produk']
-            ) ;
-        } else {
-            echo $form->field($model, 'produk')->textInput(['readonly'=>!$model->isNewRecord]); 
-        }
-    ?>
-    -->
+   
     <?php 
         if($model->isNewRecord) {
           echo   $form->field($model, 'idmerk')->dropDownList(
             ArrayHelper::map(Merk::find()->all(),'idmerk','namasupplier'),
             ['prompt'=>'Pilih Merk']
             ) ;
-        } else {
-            echo $form->field($model, 'idmerk')->textInput(['readonly'=>!$model->isNewRecord]); 
-        }
+        } 
     ?>
 
     <?php 
@@ -57,22 +32,35 @@ use app\models\Lokasi;
             ArrayHelper::map(Jenis::find()->all(),'idjenis','namajenis'),
             ['prompt'=>'Pilih Jenis']
             ) ;
-        } else {
-            echo $form->field($model, 'idjenis')->textInput(['readonly'=>!$model->isNewRecord]); 
         }
     ?>
 
     <?= $form->field($model, 'namaproduk')->textInput(['readonly'=>!$model->isNewRecord]) ?>
 
-
-    <?= $form->field($model, 'lokasi')->dropDownList(
-        ArrayHelper::map(Lokasi::find()->all(),'lokasi','lokasi'),
-        ['prompt' => 'Select Lokasi']
-        )
-    ?> 
-
-
-    <?= $form->field($model, 'harga_beli')->textInput() ?>
+   <?php
+        if($model->isNewRecord) {
+            echo $form->field($model, 'lokasi')->dropDownList(
+                ArrayHelper::map(Lokasi::find()->all(),'lokasi','lokasi'),
+                ['prompt' => 'Select Lokasi']
+                );
+        }
+    ?>
+    <?php
+        if($model->isNewRecord || Yii::$app->user->identity->role == 'purchasing'){
+            echo $form->field($model, 'harga_beli')->textInput();
+        } 
+        if (Yii::$app->user->identity->role == 'sales marketing'){
+            echo $form->field($model, 'harga_jual')->textInput();
+        }
+    ?>
+    <?php 
+        if(!$model->isNewRecord && Yii::$app->user->identity->role == 'admin inventori') {
+             echo $form->field($model, 'kilo')->textInput(['readonly'=>!$model->isNewRecord]);
+             echo $form->field($model, 'karton')->textInput(['readonly'=>!$model->isNewRecord]);
+             echo $form->field($model, 'newstokkilo')->textInput();
+             echo $form->field($model, 'newstokkarton')->textInput();
+        } 
+    ?>
 
     <!--
     
