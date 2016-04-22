@@ -80,8 +80,6 @@ class ProdukController extends Controller
      */
     public function actionCreate()
     {   
-    
-
         $model = new Produk();  
         $model->kilo=0;
         $model->karton=0;      
@@ -94,47 +92,6 @@ class ProdukController extends Controller
             ]);
         }
 
-    }
-
-    public function insertIdMerk($namasupplier){
-        $querymerk = "select idmerk from merk where namasupplier='".$namasupplier."';";
-        $queryIdSupplier = "select idsupplier from merk where namasupplier='".$namasupplier."';";
-        $ambilIdMerk = pg_fetch_array(pg_query($querymerk));
-        $ambilIdSupplier = pg_fetch_array(pg_query($queryIdSupplier));
-        $IdMerk;
-        $IdSupplier = $ambilIdSupplier[0];
-        if(pg_num_rows(pg_query($querymerk)) ==0){
-            $increments = pg_fetch_array(pg_query("select max(idmerk) from merk;"));
-            $IdMerk =$increments[0] +1;
-            $masukan = "INSERT INTO MERK VALUES ('".$IdMerk."', '".$IdSupplier."', null, 'Aktif');";
-            pg_query($masukan); 
-
-        }   else {
-
-            $IdMerk = $ambilIdMerk[0];
-        }
-
-        $queryProduk="Update Produk set idmerk='".$IdMerk."' where namasupplier='".$namasupplier."';";
-        pg_query($queryProduk);
-    }
-
-    public function insertIdJenis($namajenis){
-        $queryIdJenis = "select idjenis from jenis where namajenis='".$namajenis."';";
-        $ambilIdMerk = pg_fetch_array(pg_query($querymerk));
-        $IdJenis;
-        if(pg_num_rows(pg_query($queryIdJenis)) ==0){
-            $increments = pg_fetch_array(pg_query("select max(idjenis) from jenis;"));
-            $IdJenis =$increments[0] +1;
-            $masukan = "INSERT INTO JENIS VALUES ('".$IdJenis."', '".$namajenis."', null, null, null);";
-            pg_query($masukan); 
-
-        }   else {
-
-            $IdJenis = $ambilIdJenis[0];
-        }
-
-        $queryProduk="Update Produk set idjenis='".$IdJenis."' where namajenis='".$namajenis."';";
-        pg_query($queryProduk);
     }
 
     public function actionPrint()
@@ -152,22 +109,22 @@ class ProdukController extends Controller
     $pdf->SetDisplayMode('fullpage');
 
     // Buffer the following html with PHP so we can store it to a variable later
-ob_start();
-?>
-<?php include "../views/produk/_reportView.php";//The php page you want to convert to pdf
- // asasas?>
+    ob_start();
+    ?>
+    <?php include "../views/produk/_reportView.php";//The php page you want to convert to pdf
+     // asasas?>
 
-<?php 
-$html = ob_get_contents();
+    <?php 
+    $html = ob_get_contents();
 
-ob_end_clean();
+    ob_end_clean();
 
-// send the captured HTML from the output buffer to the mPDF class for processing
+    // send the captured HTML from the output buffer to the mPDF class for processing
 
-$pdf->WriteHTML($html);
-//$mpdf->SetProtection(array(), 'mawiahl', 'password');//for password protecting your pdf
+    $pdf->WriteHTML($html);
+    //$mpdf->SetProtection(array(), 'mawiahl', 'password');//for password protecting your pdf
 
-    // return the pdf output as per the destination setting
+        // return the pdf output as per the destination setting
      $pdf->Output(); 
 
     }
@@ -186,12 +143,31 @@ $pdf->WriteHTML($html);
          $idjenis=$model->idjenis;
          $currentkiloProduk=$model->kilo;
          $currentkartonProduk=$model->karton;
-        
-    
+        if (!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'admin inventori'){ 
+             $model->scenario = 'update';   
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                $kiloupdated=$model->kilo;
+                $kartonupdated=$model->karton;
+                echo ProdukController::actionUpdateStok($currentkiloProduk, $currentkartonProduk, $kiloupdated, $kartonupdated, $idjenis);
+                return $this->redirect(['view', 'idmerk' => $model->idmerk, 'idjenis' => $model->idjenis, 'lokasi' => $model->lokasi]);
+            } else {
+                return $this->render('update', [
+                    'model' => $model,
+                ]);
+            }
+        } else if (!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'purchasing' || Yii::$app->user->identity->role == 'sales marketing'  ){
+                return $this->redirect(['sales-purchasing', 'idmerk' => $model->idmerk, 'idjenis' => $model->idjenis, 'lokasi' => $model->lokasi ]);
+        }
+    }
+    public function actionSalesPurchasing($idmerk, $idjenis, $lokasi)
+    {
+        $model = $this->findModel($idmerk, $idjenis, $lokasi);  
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $kiloupdated=$model->kilo;
-            $kartonupdated=$model->karton;
-           echo ProdukController::actionUpdateStok($currentkiloProduk, $currentkartonProduk, $kiloupdated, $kartonupdated, $idjenis);
+            $namaproduk=$model->namaproduk;
+            $hargabeli=$model->harga_beli;
+            $hargajual=$model->harga_jual;
+            echo ProdukController::UpdateHarga($namaproduk,$hargabeli,$hargajual);
             return $this->redirect(['view', 'idmerk' => $model->idmerk, 'idjenis' => $model->idjenis, 'lokasi' => $model->lokasi]);
         } else {
             return $this->render('update', [
@@ -199,10 +175,16 @@ $pdf->WriteHTML($html);
             ]);
         }
     }
+    public function UpdateHarga($namaproduk,$hargabeli,$hargajual){
+        echo SiteController::connect();
+        $queryhargabeli="Update produk set harga_beli=".$hargabeli." where namaproduk='".$namaproduk."';";
+        $queryhargajual="Update produk set harga_jual=".$hargajual." where namaproduk='".$namaproduk."';";
+        pg_query($queryhargabeli);
+        pg_query($queryhargajual);
+    }
 
     public function actionUpdateStok($currentkiloProduk, $currentkartonProduk, $kiloupdated, $kartonupdated, $idjenis)
-    { 
-            $currentStokkiloJenis = pg_fetch_array(pg_query("select stok_kilo from jenis where idjenis =".$idjenis.";"));
+    {       $currentStokkiloJenis = pg_fetch_array(pg_query("select stok_kilo from jenis where idjenis =".$idjenis.";"));
             $currentStokkartonJenis = pg_fetch_array(pg_query("select stok_karton from jenis where idjenis =".$idjenis.";"));
             $updatekilo=$currentkiloProduk-$kiloupdated;
             $updatekarton=$currentkartonProduk-$kartonupdated;

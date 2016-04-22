@@ -41,6 +41,7 @@ class Produk extends \yii\db\ActiveRecord
         return [
             [['idmerk', 'idjenis', 'lokasi', 'namaproduk','harga_beli'], 'required'],
             [['idmerk', 'idjenis', 'harga_beli', 'harga_jual'], 'integer'],
+            [['newstokkilo', 'newstokkarton'], 'required', 'on' => 'update'], 
             [['kilo', 'karton'], 'number','min'=>0],
             [['lokasi'], 'string', 'max' => 25],
             [['namaproduk'], 'string', 'max' => 50],

@@ -109,6 +109,26 @@ class JenisController extends Controller
      */
     public function actionUpdate($id)
     {
+        
+        if (!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'sales marketing'){
+            $model = $this->findModel($id);
+            $model->scenario = 'update';
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->idjenis]);
+        } else {
+                return $this->render('update', [
+                    'model' => $model,
+                ]);
+            }
+        } else if (!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'purchasing'){
+                return $this->redirect(['update-purchasing', 'id' => $id]);
+        }
+    }
+
+    public function actionUpdatePurchasing($id)
+    {
+        //echo SiteController::connect();
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -119,7 +139,6 @@ class JenisController extends Controller
             ]);
         }
     }
-
     /**
      * Deletes an existing Jenis model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
