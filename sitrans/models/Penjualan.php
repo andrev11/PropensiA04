@@ -40,10 +40,12 @@ class Penjualan extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['idjual'], 'required'],
+            [['idjual','tgl_kirim','jatuh_tempo','kilo','karton', 'customer','produk','cara_kirim','cara_bayar'], 'required'],
             [['idjual', 'idbayar'], 'integer'],
             [['tgl_jual', 'tgl_kirim', 'jatuh_tempo', 'jam_kirim'], 'safe'],
-            [['harga_total', 'karton', 'kilo'], 'number'],
+            [['harga_total'], 'number'],
+            [[ 'kilo'],'number', 'min'=>0],
+            [[ 'karton'],'integer', 'min'=>0],
             [['customer', 'produk'], 'string', 'max' => 50],
             [['cara_kirim', 'cara_bayar', 'status_del'], 'string', 'max' => 25]
         ];
@@ -55,17 +57,17 @@ class Penjualan extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'idjual' => Yii::t('app', 'Idjual'),
-            'idbayar' => Yii::t('app', 'Idbayar'),
+            //'idjual' => Yii::t('app', 'Idjual'),
+            //'idbayar' => Yii::t('app', 'Idbayar'),
             'customer' => Yii::t('app', 'Customer'),
             'produk' => Yii::t('app', 'Produk'),
-            'tgl_jual' => Yii::t('app', 'Tgl Jual'),
-            'tgl_kirim' => Yii::t('app', 'Tgl Kirim'),
+            'tgl_jual' => Yii::t('app', 'Tanggal Jual'),
+            'tgl_kirim' => Yii::t('app', 'Tanggal Kirim'),
             'jatuh_tempo' => Yii::t('app', 'Jatuh Tempo'),
             'jam_kirim' => Yii::t('app', 'Jam Kirim'),
             'cara_kirim' => Yii::t('app', 'Cara Kirim'),
             'cara_bayar' => Yii::t('app', 'Cara Bayar'),
-            'status_del' => Yii::t('app', 'Status Del'),
+            'status_del' => Yii::t('app', 'Status Deliveri'),
             'harga_total' => Yii::t('app', 'Harga Total'),
             'karton' => Yii::t('app', 'Karton'),
             'kilo' => Yii::t('app', 'Kilo'),

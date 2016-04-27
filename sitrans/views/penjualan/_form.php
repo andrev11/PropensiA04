@@ -2,6 +2,11 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+use app\models\Customer;
+use app\models\Produk; 
+use app\models\Carakirim;
+use app\models\Carabayar;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Penjualan */
@@ -12,33 +17,47 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'idjual')->textInput() ?>
+    <?php 
+        if($model->isNewRecord) {
+          echo   $form->field($model, 'produk')->dropDownList(
+            ArrayHelper::map(Produk::find()->all(),'namaproduk','namaproduk'),
+            ['prompt'=>'Pilih Produk']
+            ) ;
+        } else {
+            echo $form->field($model, 'produk')->textInput(['readonly'=>!$model->isNewRecord]); 
+        }
+    ?>
 
-    <?= $form->field($model, 'idbayar')->textInput() ?>
+    <?php 
+        if($model->isNewRecord) {
+           echo  $form->field($model, 'customer')->dropDownList(
+            ArrayHelper::map(Customer::find()->all(),'namacustomer','namacustomer'),
+            ['prompt'=>'Pilih Customer']
+            );
+        } else {
+            echo $form->field($model, 'customer')->textInput(['readonly'=>!$model->isNewRecord]); 
+        }
+    ?>
 
-    <?= $form->field($model, 'customer')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'tgl_kirim')->textInput(['type' => 'date', 'min' => date('Y-m-d')]) ?>
 
-    <?= $form->field($model, 'produk')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'tgl_jual')->textInput() ?>
-
-    <?= $form->field($model, 'tgl_kirim')->textInput() ?>
-
-    <?= $form->field($model, 'jatuh_tempo')->textInput() ?>
+    <?= $form->field($model, 'jatuh_tempo')->textInput(['type' => 'date', 'min' => date('Y-m-d')]) ?>
 
     <?= $form->field($model, 'jam_kirim')->textInput() ?>
 
-    <?= $form->field($model, 'cara_kirim')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'cara_kirim')->dropDownList(
+        ArrayHelper::map(Carakirim::find()->all(),'carakirim','carakirim'),
+        ['prompt'=>'Pilih Cara Kirim']
+    ) ?>
+    
+    <?= $form->field($model, 'cara_bayar')->dropDownList(
+        ArrayHelper::map(Carabayar::find()->all(),'caraterima','caraterima'),
+        ['prompt'=>'Pilih Cara Bayar']
+    ) ?>
 
-    <?= $form->field($model, 'cara_bayar')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'karton')->textInput(['readonly'=>!$model->isNewRecord]) ?>
 
-    <?= $form->field($model, 'status_del')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'harga_total')->textInput() ?>
-
-    <?= $form->field($model, 'karton')->textInput() ?>
-
-    <?= $form->field($model, 'kilo')->textInput() ?>
+    <?= $form->field($model, 'kilo')->textInput(['readonly'=>!$model->isNewRecord]) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

@@ -49,10 +49,10 @@ class PembayaranIn extends \yii\db\ActiveRecord
         return [
             'idbayar' => Yii::t('app', 'Idbayar'),
             'customer' => Yii::t('app', 'Customer'),
-            'tgl_trans' => Yii::t('app', 'Tgl Trans'),
-            'tgl_bayar' => Yii::t('app', 'Tgl Bayar'),
-            'jumlahbayar' => Yii::t('app', 'Jumlahbayar'),
-            'status_bayar' => Yii::t('app', 'Status Bayar'),
+            'tgl_trans' => Yii::t('app', 'Tanggal Transaksi'),
+            'tgl_bayar' => Yii::t('app', 'Tanggal Pembayaran'),
+            'jumlahbayar' => Yii::t('app', 'Jumlah Pembayaran'),
+            'status_bayar' => Yii::t('app', 'Status Pembayaran'),
         ];
     }
 

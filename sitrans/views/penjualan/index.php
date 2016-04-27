@@ -16,6 +16,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a(Yii::t('app', 'Create Penjualan'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Recapitulation'), ['recap'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Print'), ['print', 'tgl_beli' => $searchModel->tgl_jual], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -24,18 +26,18 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'idjual',
-            'idbayar',
+            //'idjual',
+            //'idbayar',
             'customer',
             'produk',
             'tgl_jual',
-            // 'tgl_kirim',
-            // 'jatuh_tempo',
+            'tgl_kirim',
+            'jatuh_tempo',
             // 'jam_kirim',
             // 'cara_kirim',
             // 'cara_bayar',
-            // 'status_del',
-            // 'harga_total',
+            'status_del',
+            'harga_total',
             // 'karton',
             // 'kilo',
 

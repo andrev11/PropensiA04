@@ -5,6 +5,9 @@ namespace app\controllers;
 use Yii;
 use app\models\PembayaranIn;
 use app\models\PembayaranInSearch;
+use app\models\PembelianSearch;
+use yii\data\ActiveDataProvider;
+use app\controllers\SiteController;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -14,6 +17,17 @@ use yii\filters\VerbFilter;
  */
 class PembayaranInController extends Controller
 {
+    public function beforeAction($action)
+        {
+        if (Yii::$app->user->isGuest){
+            return $this->redirect(Yii::$app->user->loginUrl);
+        } else if (Yii::$app->user->identity->role == 'finance'){
+            return true;
+        } else {
+            return $this->redirect(Yii::$app->user->loginUrl);
+        }
+    }
+
     public function behaviors()
     {
         return [
@@ -42,6 +56,18 @@ class PembayaranInController extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
+    }
+
+    public function actionIndex2()
+    {
+            $piutang = PembayaranIn::find()
+                ->where("status_bayar= 'Piutang'")
+                ->andWhere(['not', ['jumlahbayar' => null]])
+                ->orderBy(['tgl_trans' => SORT_ASC])
+                ->all();
+            return $this->render('index2', [
+                'piutang' => $piutang,
+            ]);
     }
 
     /**
@@ -104,6 +130,20 @@ class PembayaranInController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    public function actionConfirm($id)
+    {
+             echo SiteController::connect();
+             $tglBayar = date('Y-m-d'); 
+            $ubahStatus = "UPDATE PEMBAYARAN_OUT SET status_bayar = 'Lunas' WHERE idbayar = '".$id."';";
+            $ubahTanggal = "UPDATE PEMBAYARAN_OUT SET tgl_bayar = '".$tglBayar."' WHERE idbayar = '".$id."';";
+            $masukin = pg_query($ubahStatus);
+            $masukin2 = pg_query($ubahTanggal);
+
+                return $this->render('view', [
+                        'model' => $this->findModel($id),
+                    ]);
     }
 
     /**

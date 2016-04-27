@@ -63,6 +63,7 @@ class PembayaranInSearch extends PembayaranIn
             'jumlahbayar' => $this->jumlahbayar,
         ]);
 
+        // beda like dan ilike ??
         $query->andFilterWhere(['like', 'customer', $this->customer])
             ->andFilterWhere(['like', 'status_bayar', $this->status_bayar]);
 
