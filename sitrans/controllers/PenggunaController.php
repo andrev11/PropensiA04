@@ -155,6 +155,10 @@ class PenggunaController extends Controller
     {
         //echo SiteController::connect();
 		$model = $this->findModel($id);
+		
+		if(Yii::$app->getRequest()->getQueryParam('id') == Yii::$app->user->identity->username){
+			$model->scenario = 'update';
+		}
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->username]);
