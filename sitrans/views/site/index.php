@@ -2,6 +2,10 @@
 
 /* @var $this yii\web\View */
 
+use yii\grid\GridView;
+use app\controllers\SiteController;
+use miloschuman\highcharts\Highcharts;
+
 $this->title = 'Dashboard';
 ?>
 <div class="site-index">
@@ -15,10 +19,11 @@ $this->title = 'Dashboard';
                               $info[] = (\Yii::$app->user->identity->nama);
 
                           echo implode($info);
+
         ?>!</h1>
          <?php
-         use miloschuman\highcharts\Highcharts;
-         use app\controllers\SiteController; 
+         if(Yii::$app->user->identity->role=='bod'){
+         
          echo SiteController::connect();
 
          $result = pg_query("select date_trunc('month', pembayaran_in.tgl_bayar), sum(pembayaran_in.jumlahbayar) as pembayaran_in, sum(pembayaran_out.jumlahbayar) as pembayaran_out from pembayaran_in FULL OUTER JOIN pembayaran_out ON date_trunc('month', pembayaran_in.tgl_bayar) = date_trunc('month', pembayaran_out.tgl_bayar) WHERE date_trunc('month', pembayaran_in.tgl_bayar) BETWEEN date_trunc('month', current_timestamp - interval '1 year') AND date_trunc('month', current_timestamp) GROUP BY 1 ORDER BY 1;");
@@ -44,7 +49,38 @@ $this->title = 'Dashboard';
 							]
 			]
 	]);
+			}
 			?>
 
-    </div>
+    </div>        
+        <?php 
+        	if(Yii::$app->user->identity->role=='purchasing'){
+        		echo "<br>"; 
+        		echo "<h3>Daftar Re-Order</h3> <br>"; 
+        		echo "<table class='table table-striped table-bordered'>"; 
+		        echo "<thead>";
+		         echo "<th>#</th>";
+		        echo "<th>Nama Jenis</th>";
+		        echo "<th>Stok Kilo</th>";
+		        echo "<th>Stok Karton</th>";
+		        echo "<th>ROP</th>";
+		        echo "</thead>";
+				echo "<tbody>"; 
+					echo SiteController::connect();
+	 				$query=pg_query("Select * from jenis where stok_kilo < rop;");
+	 				$count=0;
+		        	while($value = pg_fetch_array($query)){
+		        		$count++;
+		        		echo "<td align='left'>".$count."</td>";
+						echo "<td align='left'>".$value['namajenis']."</td>";
+						echo "<td align='left'>".$value['stok_kilo']."</td>";
+						echo "<td align='left'>".$value['stok_karton']."</td>";
+						echo "<td align='left'>".$value['rop']."</td>";
+						echo "</tr>";
+					}
+				echo "</tbody>";  
+		    	echo "</table>";
+			} 
+		?>        
+ 	</div>
 </div>
