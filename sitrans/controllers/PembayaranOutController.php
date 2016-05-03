@@ -80,6 +80,29 @@ class PembayaranOutController extends Controller
             ]);
     }
 
+    public function actionIndex3()
+    {
+        /**
+        $dataProvider = new ActiveDataProvider([
+            'query' => PembayaranOut::find(),
+        ]);
+
+        return $this->render('index2', [
+            'dataProvider' => $dataProvider,
+        ]);
+        **/
+        
+            $rekap = PembayaranOut::find()
+                ->where("status_bayar= 'Lunas'")
+                ->andWhere("EXTRACT(MONTH FROM tgl_bayar) = 4")
+                ->andWhere("EXTRACT(YEAR FROM tgl_bayar) = 2016")
+                ->orderBy(['tgl_bayar' => SORT_ASC])
+                ->all();
+            return $this->render('index3', [
+                'rekap' => $rekap,
+            ]);
+    }
+
     /**
      * Displays a single PembayaranOut model.
      * @param integer $id

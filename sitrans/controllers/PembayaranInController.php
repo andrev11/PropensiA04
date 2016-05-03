@@ -70,6 +70,29 @@ class PembayaranInController extends Controller
             ]);
     }
 
+
+    public function actionIndex3()
+    {
+        /**
+        $dataProvider = new ActiveDataProvider([
+            'query' => PembayaranOut::find(),
+        ]);
+
+        return $this->render('index2', [
+            'dataProvider' => $dataProvider,
+        ]);
+        **/
+        
+            $rekap = PembayaranIn::find()
+                ->where("status_bayar= 'Lunas'")
+                ->andWhere("EXTRACT(MONTH FROM tgl_bayar) = 4")
+                ->andWhere("EXTRACT(YEAR FROM tgl_bayar) = 2016")
+                ->orderBy(['tgl_bayar' => SORT_ASC])
+                ->all();
+            return $this->render('index3', [
+                'rekap' => $rekap,
+            ]);
+    }    
     /**
      * Displays a single PembayaranIn model.
      * @param integer $id
