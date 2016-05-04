@@ -8,11 +8,11 @@ use yii\db\Query;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Daftar Barang Akan Masuk';
+$this->title = 'Daftar Barang Akan Keluar';
 $this->params['breadcrumbs'][] = $this->title;
        
 ?>
-<div class="pembelian-index2">
+<div class="penjualan-index2">
 
    <div id="w0" class="grid-view">
     <table class="table table-striped table-bordered">
