@@ -7,7 +7,7 @@ use app\models\Penjualan;
 use app\models\PenjualanSearch;
 use yii\web\Controller;
 use app\models\PembayaranIn;
-//use app\models\Lokasi;
+use app\models\Lokasi;
 use app\controllers\SiteController;
 use app\controllers\PembayaranInController;
 use yii\db\Query;
@@ -68,18 +68,27 @@ class PenjualanController extends Controller
     public function actionIndex2()
     {
 
-        $jual2 = Penjualan::find()
+        $jual = Penjualan::find()
             ->where("status_del= 'Belum Dikirim'")
             ->orderBy(['tgl_kirim' => SORT_DESC])
             ->all();
         
         if (!\Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'admin inventori'){
             return $this->render('index2', [
-                'jual2' => $jual2,
+                'jual' => $jual,
             ]);
         } else {
             return $this->redirect(Yii::$app->user->loginUrl);
         }
+    }
+    public function actionConfirm($id)
+    { 
+           echo SiteController::connect();
+            $ubahStatus = "UPDATE PENJUALAN SET status_del = 'Dikirim' WHERE idjual = '".$id."';";
+            $masukin = pg_query($ubahStatus);
+                return $this->render('view', [
+                        'model' => $this->findModel($id),
+                    ]);
     }
 
     /**
@@ -113,15 +122,15 @@ class PenjualanController extends Controller
             $customer=$model->customer;
             $tgljual=$model->tgl_jual;
             $idjual = $model->idjual;
-            //$lokasi = $model->lokasi;
+            $lokasi = $model->lokasi;
             echo PenjualanController::insertIdBayar($customer, $tgljual,$idjual);           
             $jumlahkilo=$model->kilo;
             $jumlahkarton=$model->karton;
             $namaproduk=$model->produk;
 
-            //echo PembelianController::checkLokasiProduk($namaproduk,$lokasi);
+            echo PembelianController::checkLokasiProduk($namaproduk,$lokasi);
             echo PenjualanController::insertTotalPrice($jumlahkilo, $namaproduk, $idjual);
-            echo PenjualanController::updateStokProduk($namaproduk, $jumlahkilo, $jumlahkarton); //ga pake lokasi
+            echo PenjualanController::updateStokProduk($namaproduk, $jumlahkilo, $jumlahkarton,$lokasi); //ga pake lokasi
             echo PenjualanController::updateStokJenis($namaproduk, $jumlahkilo, $jumlahkarton);
             return $this->redirect(['view', 'id' => $model->idjual]);
         } else {
@@ -130,18 +139,18 @@ class PenjualanController extends Controller
             ]);
         }
     }
-    // ga pake lokasi
-    public function updateStokProduk($namaproduk, $jumlahkilo, $jumlahkarton){
-        $queryprodukkilo="select kilo from produk where namaproduk ='".$namaproduk."';";
-        $queryprodukkarton="select karton from produk where namaproduk ='".$namaproduk."';";
+ 
+    public function updateStokProduk($namaproduk, $jumlahkilo, $jumlahkarton, $lokasi){
+        $queryprodukkilo="select kilo from produk where namaproduk ='".$namaproduk."' and lokasi='".$lokasi."';";
+        $queryprodukkarton="select karton from produk where namaproduk ='".$namaproduk."' and lokasi='".$lokasi."';";
         $kilo = pg_fetch_array(pg_query($queryprodukkilo))[0];
         $karton = pg_fetch_array(pg_query($queryprodukkarton))[0];
         $currentkilo = pg_fetch_array(pg_query($queryprodukkilo))[0];
         $currentkarton = pg_fetch_array(pg_query($queryprodukkarton))[0];
         $updateKilo=$currentkilo - $jumlahkilo;
         $updateKarton=$currentkarton - $jumlahkarton;
-        $queryupdatekilo="Update produk set kilo=".$updateKilo." where namaproduk='".$namaproduk."';"; //ga pake lokasi
-        $queryupdatekarton="Update produk set karton=".$updateKarton." where namaproduk='".$namaproduk."';";
+        $queryupdatekilo="Update produk set kilo=".$updateKilo." where namaproduk='".$namaproduk."' and lokasi='".$lokasi."';"; 
+        $queryupdatekarton="Update produk set karton=".$updateKarton." where namaproduk='".$namaproduk."' and lokasi='".$lokasi."';";
          pg_query($queryupdatekilo);
          pg_query($queryupdatekarton);
        }
@@ -247,18 +256,6 @@ class PenjualanController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
-    }
-
-    public function actionConfirm($id)
-    {
-           echo SiteController::connect();
-
-            $ubahStatus = "UPDATE PENJUALAN SET status_del = 'Dikirim' WHERE idjual = '".$id."';";
-            $masukin = pg_query($ubahStatus);
-            
-            return $this->render('view', [
-                'model' => $this->findModel($id),
-            ]);
     }
 
     /**

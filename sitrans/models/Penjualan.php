@@ -40,9 +40,9 @@ class Penjualan extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['idjual','tgl_kirim','jatuh_tempo','kilo','karton', 'customer','produk','cara_kirim','cara_bayar'], 'required'],
+            [['idjual','tgl_kirim','jatuh_tempo','kilo','karton', 'customer','produk','cara_kirim','cara_bayar','lokasi'], 'required'],
             [['idjual', 'idbayar'], 'integer'],
-            [['tgl_jual', 'tgl_kirim', 'jatuh_tempo', 'jam_kirim'], 'safe'],
+            [['tgl_jual', 'tgl_kirim', 'jatuh_tempo'], 'safe'],
             [['harga_total'], 'number'],
             [[ 'kilo'],'number', 'min'=>0],
             [[ 'karton'],'integer', 'min'=>0],
@@ -64,13 +64,13 @@ class Penjualan extends \yii\db\ActiveRecord
             'tgl_jual' => Yii::t('app', 'Tanggal Jual'),
             'tgl_kirim' => Yii::t('app', 'Tanggal Kirim'),
             'jatuh_tempo' => Yii::t('app', 'Jatuh Tempo'),
-            'jam_kirim' => Yii::t('app', 'Jam Kirim'),
             'cara_kirim' => Yii::t('app', 'Cara Kirim'),
             'cara_bayar' => Yii::t('app', 'Cara Bayar'),
             'status_del' => Yii::t('app', 'Status Deliveri'),
             'harga_total' => Yii::t('app', 'Harga Total'),
             'karton' => Yii::t('app', 'Karton'),
             'kilo' => Yii::t('app', 'Kilo'),
+            'lokasi' => 'Lokasi'
         ];
     }
 

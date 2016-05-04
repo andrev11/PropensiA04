@@ -19,7 +19,7 @@ class PenjualanSearch extends Penjualan
     {
         return [
             [['idjual', 'idbayar'], 'integer'],
-            [['customer', 'produk', 'tgl_jual', 'tgl_kirim', 'jatuh_tempo', 'jam_kirim', 'cara_kirim', 'cara_bayar', 'status_del'], 'safe'],
+            [['customer', 'produk', 'tgl_jual', 'tgl_kirim', 'jatuh_tempo', 'cara_kirim', 'cara_bayar', 'status_del'], 'safe'],
             [['harga_total', 'karton', 'kilo'], 'number'],
         ];
     }
@@ -62,7 +62,6 @@ class PenjualanSearch extends Penjualan
             'tgl_jual' => $this->tgl_jual,
             'tgl_kirim' => $this->tgl_kirim,
             'jatuh_tempo' => $this->jatuh_tempo,
-            'jam_kirim' => $this->jam_kirim,
             'harga_total' => $this->harga_total,
             'karton' => $this->karton,
             'kilo' => $this->kilo,

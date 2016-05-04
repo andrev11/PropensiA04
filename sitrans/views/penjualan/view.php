@@ -43,7 +43,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'tgl_jual',
             'tgl_kirim',
             'jatuh_tempo',
-            'jam_kirim',
             'cara_kirim',
             'cara_bayar',
             'status_del',

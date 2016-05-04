@@ -7,6 +7,7 @@ use app\models\Customer;
 use app\models\Produk; 
 use app\models\Carakirim;
 use app\models\Carabayar;
+use app\models\Lokasi;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Penjualan */
@@ -27,7 +28,11 @@ use app\models\Carabayar;
             echo $form->field($model, 'produk')->textInput(['readonly'=>!$model->isNewRecord]); 
         }
     ?>
-
+      <?= $form->field($model, 'lokasi')->dropDownList(
+        ArrayHelper::map(Lokasi::find()->all(),'lokasi','lokasi'),
+        ['prompt' => 'Select Lokasi']
+        )
+    ?> 
     <?php 
         if($model->isNewRecord) {
            echo  $form->field($model, 'customer')->dropDownList(
@@ -43,8 +48,6 @@ use app\models\Carabayar;
 
     <?= $form->field($model, 'jatuh_tempo')->textInput(['type' => 'date', 'min' => date('Y-m-d')]) ?>
 
-    <?= $form->field($model, 'jam_kirim')->textInput() ?>
-
     <?= $form->field($model, 'cara_kirim')->dropDownList(
         ArrayHelper::map(Carakirim::find()->all(),'carakirim','carakirim'),
         ['prompt'=>'Pilih Cara Kirim']
@@ -55,9 +58,9 @@ use app\models\Carabayar;
         ['prompt'=>'Pilih Cara Bayar']
     ) ?>
 
-    <?= $form->field($model, 'karton')->textInput(['readonly'=>!$model->isNewRecord]) ?>
-
     <?= $form->field($model, 'kilo')->textInput(['readonly'=>!$model->isNewRecord]) ?>
+    
+    <?= $form->field($model, 'karton')->textInput(['readonly'=>!$model->isNewRecord]) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
