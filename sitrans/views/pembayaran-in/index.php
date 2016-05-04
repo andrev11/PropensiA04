@@ -7,17 +7,18 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\PembayaranInSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Pembayaran Ins');
+$this->title = Yii::t('app', 'Pembayaran Masuk');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="pembayaran-in-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
+    <!--
     <p>
         <?= Html::a(Yii::t('app', 'Create Pembayaran In'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
+    -->
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -25,12 +26,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'idbayar',
-            'customer',
+            //'idbayar',
             'tgl_trans',
-            'tgl_bayar',
+            'customer',
+            'status_bayar',
+            //'tgl_bayar',
             'jumlahbayar',
-            // 'status_bayar',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

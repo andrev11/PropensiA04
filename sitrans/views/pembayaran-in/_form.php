@@ -12,17 +12,17 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'idbayar')->textInput() ?>
+    <?= $form->field($model, 'idbayar')->textInput(['readonly'=>!$model->isNewRecord]) ?>
 
-    <?= $form->field($model, 'customer')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'customer')->textInput(['readonly'=>!$model->isNewRecord],['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'tgl_trans')->textInput() ?>
+    <?= $form->field($model, 'tgl_trans')->textInput(['readonly'=>!$model->isNewRecord]) ?>
 
-    <?= $form->field($model, 'tgl_bayar')->textInput() ?>
+    <?= $form->field($model, 'tgl_bayar')->textInput(['readonly'=>!$model->isNewRecord]) ?>
 
-    <?= $form->field($model, 'jumlahbayar')->textInput() ?>
+    <?= $form->field($model, 'jumlahbayar')->textInput(['readonly'=>!$model->isNewRecord]) ?>
 
-    <?= $form->field($model, 'status_bayar')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'status_bayar')->textInput(['readonly'=>!$model->isNewRecord],['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
