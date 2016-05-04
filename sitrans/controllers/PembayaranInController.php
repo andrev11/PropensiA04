@@ -159,8 +159,8 @@ class PembayaranInController extends Controller
     {
              echo SiteController::connect();
              $tglBayar = date('Y-m-d'); 
-            $ubahStatus = "UPDATE PEMBAYARAN_OUT SET status_bayar = 'Lunas' WHERE idbayar = '".$id."';";
-            $ubahTanggal = "UPDATE PEMBAYARAN_OUT SET tgl_bayar = '".$tglBayar."' WHERE idbayar = '".$id."';";
+            $ubahStatus = "UPDATE PEMBAYARAN_IN SET status_bayar = 'Lunas' WHERE idbayar = '".$id."';";
+            $ubahTanggal = "UPDATE PEMBAYARAN_IN SET tgl_bayar = '".$tglBayar."' WHERE idbayar = '".$id."';";
             $masukin = pg_query($ubahStatus);
             $masukin2 = pg_query($ubahTanggal);
 
