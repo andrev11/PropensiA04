@@ -23,7 +23,7 @@ class PenjualanController extends Controller
         {
 		if (Yii::$app->user->isGuest){
             return $this->redirect(Yii::$app->user->loginUrl);
-        } else if (Yii::$app->user->identity->role == 'sales marketing' || Yii::$app->user->identity->role == 'admin inventori'){
+        } else if (Yii::$app->user->identity->role == 'sales marketing' || Yii::$app->user->identity->role == 'admin inventori' || Yii::$app->user->identity->role == 'bod') {
             return true;
         } else {
             return $this->redirect(Yii::$app->user->loginUrl);
@@ -81,6 +81,25 @@ class PenjualanController extends Controller
             return $this->redirect(Yii::$app->user->loginUrl);
         }
     }
+
+    public function actionIndex3()
+    {
+        $searchModel = new PenjualanSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider ->setSort([
+            'defaultOrder' => ['tgl_jual'=>SORT_DESC],
+            ]);
+
+        if (!\Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'bod'){
+            return $this->render('index3', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        } else {
+            return $this->redirect(Yii::$app->user->loginUrl);
+        }
+    }
+
     public function actionConfirm($id)
     { 
            echo SiteController::connect();

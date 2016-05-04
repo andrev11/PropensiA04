@@ -24,7 +24,7 @@ class PembelianController extends Controller
         {
 		if (Yii::$app->user->isGuest){
 			return $this->redirect(Yii::$app->user->loginUrl);
-		} else if (Yii::$app->user->identity->role == 'purchasing' || Yii::$app->user->identity->role == 'admin inventori'){
+		} else if (Yii::$app->user->identity->role == 'purchasing' || Yii::$app->user->identity->role == 'admin inventori' || Yii::$app->user->identity->role == 'bod'){
 			return true;
 		} else {
 			return $this->redirect(Yii::$app->user->loginUrl);
@@ -80,6 +80,24 @@ class PembelianController extends Controller
 		} else {
 			return $this->redirect(Yii::$app->user->loginUrl);
 		}
+    }
+
+    public function actionIndex3()
+    {
+        $searchModel = new PembelianSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider ->setSort([
+            'defaultOrder' => ['tgl_beli'=>SORT_DESC],
+            ]);
+
+        if (!\Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'bod'){
+            return $this->render('index3', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        } else {
+            return $this->redirect(Yii::$app->user->loginUrl);
+        }
     }
 
 
