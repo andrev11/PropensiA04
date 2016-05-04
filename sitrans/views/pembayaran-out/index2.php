@@ -32,8 +32,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     <td><?= $number++ ?></td>
                     <td><?= $hutang->supplier ?></td>
                     <td><?= $hutang->tgl_trans ?></td>
-                    <!-- <td align="center"><?= $hutang->tgl_bayar ?></td>-->
-                    <!-- <td align="center"><?= $hutang->status_bayar ?></td>-->
                     <td><?= $hutang->jumlahbayar ?></td>
                     
                     <td><?= Html::a('Confirm', ['confirm', 'id' => $hutang->idbayar], [

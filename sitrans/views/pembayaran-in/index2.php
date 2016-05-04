@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <!-- <th> idbayar </th>-->
             <th>#</th>
             <th>Customer</th>
-            <th>Tanggal Penjualann</th>
+            <th>Tanggal Penjualan</th>
             <th>Jumlah Piutang</th>
         </thead>
         <tbody>
