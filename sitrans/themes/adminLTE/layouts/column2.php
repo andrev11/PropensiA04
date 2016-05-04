@@ -56,8 +56,8 @@ use app\themes\adminLTE\components\ThemeNav;
 					  ['label' => ThemeNav::link('Daftar Hutang', 'fa fa-circle-o text-red'), 'url' => ['pembayaran-out/index2'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'finance'],
             ['label' => ThemeNav::link('Daftar Piutang', 'fa fa-circle-o text-red'), 'url' => ['pembayaran-in/index2'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'finance'],
 					  ['label' => ThemeNav::link('Pembayaran Keluar', 'fa fa-circle-o text-yellow'), 'url' => ['pembayaran-out/index'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'finance'],
+            ['label' => ThemeNav::link('Pembayaran Masuk', 'fa fa-circle-o text-yellow'), 'url' => ['pembayaran-in/index'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'finance'],
                   ],
-            ['label' => ThemeNav::link('Daftar Piutang', 'fa fa-circle-o text-red'), 'url' => ['pembayaran-in/index'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'finance'],
                 ]);
             ?>
 
