@@ -13,6 +13,7 @@ use app\controllers\PembayaranInController;
 use yii\db\Query;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use mPDF;
 
 /**
  * PenjualanController implements the CRUD actions for Penjualan model.
@@ -46,6 +47,34 @@ class PenjualanController extends Controller
      * Lists all Penjualan models.
      * @return mixed
      */
+    public function actionPrint()
+    {  
+
+        ini_set('memory_limit','3000M');//extending php memory
+        $pdf=new mPDF('win-1252','A4','','',15,10,16,10,10,10);//A4 size page in landscape orientation
+        date_default_timezone_set("Asia/Bangkok");
+        $pdf->SetHeader(date('H:i:s'));
+        $pdf->setFooter('{PAGENO}');
+        $pdf->useOnlyCoreFonts = true;    // false is default
+        $pdf->SetDisplayMode('fullpage');
+       
+        ob_start();
+ 
+        include "../views/penjualan/_printFaktur.php";//The php page you want to convert to pdf
+        
+        $html = ob_get_contents();
+
+        ob_end_clean();
+
+        // send the captured HTML from the output buffer to the mPDF class for processing
+
+        $pdf->WriteHTML($html);
+        //$mpdf->SetProtection(array(), 'mawiahl', 'password');//for password protecting your pdf
+
+            // return the pdf output as per the destination setting
+             $pdf->Output(); 
+    }
+
     public function actionIndex()
     {
         $searchModel = new PenjualanSearch();
@@ -92,6 +121,23 @@ class PenjualanController extends Controller
 
         if (!\Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'bod'){
             return $this->render('index3', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        } else {
+            return $this->redirect(Yii::$app->user->loginUrl);
+        }
+    }
+    public function actionIndex4()
+    {
+        $searchModel = new PenjualanSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider ->setSort([
+            'defaultOrder' => ['tgl_jual'=>SORT_DESC],
+            ]);
+
+        if (!\Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'admin inventori'){
+            return $this->render('index4', [
                 'searchModel' => $searchModel,
                 'dataProvider' => $dataProvider,
             ]);

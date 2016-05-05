@@ -59,17 +59,7 @@ class PembayaranOutController extends Controller
     }
 
     public function actionIndex2()
-    {
-        /**
-        $dataProvider = new ActiveDataProvider([
-            'query' => PembayaranOut::find(),
-        ]);
-
-        return $this->render('index2', [
-            'dataProvider' => $dataProvider,
-        ]);
-        **/
-        
+    {        
             $hutang = PembayaranOut::find()
                 ->where("status_bayar= 'Hutang'")
                 ->andWhere(['not', ['jumlahbayar' => null]])
@@ -167,24 +157,7 @@ class PembayaranOutController extends Controller
 
     public function actionConfirm($id)
     {
-        //$model = $this->findModel($id);
-
-        //if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            //return $this->redirect(['view', 'id' => $model->idbeli]);
-      
-            /***$myHost = "localhost";
-            $myUser = "postgres";
-            $myPassword = "1234";
-            $myPort = "5432";
-            
-            // Create connection
-            $conn = "host = ".$myHost." user = ".$myUser." password = ".$myPassword." port = ".$myPort." dbname = sitrans";
-            // Check connection
-            if (!$database = pg_connect($conn)) {
-                die("Connection failed");
-            }
-            **/
-             echo SiteController::connect();
+                 echo SiteController::connect();
              $tglBayar = date('Y-m-d'); 
             //$ambilStatus = "SELECT status_del FROM pembelian WHERE idbeli = '".$id."';";
             $ubahStatus = "UPDATE PEMBAYARAN_OUT SET status_bayar = 'Lunas' WHERE idbayar = '".$id."';";
@@ -196,15 +169,6 @@ class PembayaranOutController extends Controller
                 return $this->render('view', [
                         'model' => $this->findModel($id),
                     ]);
-
-
-
-
-       // } else {
-        //    return $this->render('confirm', [
-                //'model' => $model,
-        //    ]);
-        //}
     }
 
     public function actionCreateProduk(){
