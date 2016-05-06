@@ -59,8 +59,8 @@ use app\themes\adminLTE\components\ThemeNav;
 					  ['label' => ThemeNav::link('Pembayaran Masuk', 'fa fa-circle-o text-yellow'), 'url' => ['pembayaran-in/index'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'finance'],
 					  ['label' => ThemeNav::link('Rekap Pembayaran Keluar', 'fa fa-circle-o'), 'url' => ['pembayaran-out/index3'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'bod'],
 					  ['label' => ThemeNav::link('Rekap Pembayaran Masuk', 'fa fa-circle-o'), 'url' => ['pembayaran-in/index3'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'bod'],
-					  ['label' => ThemeNav::link('Rekap Penjualan', 'fa fa-circle-o'), 'url' => ['penjualan/index'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'bod'],
-					  ['label' => ThemeNav::link('Rekap Pembelian', 'fa fa-circle-o'), 'url' => ['pembelian/index'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'bod'],
+					  ['label' => ThemeNav::link('Rekap Penjualan', 'fa fa-circle-o'), 'url' => ['penjualan/index3'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'bod'],
+					  ['label' => ThemeNav::link('Rekap Pembelian', 'fa fa-circle-o'), 'url' => ['pembelian/index3'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'bod'],
                   ],
                 ]);
             ?>
