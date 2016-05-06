@@ -81,10 +81,6 @@ class PenggunaController extends Controller
 				'model' => $this->findModel($username),
             ]);
 
-                /***return $this->render('view', [
-                        'model' => $this->findModel($username),
-                    ]);
-                **/
     }
 
 

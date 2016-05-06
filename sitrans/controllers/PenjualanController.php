@@ -59,9 +59,12 @@ class PenjualanController extends Controller
         $pdf->SetDisplayMode('fullpage');
        
         ob_start();
- 
-        include "../views/penjualan/_printFaktur.php";//The php page you want to convert to pdf
-        
+
+        if(Yii::$app->user->identity->role == 'finance'){
+            include "../views/penjualan/_printFaktur.php";//The php page you want to convert to pdf
+        } else if (Yii::$app->user->identity->role == 'admin inventori'){
+            include "../views/penjualan/_printSuratJalan.php";
+        }
         $html = ob_get_contents();
 
         ob_end_clean();
@@ -128,15 +131,15 @@ class PenjualanController extends Controller
             return $this->redirect(Yii::$app->user->loginUrl);
         }
     }
-    public function actionIndex4()
-    {
+    public function actionIndex4() {
+    
         $searchModel = new PenjualanSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $dataProvider ->setSort([
             'defaultOrder' => ['tgl_jual'=>SORT_DESC],
             ]);
 
-        if (!\Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'admin inventori'){
+        if (!\Yii::$app->user->isGuest && ( Yii::$app->user->identity->role =='finance' || Yii::$app->user->identity->role == 'admin inventori')) {
             return $this->render('index4', [
                 'searchModel' => $searchModel,
                 'dataProvider' => $dataProvider,
