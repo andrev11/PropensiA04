@@ -18,15 +18,8 @@ $this->params['breadcrumbs'][] = $this->title;
    
         <?php 
                 echo SiteController::connect();
-                $query="";
-                //surat jalan AI, faktur Finance
-                if(Yii::$app->user->identity->role == 'admin inventori'){
-                    $query = "SELECT customer, tgl_jual, idbayar FROM Penjualan WHERE status_del='Belum Dikirim' and cara_kirim= 'Delivery'
-                    GROUP BY customer, tgl_jual, idbayar;";
-                } else if (Yii::$app->user->identity->role == 'finance'){
-                    $query = "SELECT customer, tgl_jual, idbayar FROM Penjualan WHERE status_del='Belum Dikirim' 
-                    GROUP BY customer, tgl_jual, idbayar;";
-                }
+                $query = "SELECT customer, tgl_jual, idbayar FROM Penjualan WHERE status_del='Belum Dikirim' and cara_kirim= 'Delivery'
+                GROUP BY customer, tgl_jual, idbayar;";
                 $result = pg_query($query);                 
                 echo "<table class='table table-striped table-bordered'>"; 
                 echo "<thead>";
@@ -46,6 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         echo "<td align='left'>";
                         echo  Html::a(Yii::t('app', 'Print'), ['print', 'idbayar' => $idbayar ], ['class' => 'btn btn-success']);
                         echo "</td>";
+                       
                         echo "</tr>";
                     }
                 echo "</tbody>";  
