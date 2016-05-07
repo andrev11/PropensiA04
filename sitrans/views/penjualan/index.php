@@ -7,6 +7,8 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\PenjualanSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
+/*ini cobain*/
+
 $this->title = Yii::t('app', 'Penjualan');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
