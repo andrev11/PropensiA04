@@ -102,7 +102,7 @@
     </tr>
     <?php } ?>
     <tr> 
-      <td align="center" class="tg-yw4l"><?php echo "Total Bayar Rp. ".$totalharga?></td> 
-      <td align="center" class="tg-yw4l"><?php echo "Total Kilo ".$totalkilo?></td> 
+      <td align="center" class="tg-yw4l"><?php echo "Jumlah Bayar Rp. ".$totalharga?></td> 
+      <td align="center" class="tg-yw4l"><?php echo "Jumlah Kilo ".$totalkilo?></td> 
     </tr>
 </table>
