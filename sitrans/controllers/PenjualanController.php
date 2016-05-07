@@ -24,7 +24,7 @@ class PenjualanController extends Controller
         {
         if (Yii::$app->user->isGuest){
             return $this->redirect(Yii::$app->user->loginUrl);
-        } else if (Yii::$app->user->identity->role == 'sales marketing' || Yii::$app->user->identity->role == 'admin inventori' || Yii::$app->user->identity->role == 'bod') {
+        } else if (Yii::$app->user->identity->role == 'sales marketing' || Yii::$app->user->identity->role == 'admin inventori' || Yii::$app->user->identity->role == 'bod' || Yii::$app->user->identity->role =='finance') {
             return true;
         } else {
             return $this->redirect(Yii::$app->user->loginUrl);
