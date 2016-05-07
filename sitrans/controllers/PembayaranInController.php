@@ -21,7 +21,7 @@ class PembayaranInController extends Controller
         {
         if (Yii::$app->user->isGuest){
             return $this->redirect(Yii::$app->user->loginUrl);
-        } else if (Yii::$app->user->identity->role == 'finance'){
+        } else if (Yii::$app->user->identity->role == 'finance' || Yii::$app->user->identity->role == 'bod'){
             return true;
         } else {
             return $this->redirect(Yii::$app->user->loginUrl);
@@ -51,11 +51,14 @@ class PembayaranInController extends Controller
          $dataProvider ->setSort([
             'defaultOrder' => ['tgl_trans'=>SORT_DESC],
             ]);
-
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+		if (!\Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'finance'){
+			return $this->render('index', [
+				'searchModel' => $searchModel,
+				'dataProvider' => $dataProvider,
+			]);
+		} else {
+            return $this->redirect(Yii::$app->user->loginUrl);
+        }
     }
 
     public function actionIndex2()
@@ -65,9 +68,13 @@ class PembayaranInController extends Controller
                 ->andWhere(['not', ['jumlahbayar' => null]])
                 ->orderBy(['tgl_trans' => SORT_ASC])
                 ->all();
+		if (!\Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'finance'){
             return $this->render('index2', [
                 'piutang' => $piutang,
             ]);
+		} else {
+            return $this->redirect(Yii::$app->user->loginUrl);
+        }
     }
 
 
@@ -89,9 +96,13 @@ class PembayaranInController extends Controller
                 ->andWhere("EXTRACT(YEAR FROM tgl_bayar) = 2016")
                 ->orderBy(['tgl_bayar' => SORT_ASC])
                 ->all();
+		if (!\Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'bod'){
             return $this->render('index3', [
                 'rekap' => $rekap,
             ]);
+		} else {
+            return $this->redirect(Yii::$app->user->loginUrl);
+        }
     }    
     /**
      * Displays a single PembayaranIn model.
