@@ -25,26 +25,55 @@
     letter-spacing: 1px;
     word-spacing: 1px;
   }
-</style>
 
-<div class="enjoy-css">
-  FAKTUR PEMBAYARAN
-  <br>
+  .cihuy-css {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    border: none;
+    font: normal normal 16px/2 Verdana, Geneva, sans-serif;
+    color: black;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    letter-spacing: 1px;
+    word-spacing: 1px;
+  }
+
+</style>
+<div class="cihuy-css">
   PT. HIJRAH GIZI HEWANI
   <br>
+  Jl. Raya Bantar Gebang Setu No. 57 Bekasi
+  <br>
+  Telp. : 08-221-000-248
   <br>
 </div>
-<?php
-  $idbayar = Yii::$app->request->get('idbayar');
-  $query = "SELECT * FROM penjualan where idbayar='".$idbayar."';";
-  $result = pg_query($query.";"); 
-  $customer=pg_fetch_array($result);
-  echo "Pemesan : ";
-  echo $customer['customer'];
-?>
 
-<br>
-
+<div class="enjoy-css">
+  FAKTUR PENJUALAN
+  <br>
+  PT
+  <br>
+</div>
+<div class="cihuy-css">
+  Kepada Yth.
+  <br>
+  <?php
+    $idbayar = Yii::$app->request->get('idbayar');
+    $query = "SELECT * FROM penjualan where idbayar='".$idbayar."';";
+    $result = pg_query($query.";"); 
+    $customer=pg_fetch_array($result);
+    echo $customer['customer'];
+  ?>
+  <br>
+  <?php
+    $idbayar = Yii::$app->request->get('idbayar');
+    $query = "SELECT distinct alamatcustomer FROM penjualan, customer where idbayar='".$idbayar."' and customer=namacustomer";
+    $result = pg_query($query.";"); 
+    $alamatCustomer=pg_fetch_array($result);
+    echo $alamatCustomer['alamatcustomer'];
+  ?>
+</div>
 <table align="center" class="tg">
   <tr align="center">
     <th class="tg-9hbo">No.</th>
