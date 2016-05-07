@@ -28,7 +28,7 @@
 </style>
 
 <div class="enjoy-css">
-  FAKTUR PENJUALAN
+  SURAT JALAN
   <br>
   PT. HIJRAH GIZI HEWANI
   <br>
@@ -39,8 +39,15 @@
   $query = "SELECT * FROM penjualan where idbayar='".$idbayar."';";
   $result = pg_query($query.";"); 
   $customer=pg_fetch_array($result);
-  echo "Pemesan : ";
-  echo $customer['customer'];
+  $namacustomer=$customer['customer'];
+  echo "<br>";
+  echo "KEPADA YTH : ";
+  $datacustomer=pg_fetch_array(pg_query("select * from customer where namacustomer='".$namacustomer."';"));
+  echo "<br>".$namacustomer; 
+  echo " - (".$datacustomer['telponcustomer'].")"; 
+  echo "<br>".$datacustomer['alamatcustomer'];
+  echo "<br>";
+  
 ?>
 
 <br>
@@ -57,12 +64,12 @@
   $idbayar = Yii::$app->request->get('idbayar');
   $query = "SELECT * FROM penjualan where idbayar='".$idbayar."';";
   $result = pg_query($query.";"); 
-  $i = 1;
-  $totalharga=0;
-  $totalkilo=0;
-    while($row = pg_fetch_assoc($result)) { 
-       $totalharga += $row['harga_total'];
-       $totalkilo +=$row['kilo'];
+  	$i = 1;
+    $totalharga=0;
+    $totalkilo=0;
+  	while($row = pg_fetch_assoc($result)) { 
+      $totalharga += $row['harga_total'];
+      $totalkilo +=$row['kilo'];
     ?>
     <tr>
       <td align="center" class="tg-lqy6"><?php echo $i++; ?></td>
@@ -71,9 +78,9 @@
       <td align="center" class="tg-yw4l"><?php echo $row['karton'];?></td>
       <td align="center" class="tg-yw4l"><?php echo 'Rp. '.$row['harga_total'];?></td>
     </tr>
-    <?php } ?>
+  <?php } ?>
     <tr> 
       <td align="center" class="tg-yw4l"><?php echo "Total Bayar Rp. ".$totalharga?></td> 
-      <td align="center" class="tg-yw4l"><?php echo "Total Kilo ".$totalkilo?></td> 
+      <td align="center" class="tg-yw4l"><?php echo "Total Kilo ".$totalkilo?></td>
     </tr>
 </table>
