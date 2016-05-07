@@ -28,7 +28,7 @@
 </style>
 
 <div class="enjoy-css">
-  FAKTUR PENJUALAN
+  FAKTUR PEMBAYARAN
   <br>
   PT. HIJRAH GIZI HEWANI
   <br>
