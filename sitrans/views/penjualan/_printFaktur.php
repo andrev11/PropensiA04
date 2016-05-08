@@ -72,14 +72,15 @@
     echo $alamatCustomer['alamatcustomer'];
   ?>
 </div>
+<br>
 <table align="center" class="tg">
   <tr align="center">
     <th class="tg-9hbo">No.</th>
-    <th class="tg-9hbo">Produk</th>
-    <th class="tg-9hbo">Kilo</th>
-    <th class="tg-9hbo">Karton</th>
+    <th class="tg-9hbo">Nama Produk</th>
+    <th class="tg-9hbo">KG</th>
+    <th class="tg-9hbo">Box/Karton</th>
     <th class="tg-9hbo">Harga</th>
-    <th class="tg-9hbo">Harga Total</th>
+    <th class="tg-9hbo">Jumlah</th>
   </tr>
 <?php 
   $idbayar = Yii::$app->request->get('idbayar');
@@ -100,11 +101,12 @@
       <td align="center" class="tg-yw4l"><?php echo 'Rp. '.$row['harga_total'];?></td>
     </tr>
     <?php } ?>
-    <tr> 
-      <td align="center" class="tg-yw4l"><?php echo "Jumlah Bayar Rp. ".$totalharga?></td> 
-      <td align="center" class="tg-yw4l"><?php echo "Jumlah Kilo ".$totalkilo?></td> 
-    </tr>
 </table>
+<br>
+<?php echo "Jumlah Bayar       : Rp. ".$totalharga?>
+<br>
+<?php echo "Jumlah Kilo        : ".$totalkilo?>
+<br>
 <div class="cihuy-css">
   Bekasi, 
   <?php

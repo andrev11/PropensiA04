@@ -64,9 +64,9 @@ class PenjualanController extends Controller
             include "../views/penjualan/_printFaktur.php";//The php page you want to convert to pdf
         } else if (Yii::$app->user->identity->role == 'admin inventori'){
             include "../views/penjualan/_printSuratJalan.php";
+        } else if (Yii::$app->user->identity->role == 'sales marketing'){
+            include "../views/penjualan/_reportPenjualan.php";
         }
-
-        include "../views/penjualan/_reportPenjualan.php";
         
         $html = ob_get_contents();
 
