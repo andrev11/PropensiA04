@@ -40,6 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'idjual',
             'idbayar',
             'customer',
+            'lokasi',
             'produk',
             'tgl_jual',
             'tgl_kirim',

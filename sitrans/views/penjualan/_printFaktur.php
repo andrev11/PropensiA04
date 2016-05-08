@@ -52,8 +52,6 @@
 <div class="enjoy-css">
   FAKTUR PENJUALAN
   <br>
-  PT
-  <br>
 </div>
 <div class="cihuy-css">
   Kepada Yth.
