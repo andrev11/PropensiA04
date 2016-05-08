@@ -101,14 +101,16 @@
       <td align="center" class="tg-yw4l"><?php echo 'Rp. '.$row['harga_total'];?></td>
     </tr>
     <?php } ?>
+
 </table>
 <br>
-<?php echo "Jumlah Bayar       : Rp. ".$totalharga?>
+<?php echo "Jumlah Bayar : Rp. ".$totalharga?>
 <br>
-<?php echo "Jumlah Kilo        : ".$totalkilo?>
+<?php echo "Jumlah Kilo : ".$totalkilo?>
 <br>
 <div class="cihuy-css">
-  Bekasi, 
+  
+  <br> Bekasi, 
   <?php
   echo date("d F Y");
 ?>

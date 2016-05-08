@@ -67,7 +67,7 @@ class PenjualanController extends Controller
         } else if (Yii::$app->user->identity->role == 'sales marketing'){
             include "../views/penjualan/_reportPenjualan.php";
         }
-        
+
         $html = ob_get_contents();
 
         ob_end_clean();
