@@ -28,7 +28,7 @@ echo SiteController::connect();
 </style>
 
 <div class="enjoy-css">
-LAPORAN PEMBELIAN
+LAPORAN PENJUALAN
 <br>
 PT. HIJRAH GIZI HEWANI
 <br>
@@ -47,8 +47,8 @@ echo date("d F Y");
     <th class="tg-9hbo">No.</th>
     <th class="tg-9hbo">Produk</th>
     <th class="tg-9hbo">Tanggal Beli</th>
-    <th class="tg-9hbo">Tanggal Terima</th>
-    <th class="tg-9hbo">Cara Terima</th>
+    <th class="tg-9hbo">Tanggal Kirim</th>
+    <th class="tg-9hbo">Cara Kirim</th>
     <th class="tg-9hbo">Cara Bayar</th>
     <th class="tg-9hbo">Status Delivery</th>
     <th class="tg-9hbo">Harga Total</th>
@@ -56,10 +56,10 @@ echo date("d F Y");
     <th class="tg-9hbo">Jumlah Karton</th>
   </tr>
 <?php 
-$tgl_beli = Yii::$app->request->get('tgl_beli');
-$query = "SELECT * FROM pembelian ORDER BY tgl_beli DESC ";
-if(null !== $tgl_beli){ 
-	$query = $query."WHERE tgl_beli = '".$tgl_beli."'";
+$tgl_jual = Yii::$app->request->get('tgl_jual');
+$query = "SELECT * FROM penjualan ORDER BY tgl_jual DESC ";
+if(null !== $tgl_jual){ 
+	$query = $query."WHERE tgl_jual = '".$tgl_jual."'";
 }
 $result = pg_query($query.";"); 
 	$i = 1;
@@ -67,9 +67,9 @@ $result = pg_query($query.";");
   <tr>
     <td align="center" class="tg-lqy6"><?php echo $i++; ?></td>
     <td class="tg-yw4l"><?php echo $row['produk'];?></td>
-    <td align="center" class="tg-yw4l"><?php echo $row['tgl_beli'];?></td>
-    <td align="center" class="tg-yw4l"><?php echo $row['tgl_terima'];?></td>
-    <td align="center" class="tg-yw4l"><?php echo $row['cara_terima'];?></td>
+    <td align="center" class="tg-yw4l"><?php echo $row['tgl_jual'];?></td>
+    <td align="center" class="tg-yw4l"><?php echo $row['tgl_kirim'];?></td>
+    <td align="center" class="tg-yw4l"><?php echo $row['cara_kirim'];?></td>
     <td align="center" class="tg-yw4l"><?php echo $row['cara_bayar'];?></td>
     <td align="center" class="tg-yw4l"><?php echo $row['status_del'];?></td>
     <td align="center" class="tg-yw4l"><?php echo 'Rp. '.$row['harga_total'];?></td>

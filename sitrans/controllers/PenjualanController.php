@@ -65,6 +65,9 @@ class PenjualanController extends Controller
         } else if (Yii::$app->user->identity->role == 'admin inventori'){
             include "../views/penjualan/_printSuratJalan.php";
         }
+
+        include "../views/penjualan/_reportPenjualan.php";
+        
         $html = ob_get_contents();
 
         ob_end_clean();
