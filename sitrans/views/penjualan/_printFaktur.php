@@ -102,11 +102,13 @@
     <?php } ?>
     <tr> 
       <td align="center" class="tg-yw4l"><?php echo "Jumlah Bayar Rp. ".$totalharga?></td> 
-      <td align="center" class="tg-yw4l"><?php echo "Jumlah Kilo ".$totalkilo?></td> 
+      <td align="center" class="tg-yw4l"><?php echo "Jumlah Kilo ".$totalkilo?></td>
+      <br><br> 
     </tr>
 </table>
 <div class="cihuy-css">
-  Bekasi, 
+  
+  <br> Bekasi, 
   <?php
   echo date("d F Y");
 ?>
