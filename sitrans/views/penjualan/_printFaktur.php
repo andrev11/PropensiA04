@@ -76,8 +76,9 @@
   <tr align="center">
     <th class="tg-9hbo">No.</th>
     <th class="tg-9hbo">Produk</th>
-    <th class="tg-9hbo">Jumlah Kilo</th>
-    <th class="tg-9hbo">Jumlah Karton</th>
+    <th class="tg-9hbo">Kilo</th>
+    <th class="tg-9hbo">Karton</th>
+    <th class="tg-9hbo">Harga</th>
     <th class="tg-9hbo">Harga Total</th>
   </tr>
 <?php 
@@ -90,12 +91,13 @@
     while($row = pg_fetch_assoc($result)) { 
        $totalharga += $row['harga_total'];
        $totalkilo +=$row['kilo'];
-    ?>
+?>
     <tr>
       <td align="center" class="tg-lqy6"><?php echo $i++; ?></td>
       <td align="center" class="tg-yw4l"><?php echo $row['produk'];?></td>
       <td align="center" class="tg-yw4l"><?php echo $row['kilo'];?></td>
       <td align="center" class="tg-yw4l"><?php echo $row['karton'];?></td>
+      <td align="center" class="tg-yw4l"><?php echo $row['harga_jual'];?></td>
       <td align="center" class="tg-yw4l"><?php echo 'Rp. '.$row['harga_total'];?></td>
     </tr>
     <?php } ?>
@@ -104,3 +106,9 @@
       <td align="center" class="tg-yw4l"><?php echo "Jumlah Kilo ".$totalkilo?></td> 
     </tr>
 </table>
+<div class="cihuy-css">
+  Bekasi, 
+  <?php
+  echo date("d F Y");
+?>
+</div>
