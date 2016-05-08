@@ -97,12 +97,11 @@
       <td align="center" class="tg-yw4l"><?php echo $row['produk'];?></td>
       <td align="center" class="tg-yw4l"><?php echo $row['kilo'];?></td>
       <td align="center" class="tg-yw4l"><?php echo $row['karton'];?></td>
-      <td align="center" class="tg-yw4l"><?php echo $row['harga_jual'];?></td>
       <td align="center" class="tg-yw4l"><?php echo 'Rp. '.$row['harga_total'];?></td>
     </tr>
     <?php } ?>
     <tr> 
-      <td align="center" class="tg-yw4l"><?php echo "Jumlah Bayar Rp. ".$totalharga?></td> 
+      <td align="center" class="tg-yw4l"><4?php echo "Jumlah Bayar Rp. ".$totalharga?></td> 
       <td align="center" class="tg-yw4l"><?php echo "Jumlah Kilo ".$totalkilo?></td> 
     </tr>
 </table>
