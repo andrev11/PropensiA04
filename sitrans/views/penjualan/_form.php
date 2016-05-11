@@ -28,11 +28,18 @@ use app\models\Lokasi;
             echo $form->field($model, 'produk')->textInput(['readonly'=>!$model->isNewRecord]); 
         }
     ?>
-      <?= $form->field($model, 'lokasi')->dropDownList(
-        ArrayHelper::map(Lokasi::find()->all(),'lokasi','lokasi'),
-        ['prompt' => 'Select Lokasi']
-        )
+
+    <?php
+        if($model->isNewRecord) {
+          echo $form->field($model, 'lokasi')->dropDownList(
+            ArrayHelper::map(Lokasi::find()->all(),'lokasi','lokasi'),
+            ['prompt' => 'Select Lokasi']
+            );
+        } else {
+            echo $form->field($model, 'lokasi')->textInput(['readonly'=>!$model->isNewRecord]); 
+        }
     ?> 
+
     <?php 
         if($model->isNewRecord) {
            echo  $form->field($model, 'customer')->dropDownList(
