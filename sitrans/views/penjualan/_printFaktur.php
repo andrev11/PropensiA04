@@ -1,4 +1,3 @@
-
 <?php
   use app\controllers\SiteController; 
   echo SiteController::connect();
@@ -40,6 +39,7 @@
     border-bottom: 1px solid #ddd;
 	}
 </style>
+
 <div class="cihuy-css">
   PT. HIJRAH GIZI HEWANI
   <br>
@@ -48,32 +48,35 @@
   Telp. : 08-221-000-248
   <br>
 </div>
+
 <br>
+
 <div class="enjoy-css">
   FAKTUR PENJUALAN
   <br>
   <br>
 </div>
+
 <div class="cihuy-css">
-  Kepada Yth.
-  <br>
   <?php
-    $idbayar = Yii::$app->request->get('idbayar');
-    $query = "SELECT * FROM penjualan where idbayar='".$idbayar."';";
-    $result = pg_query($query.";"); 
-    $customer=pg_fetch_array($result);
-    echo $customer['customer'];
-  ?>
-  <br>
-  <?php
-    $idbayar = Yii::$app->request->get('idbayar');
-    $query = "SELECT distinct alamatcustomer FROM penjualan, customer where idbayar='".$idbayar."' and customer=namacustomer";
-    $result = pg_query($query.";"); 
-    $alamatCustomer=pg_fetch_array($result);
-    echo $alamatCustomer['alamatcustomer'];
-  ?>
+	  $idbayar = Yii::$app->request->get('idbayar');
+	  $query = "SELECT * FROM penjualan where idbayar='".$idbayar."';";
+	  $result = pg_query($query.";"); 
+	  $customer=pg_fetch_array($result);
+	  $namacustomer=$customer['customer'];
+	  echo "<br>";
+	  echo "KEPADA YTH : ";
+	  $datacustomer=pg_fetch_array(pg_query("select * from customer where namacustomer='".$namacustomer."';"));
+	  echo "<br>".$namacustomer; 
+	  echo " - (".$datacustomer['telponcustomer'].")"; 
+	  echo "<br>".$datacustomer['alamatcustomer'];
+	  echo "<br>";
+	  
+	?>
 </div>
+
 <br>
+
 <table align="center" class="tg">
 	<tr align="center">
 		<th >No.</th>
@@ -94,6 +97,7 @@
 		while($row = pg_fetch_assoc($result)) { 
 		   $totalharga += $row['harga_total'];
 		   $totalkilo +=$row['kilo'];
+		   $totalkarton += $row['karton'];
 		   $harga_satuan = $totalharga/$totalkilo;
 	?>
     <tr>
@@ -109,7 +113,7 @@
 		<td></td>
 		<td><?php echo "Total"?></td>
 		<td><?php echo $totalkilo?></td>
-		<td></td>
+		<td><?php echo $totalkarton?></td>
 		<td></td>
 		<td><?php echo "Rp. ".$totalharga?></td>
 	</tr>
@@ -145,7 +149,7 @@
 				<br>
 				(Danur)
 			</td>
-			<td align="right">
+			<td align="left">
 				Bekasi, 
 				<?php
 				  echo date("d F Y");
