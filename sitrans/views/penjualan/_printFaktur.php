@@ -53,8 +53,7 @@
 
 <div class="enjoy-css">
   FAKTUR PENJUALAN
-  <br>
-  <br>
+
 </div>
 
 <div class="cihuy-css">

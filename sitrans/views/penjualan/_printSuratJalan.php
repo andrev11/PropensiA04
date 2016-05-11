@@ -53,8 +53,7 @@
 
 <div class="enjoy-css">
   SURAT JALAN
-  <br>
-  <br>
+
 </div>
 
 <div class="cihuy-css">
@@ -159,4 +158,7 @@
 			</td>
 		</tr>
 	</table>
+Pengirim		:
+<br>	
+No. Kendaraan	:
 </div>
