@@ -20,6 +20,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <!-- <th> idbeli </th> -->
             <!-- <th> idbayar </th>-->
              <th align="center">#</th>
+            <th align="center">Id Transaksi</th>
+            <th align="center">Customer</th>
             <th align="center">Nama Produk</th>
             <th align="center">Tanggal Penjualan</th>
             <th align="center">Tanggal Kirim</th>
@@ -33,9 +35,13 @@ $this->params['breadcrumbs'][] = $this->title;
         <tbody>
                                           
             <?php $number=1;
-            foreach ($jual as $model): ?>
+            $idbayarprev=0;
+            foreach ($jual as $model): 
+                $idbayarprev= $model->idbayar; ?>
                 <tr>
                     <td><?= $number++ ?></td>
+                    <td><?= $model->idbayar ?></td>
+                    <td><?= $model->customer ?></td>
                     <td><?= $model->produk ?></td>
                     <td align="center"><?= $model->tgl_jual ?></td>
                     <td align="center"><?= $model->tgl_kirim ?></td>
@@ -44,7 +50,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     <td align="center"><?= $model->karton ?></td>
                     <td align="center"><?= $model->kilo ?></td>
                     <td align="center"><?= Html::a('View', ['view', 'id' => $model->idjual], ['class' => 'btn btn-primary']) ?></td>
-                    <td align="center"><?= Html::a('Confirm', ['confirm', 'id' => $model->idjual], [
+
+                    <td align="center"><?= Html::a('Confirm', ['confirm', 'idbayar' => $model->idbayar], [
                         'class' => 'btn btn-danger',
                         'data' => [
                             'confirm' => 'Are you sure you want to confirm this item?',

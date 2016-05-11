@@ -152,13 +152,13 @@ class PenjualanController extends Controller
         }
     }
 
-    public function actionConfirm($id)
+    public function actionConfirm($idbayar)
     { 
            echo SiteController::connect();
-            $ubahStatus = "UPDATE PENJUALAN SET status_del = 'Dikirim' WHERE idjual = '".$id."';";
+            $ubahStatus = "UPDATE PENJUALAN SET status_del = 'Dikirim' WHERE idbayar = '".$idbayar."';";
             $masukin = pg_query($ubahStatus);
                 return $this->render('view', [
-                        'model' => $this->findModel($id),
+                        'model' => $this->findModel($idbayar),
                     ]);
     }
 
