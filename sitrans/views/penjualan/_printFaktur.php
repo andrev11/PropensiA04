@@ -40,7 +40,6 @@
     border-bottom: 1px solid #ddd;
 	}
 </style>
-</style>
 <div class="cihuy-css">
   PT. HIJRAH GIZI HEWANI
   <br>

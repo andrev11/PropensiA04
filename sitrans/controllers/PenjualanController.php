@@ -51,7 +51,7 @@ class PenjualanController extends Controller
     {  
 
         ini_set('memory_limit','3000M');//extending php memory
-        $pdf=new mPDF('win-1252','A4','','',15,10,16,10,10,10);//A4 size page in landscape orientation
+        $pdf=new mPDF('win-1252','A4-L','','',15,10,16,10,10,10);//A4 size page in landscape orientation
         date_default_timezone_set("Asia/Bangkok");
         $pdf->SetHeader(date('H:i:s'));
         $pdf->setFooter('{PAGENO}');
