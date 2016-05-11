@@ -120,12 +120,12 @@
 <div class="cihuy-css">
 	<br>
 
-	<table>
+	<table align="center">
 		<tr>
 
 			<td>
 				<br>
-				Penerima
+				Penerima,
 				<br>
 				<br>
 				<br>
