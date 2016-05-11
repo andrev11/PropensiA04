@@ -20,14 +20,13 @@ $this->params['breadcrumbs'][] = $this->title;
             <th align="center">#</th>
             <th align="center">Customer</th>
             <th align="center">Nama Produk</th>
-            <th align="center">Tanggal Penjualan</th>
-            <th align="center">Tanggal Kirim</th>
+            <th align="center">Tanggal <br> Penjualan</th>
+            <th align="center">Tanggal <br> Kirim</th>
+            <th align="center">Jatuh <br> Tempo </th>
             <th align="center">Cara Kirim</th>
             <th align="center">Cara Bayar</th>
-            <th align="center">Status Deliveri</th>
-            <th align="center">Harga Total</th>
-            <th align="center">Jumlah Karton</th>
-            <th align="center">Jumlah Kilo</th>
+            <th align="center">KG</th>
+            <th align="center">Karton</th>
         </thead>
         <tbody>
                                           
@@ -42,11 +41,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     <td align="center"><?= $model->tgl_jual ?></td>
                     <td align="center"><?= $model->tgl_kirim ?></td>
                     <td align="center"><?= $model->cara_kirim ?></td>
-                    <td align="center"><?= $model->cara_bayar ?></td>
-                    <td align="center"><?= $model->status_del ?></td>
                     <td align="center"><?= $model->harga_total ?></td>
-                    <td align="center"><?= $model->karton ?></td>
                     <td align="center"><?= $model->kilo ?></td>
+                    <td align="center"><?= $model->karton ?></td>
                     <td align="center"><?= Html::a('View', ['view', 'id' => $model->idjual], ['class' => 'btn btn-primary']) ?></td>
                     <td align="center"><?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->idjual], ['class' => 'btn btn-primary']) ?></td>
                 </tr>
