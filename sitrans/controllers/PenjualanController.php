@@ -53,8 +53,6 @@ class PenjualanController extends Controller
         ini_set('memory_limit','3000M');//extending php memory
         $pdf=new mPDF('win-1252','A4-L','','',15,10,16,10,10,10);//A4 size page in landscape orientation
         date_default_timezone_set("Asia/Bangkok");
-        $pdf->SetHeader(date('H:i:s'));
-        $pdf->setFooter('{PAGENO}');
         $pdf->useOnlyCoreFonts = true;    // false is default
         $pdf->SetDisplayMode('fullpage');
        
@@ -62,11 +60,15 @@ class PenjualanController extends Controller
 
         if(Yii::$app->user->identity->role == 'finance'){
             include "../views/penjualan/_printFaktur.php";//The php page you want to convert to pdf
+            $pdf->setFooter(date('H:i:s'));
         } else if (Yii::$app->user->identity->role == 'admin inventori'){
             include "../views/penjualan/_printSuratJalan.php";
+            $pdf->setFooter(date('H:i:s'));
         } else if (Yii::$app->user->identity->role == 'sales marketing'){
 			$pdf=new mPDF('win-1252','A4','','',15,10,16,10,10,10);
             include "../views/penjualan/_reportPenjualan.php";
+            $pdf->SetHeader(date('H:i:s'));
+            $pdf->setFooter('{PAGENO}');
         }
 
         $html = ob_get_contents();
