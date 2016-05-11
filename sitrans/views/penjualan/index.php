@@ -17,8 +17,8 @@ $this->params['breadcrumbs'][] = $this->title;
    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Penjualan'), ['create'], ['class' => 'btn btn-success']) ?>
-        <?= Html::a(Yii::t('app', 'Recapitulation'), ['recap'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Tambah Penjualan'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Rekap'), ['recap'], ['class' => 'btn btn-success']) ?>
         <?= Html::a(Yii::t('app', 'Print'), ['print', 'tgl_beli' => $searchModel->tgl_jual], ['class' => 'btn btn-success']) ?>
     </p>
 

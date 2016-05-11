@@ -48,9 +48,10 @@
   Telp. : 08-221-000-248
   <br>
 </div>
-
+<br>
 <div class="enjoy-css">
   FAKTUR PENJUALAN
+  <br>
   <br>
 </div>
 <div class="cihuy-css">
@@ -114,4 +115,8 @@
   <?php
   echo date("d F Y");
 ?>
+<br>
+<br>
+<br>
+<?php echo "(Sularjo)"?>
 </div>
