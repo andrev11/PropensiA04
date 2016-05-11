@@ -105,7 +105,8 @@ class PenjualanController extends Controller
 
         $jual = Penjualan::find()
             ->where("status_del= 'Belum Dikirim'")
-            ->orderBy(['tgl_kirim' => SORT_DESC])
+            ->orderBy(['tgl_kirim' => SORT_ASC])
+            ->orderBy(['idbayar' => SORT_ASC])
             ->all();
         
         if (!\Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'admin inventori'){
