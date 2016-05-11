@@ -65,6 +65,7 @@ class PenjualanController extends Controller
         } else if (Yii::$app->user->identity->role == 'admin inventori'){
             include "../views/penjualan/_printSuratJalan.php";
         } else if (Yii::$app->user->identity->role == 'sales marketing'){
+			$pdf=new mPDF('win-1252','A4','','',15,10,16,10,10,10);
             include "../views/penjualan/_reportPenjualan.php";
         }
 
