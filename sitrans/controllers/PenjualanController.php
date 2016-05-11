@@ -154,8 +154,9 @@ class PenjualanController extends Controller
 
     public function actionConfirm($idbayar)
     { 
-           echo SiteController::connect();
-            $ubahStatus = "UPDATE PENJUALAN SET status_del = 'Dikirim' WHERE idbayar = '".$idbayar."';";
+            echo SiteController::connect();
+            $tglkirim = Yii::$app->request->get('tgl_kirim');
+            $ubahStatus = "UPDATE PENJUALAN SET status_del = 'Dikirim' WHERE idbayar = '".$idbayar."' and tgl_kirim='".$tglkirim."';";
             $masukin = pg_query($ubahStatus);
                 return $this->render('view', [
                         'model' => $this->findModel($idbayar),

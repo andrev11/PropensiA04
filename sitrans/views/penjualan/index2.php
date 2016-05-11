@@ -51,7 +51,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <td align="center"><?= $model->kilo ?></td>
                     <td align="center"><?= Html::a('View', ['view', 'id' => $model->idjual], ['class' => 'btn btn-primary']) ?></td>
 
-                    <td align="center"><?= Html::a('Confirm', ['confirm', 'idbayar' => $model->idbayar], [
+                    <td align="center"><?= Html::a('Confirm', ['confirm', 'idbayar' => $model->idbayar, 'tgl_kirim'=> $model->tgl_kirim], [
                         'class' => 'btn btn-danger',
                         'data' => [
                             'confirm' => 'Are you sure you want to confirm this item?',
