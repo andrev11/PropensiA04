@@ -44,7 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'karton',
             // 'kilo',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn' , 'visible' => !Yii::$app->user->isGuest && Yii::$app->user->identity->role != 'sales marketing'],
         ],
     ]); ?>
 

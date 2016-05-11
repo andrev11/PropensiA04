@@ -152,7 +152,22 @@ class PenjualanController extends Controller
             return $this->redirect(Yii::$app->user->loginUrl);
         }
     }
+    public function actionIndex5()
+    {
 
+        $jual = Penjualan::find()
+            ->where("status_del= 'Belum Dikirim'")
+            ->orderBy(['tgl_jual' => SORT_DESC])
+            ->all();
+        
+        if (!\Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'sales marketing'){
+            return $this->render('index5', [
+                'jual' => $jual,
+            ]);
+        } else {
+            return $this->redirect(Yii::$app->user->loginUrl);
+        }
+    }
     public function actionConfirm($idbayar)
     { 
             echo SiteController::connect();
