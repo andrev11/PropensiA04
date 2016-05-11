@@ -5,12 +5,7 @@
 ?>
 
 <style type="text/css">
-  .tg  {border-collapse:collapse;border-spacing:0;}
-  .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
-  .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
-  .tg .tg-lqy6{text-align:right;vertical-align:top}
-  .tg .tg-9hbo{font-weight:bold;vertical-align:top}
-  .tg .tg-yw4l{vertical-align:top}
+
 
   .enjoy-css {
     -webkit-box-sizing: content-box;
@@ -38,7 +33,13 @@
     letter-spacing: 1px;
     word-spacing: 1px;
   }
-
+	
+	th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+	}
+</style>
 </style>
 <div class="cihuy-css">
   PT. HIJRAH GIZI HEWANI
@@ -75,48 +76,89 @@
 </div>
 <br>
 <table align="center" class="tg">
-  <tr align="center">
-    <th class="tg-9hbo">No.</th>
-    <th class="tg-9hbo">Nama Produk</th>
-    <th class="tg-9hbo">KG</th>
-    <th class="tg-9hbo">Box/Karton</th>
-    <th class="tg-9hbo">Harga</th>
-    <th class="tg-9hbo">Jumlah</th>
-  </tr>
-<?php 
-  $idbayar = Yii::$app->request->get('idbayar');
-  $query = "SELECT * FROM penjualan where idbayar='".$idbayar."';";
-  $result = pg_query($query.";"); 
-  $i = 1;
-  $totalharga=0;
-  $totalkilo=0;
-    while($row = pg_fetch_assoc($result)) { 
-       $totalharga += $row['harga_total'];
-       $totalkilo +=$row['kilo'];
-?>
+	<tr align="center">
+		<th >No.</th>
+		<th width="200px">Nama Produk</th>
+		<th width="100px">KG</th>
+		<th width="100px">Karton</th>
+		<th width="150px">Harga Satuan</th>
+		<th width="100px">Jumlah</th>
+	</tr>
+	<?php 
+	  $idbayar = Yii::$app->request->get('idbayar');
+	  $query = "SELECT * FROM penjualan where idbayar='".$idbayar."';";
+	  $result = pg_query($query.";"); 
+	  $i = 1;
+	  $totalharga=0;
+	  $totalkilo=0;
+	  
+		while($row = pg_fetch_assoc($result)) { 
+		   $totalharga += $row['harga_total'];
+		   $totalkilo +=$row['kilo'];
+		   $harga_satuan = $totalharga/$totalkilo;
+	?>
     <tr>
-      <td align="center" class="tg-lqy6"><?php echo $i++; ?></td>
-      <td align="center" class="tg-yw4l"><?php echo $row['produk'];?></td>
-      <td align="center" class="tg-yw4l"><?php echo $row['kilo'];?></td>
-      <td align="center" class="tg-yw4l"><?php echo $row['karton'];?></td>
-      <td align="center" class="tg-yw4l"><?php echo 'Rp. '.$row['harga_total'];?></td>
+      <td><?php echo $i++; ?></td>
+      <td><?php echo $row['produk'];?></td>
+      <td><?php echo $row['kilo'];?></td>
+      <td><?php echo $row['karton'];?></td>
+	  <td><?php echo 'Rp. '.$harga_satuan;?></td>
+      <td><?php echo 'Rp. '.$row['harga_total'];?></td>
     </tr>
+
+	<tr>
+		<td></td>
+		<td><?php echo "Total"?></td>
+		<td><?php echo $totalkilo?></td>
+		<td></td>
+		<td></td>
+		<td><?php echo "Rp. ".$totalharga?></td>
+	</tr>
     <?php } ?>
 
 </table>
-<br>
-<?php echo "Jumlah Bayar : Rp. ".$totalharga?>
-<br>
-<?php echo "Jumlah Kilo : ".$totalkilo?>
-<br>
+
 <div class="cihuy-css">
-  
-  <br> Bekasi, 
-  <?php
-  echo date("d F Y");
-?>
-<br>
-<br>
-<br>
-<?php echo "(Sularjo)"?>
+	<br>
+
+	<table>
+		<tr>
+
+			<td>
+				<br>
+				Penerima
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				(Nama Lengkap)
+			</td>
+			<td  width="312px">
+			</td>
+			<td>
+				
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				(Danur)
+			</td>
+			<td align="right">
+				Bekasi, 
+				<?php
+				  echo date("d F Y");
+				?>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				(Sularjo)
+			</td>
+		</tr>
+	</table>
 </div>
