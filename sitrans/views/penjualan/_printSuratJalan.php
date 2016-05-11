@@ -140,6 +140,7 @@
 				<br>
 				<br>
 				<br>
+				<br>
 				(Nama Lengkap)
 			</td>
 			<td align="left">
@@ -149,6 +150,7 @@
 				?>
 				<br>
 				Mengetahui
+				<br>
 				<br>
 				<br>
 				<br>
