@@ -51,9 +51,7 @@ $this->title = 'Dashboard';
 	]);
 			}
 			?>
-
-    </div>        
-        <?php 
+		        <?php 
         	if(Yii::$app->user->identity->role=='purchasing'){
         		echo "<br>"; 
         		echo "<h3>Daftar Re-Order</h3> <br>"; 
@@ -81,6 +79,8 @@ $this->title = 'Dashboard';
 				echo "</tbody>";  
 		    	echo "</table>";
 			} 
-		?>        
+		?> 
+    </div>        
+       
  	</div>
 </div>
