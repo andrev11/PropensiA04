@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use app\controllers\SiteController;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\PembelianSearch */
@@ -13,11 +14,18 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="pembelian-index">
 
     
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
+    
+   
     <p>
         <?= Html::a(Yii::t('app', 'Tambah Pembelian'), ['create'], ['class' => 'btn btn-success']) ?>
-        <?= Html::a(Yii::t('app', 'Rekap'), ['recap'], ['class' => 'btn btn-success']) ?>
+        <?php 
+          echo SiteController::connect();
+          $query="Select * from pembayaran_out where jumlahbayar is null;";
+          $isRecap=pg_num_rows(pg_query($query));
+          if ($isRecap > 0){
+            echo Html::a(Yii::t('app', 'Rekap'), ['recap'], ['class' => 'btn btn-success']);
+          }
+        ?>
         <?= Html::a(Yii::t('app', 'Print'), ['print', 'tgl_beli' => $searchModel->tgl_beli], ['class' => 'btn btn-success']) ?>
     </p>
 
