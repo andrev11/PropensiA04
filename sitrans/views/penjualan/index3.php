@@ -21,11 +21,38 @@ $this->params['breadcrumbs'][] = $this->title;
     <form method="POST">
     <p>
         <label for="month"> Bulan </label>
-        <input class ="input" type="text" name="month" placeholder="Masukkan Bulan" id="month" required autofocus>
+        <input class ="input" name="month" type="text" id="txtList"  
+                placeholder="Masukkan Bulan" list="month" 
+                required autofocus >
+                <datalist id="month">
+                    <option value="Januari">
+                    <option value="Februari">
+                    <option value="Maret">
+                    <option value="April">
+                    <option value="Mei">
+                    <option value="Juni">
+                    <option value="Juli">
+                    <option value="Agustus">
+                    <option value="September">
+                    <option value="Oktober">
+                    <option value="November">
+                    <option value="Desember">
+                </datalist>
         
         <label for="year"> Tahun </label>
-        <input class ="input" type="text" name="year" placeholder="Masukkan Tahun" id="year">
-        
+        <input list="year" name="year" placeholder="Masukkan Tahun">
+            <datalist id="year">
+                <?php 
+                  $right_now = getdate();
+                  $this_year = $right_now['year'];
+                  $start_year = 1995;
+                  while ($start_year <= $this_year) {
+                      echo "<option>{$start_year}</option>";
+                      $start_year++;
+                  }
+                 ?>
+            </datalist>
+        </input>        
         <input id="submit" type="submit" value="Submit">
 
     </p>
@@ -35,8 +62,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 echo SiteController::connect(); 
                 $bulan = $_POST["month"];
                 $tahun = $_POST["year"];
-                echo "<br>"; 
-                echo "<h3>Rekapitulasi Penjualan Bulan ".$bulan." ".$tahun." </h3> <br>";
+                $month=$bulan;
 
                 if($bulan == 'Januari') {
                     $bulan = 1;
@@ -67,26 +93,33 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 $result = pg_query($query);
 
-                 
-                echo "<table class='table table-striped table-bordered'>"; 
-                echo "<thead>";
-                echo "<th>#</th>";
-                echo "<th>Produk</th>";
-                echo "<th>Jumlah Penjualan (kg)</th>";
-                echo "</thead>";
-                echo "<tbody>"; 
-                   
-                    $count=0;
-                    while($value = pg_fetch_array($result)){
-                        $count++;
-                        echo "<td align='left'>".$count."</td>";
-                        echo "<td align='left'>".$value['produk']."</td>";
-                        echo "<td align='left'>".$value['sum']."</td>";
-                        echo "</tr>";
-                    }
-                echo "</tbody>";  
-                echo "</table>";
 
+                if (pg_num_rows($result)!=0){
+                    echo "<br>"; 
+                    echo "<h3>Rekapitulasi Penjualan Bulan ".$month." ".$tahun." </h3> <br>"; 
+
+                    echo "<table class='table table-striped table-bordered'>"; 
+                    echo "<thead>";
+                    echo "<th>#</th>";
+                    echo "<th>Produk</th>";
+                    echo "<th>Jumlah Penjualan (kg)</th>";
+                    echo "</thead>";
+                    echo "<tbody>"; 
+                       
+                        $count=0;
+                        while($value = pg_fetch_array($result)){
+                            $count++;
+                            echo "<td align='left'>".$count."</td>";
+                            echo "<td align='left'>".$value['produk']."</td>";
+                            echo "<td align='left'>".$value['sum']."</td>";
+                            echo "</tr>";
+                        }
+                    echo "</tbody>";  
+                    echo "</table>";
+
+                } else {
+                     echo "<h3>Rekapitulasi Penjualan ".$month." ".$tahun." tidak ditemukan</h3> <br>";
+                }
             }
         ?>
 </div>

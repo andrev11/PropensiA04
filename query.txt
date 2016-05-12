@@ -9,18 +9,72 @@ WHERE status_bayar = 'Lunas'
 GROUP BY EXTRACT(MONTH FROM Tgl_Bayar);
 
 insert into pembayaran_in values 
-(200000001, 'PT. Indoguna', '2016-04-20', '2016-04-21', 35000000, 'Lunas'),
-(200000002, 'PT. Indoguna', '2016-03-10', '2016-03-21', 50000000, 'Lunas'),
-(200000003, 'PT. Indoguna', '2016-03-20', '2016-03-21', 70000000, 'Lunas'),
-insert into pembayaran_in values (200000004, 'PT. Indoguna', '2016-01-20', '2016-01-21', 10000000, 'Lunas');
-insert into pembayaran_in values (200000005, 'PT. Indoguna', '2016-05-20', '2016-05-21', 100000000, 'Lunas');
-insert into pembayaran_in values (200000007, 'PT. Indoguna', '2016-01-20', '2016-02-21', 40000000, 'Lunas');
-insert into pembayaran_in values (200000008, 'PT. Indoguna', '2016-01-20', '2016-03-21', 20000000, 'Lunas');
-insert into pembayaran_in values (200000009, 'PT. Indoguna', '2016-01-20', '2016-04-21', 55000000, 'Lunas');
-insert into pembayaran_in values (200000010, 'PT. Indoguna', '2016-02-20', '2016-02-21', 55000000, 'Lunas');
+(200000001, 'Lotte Mart', '2016-04-20', '2016-04-21', 35000000, 'Lunas'),
+(200000002, 'Hotel Santika', '2016-03-10', '2016-03-21', 50000000, 'Lunas'),
+(200000003, 'Modena Resto', '2016-03-20', '2016-03-21', 70000000, 'Lunas');
+insert into pembayaran_in values (200000004, 'Resto McDonald', '2016-01-20', '2016-01-21', 10000000, 'Lunas');
+insert into pembayaran_in values (200000005, 'Resto KFC', '2016-05-20', '2016-05-21', 100000000, 'Lunas');
+insert into pembayaran_in values (200000007, 'Hollycow', '2016-01-20', '2016-02-21', 40000000, 'Lunas');
+insert into pembayaran_in values (200000014, 'Hollycow', '2016-01-23', '2016-02-26', 100000000, 'Lunas');
+insert into pembayaran_in values (200000015, 'Modena Resto', '2016-01-23', '2016-02-26', 100000000, 'Lunas');
+insert into pembayaran_in values (200000016, 'Burger King', '2016-01-23', '2016-02-26', 100000000, 'Lunas');
+insert into pembayaran_in values (200000017, 'Hollycow', '2016-02-23', '2016-02-26', 100000000, 'Lunas');
+insert into pembayaran_in values (200000018, 'Modena Resto', '2016-04-23', '2016-04-26', 100000000, 'Lunas');
+insert into pembayaran_in values (200000019, 'Burger King', '2016-04-23', '2016-04-26', 100000000, 'Lunas');
+insert into pembayaran_in values (200000008, 'Hollycow', '2016-01-20', '2016-03-21', 20000000, 'Lunas');
+insert into pembayaran_in values (200000020, 'Lotte Mart', '2016-03-20', '2016-03-21', 20000000, 'Lunas');
+insert into pembayaran_in values (200000021, 'Hollycow', '2016-03-20', '2016-03-21', 20000000, 'Lunas');
+insert into pembayaran_in values (200000021, 'Hollycow', '2016-03-15', '2016-03-21', 900000000, 'Lunas');
+insert into pembayaran_in values (200000009, 'Hollycow', '2016-01-20', '2016-04-21', 55000000, 'Lunas');
+insert into pembayaran_in values (200000010, 'Delicia Hotel', '2016-02-20', '2016-02-21', 55000000, 'Lunas');
+insert into pembayaran_in values (200000011, 'Burger King', '2016-02-20', '2016-04-21', 15000000, 'Lunas');
+insert into pembayaran_in values (200000012, 'Burger King', '2016-02-20', '2016-04-21', 25000000, 'Lunas');
+insert into pembayaran_in values (200000013, 'Hollycow', '2016-02-20', '2016-04-21', 35000000, 'Lunas');
 
+insert into pembayaran_out values 
+(200000001, 'PT. Indoguna', '2016-04-20', '2016-04-21', 250000000, 'Lunas'),
+(200000002, 'PT. Indoguna', '2016-03-10', '2016-03-21', 40000000, 'Lunas'),
+(200000003, 'PT. Bina Mentari Tunggal', '2016-03-20', '2016-03-21', 60000000, 'Lunas');
+insert into pembayaran_out values (200000004, 'PT. Agro Giri Perkasa', '2016-01-20', '2016-01-21', 9000000, 'Lunas');
+insert into pembayaran_out values (200000005, 'Tanjung Unggul Mandiri', '2016-05-20', '2016-05-21', 90000000, 'Lunas');
+insert into pembayaran_out values (200000007, 'Tanjung Unggul Mandiri', '2016-01-20', '2016-02-21', 30000000, 'Lunas');
+insert into pembayaran_out values (200000008, 'PT. Andini Karya Makmur', '2016-01-20', '2016-03-21', 15000000, 'Lunas');
+insert into pembayaran_out values (200000009, 'Agri Satwa Kencana', '2016-01-20', '2016-04-21', 45000000, 'Lunas');
+insert into pembayaran_out values (200000010, 'Agri Satwa Kencana', '2016-02-20', '2016-02-21', 50000000, 'Lunas');
+insert into pembayaran_out values (200000011, 'PT. Lembu Perkasa', '2016-02-20', '2016-04-21', 12000000, 'Lunas');
+insert into pembayaran_out values (200000012, 'PT. Lembu Perkasa', '2016-02-20', '2016-04-21', 20000000, 'Lunas');
+insert into pembayaran_out values (200000013, 'PT. Lembu Perkasa', '2016-02-20', '2016-04-21', 30000000, 'Lunas');
+insert into pembayaran_out values (200000014, 'PT. Lembu Perkasa', '2016-01-23', '2016-02-26', 400000000, 'Lunas');
 
-insert into pembayaran_out values (200000020, 'PT. Indoguna', '2016-01-20', '2016-03-21', 35000000, 'Lunas');
-insert into pembayaran_out values (200000021, 'PT. Indoguna', '2016-01-20', '2016-04-21', 55000000, 'Lunas');
-insert into pembayaran_out values (200000022, 'PT. Indoguna', '2016-01-20', '2016-02-21', 45000000, 'Lunas');
-insert into pembayaran_out values (200000023, 'PT. Indoguna', '2016-01-20', '2016-01-21', 35000000, 'Lunas');
+insert into pembayaran_out values 
+(200000001, 'PT. Indoguna', '2016-01-20', '2016-01-21', 500000000, 'Lunas');
+insert into pembayaran_out values 
+(200000002, 'PT. Bina Mentari Tunggal', '2016-01-20', '2016-01-21', 250000000, 'Lunas');
+insert into pembayaran_out values 
+(200000003, 'PT. Indoguna', '2016-02-20', '2016-02-21', 500000000, 'Lunas');
+insert into pembayaran_out values 
+(200000004, 'PT. Bina Mentari Tunggal', '2016-02-20', '2016-02-21', 400000000, 'Lunas');
+insert into pembayaran_out values 
+(200000005, 'PT. Indoguna', '2016-03-20', '2016-03-21', 50000000, 'Lunas');
+insert into pembayaran_out values 
+(200000006, 'PT. Bina Mentari Tunggal', '2016-03-20', '2016-03-21', 400000000, 'Lunas');
+insert into pembayaran_out values 
+(200000007, 'PT. Indoguna', '2016-04-20', '2016-04-21', 200000000, 'Lunas');
+insert into pembayaran_out values 
+(200000008, 'PT. Bina Mentari Tunggal', '2016-04-20', '2016-04-21', 350000000, 'Lunas');
+insert into pembayaran_out values 
+(200000009, 'PT. Indoguna', '2016-05-02', '2016-05-06', 500000000, 'Lunas');
+insert into pembayaran_out values 
+(200000010, 'PT. Bina Mentari Tunggal', '2016-05-03', '2016-05-07', 300000000, 'Lunas');
+
+insert into pembayaran_in values (200000001, 'Modena Resto', '2016-01-23', '2016-01-26', 500000000, 'Lunas');
+insert into pembayaran_in values (200000002, 'Burger King', '2016-01-23', '2016-01-26', 400000000, 'Lunas');
+insert into pembayaran_in values (200000003, 'Modena Resto', '2016-02-23', '2016-02-26', 600000000, 'Lunas');
+insert into pembayaran_in values (200000004, 'Burger King', '2016-02-23', '2016-02-26', 400000000, 'Lunas');
+insert into pembayaran_in values (200000005, 'Modena Resto', '2016-03-23', '2016-03-26', 50000000, 'Lunas');
+insert into pembayaran_in values (200000006, 'Burger King', '2016-03-23', '2016-03-26', 700000000, 'Lunas');
+insert into pembayaran_in values (200000007, 'Modena Resto', '2016-04-23', '2016-04-26', 450000000, 'Lunas');
+insert into pembayaran_in values (200000008, 'Burger King', '2016-04-23', '2016-04-26', 400000000, 'Lunas');
+insert into pembayaran_in values (200000009, 'Modena Resto', '2016-05-02', '2016-05-10', 400000000, 'Lunas');
+insert into pembayaran_in values (200000010, 'Burger King', '2016-05-06', '2016-05-10', 550000000, 'Lunas');
+

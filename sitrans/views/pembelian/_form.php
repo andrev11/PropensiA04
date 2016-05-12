@@ -60,9 +60,8 @@ use app\models\Lokasi;
         ['prompt'=>'Pilih Cara Bayar']
     ) ?>
     
-    <?= $form->field($model, 'karton')->textInput(['readonly'=>!$model->isNewRecord]) ?>
-
     <?= $form->field($model, 'kilo')->textInput(['readonly'=>!$model->isNewRecord]) ?>
+    <?= $form->field($model, 'karton')->textInput(['readonly'=>!$model->isNewRecord]) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
