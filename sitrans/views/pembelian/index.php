@@ -20,9 +20,12 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a(Yii::t('app', 'Tambah Pembelian'), ['create'], ['class' => 'btn btn-success']) ?>
         <?php 
           echo SiteController::connect();
-          $query="Select * from pembayaran_out where jumlahbayar is null;";
-          $isRecap=pg_num_rows(pg_query($query));
-          if ($isRecap > 0){
+          $query="Select * from pembayaran_in where jumlahbayar is null;";
+          $isRecap1=pg_num_rows(pg_query($query));
+          $query2= "Select sum(harga_total) as totalharga from pembelian p, pembayaran_out po where p.idbayar=po.idbayar 
+                    group by p.idbayar, po.jumlahbayar HAVING sum(harga_total) > jumlahbayar;";
+          $isRecap2=pg_num_rows(pg_query($query2));
+          if ($isRecap1 > 0 || $isRecap2 > 0){
             echo Html::a(Yii::t('app', 'Rekap'), ['recap'], ['class' => 'btn btn-success']);
           }
         ?>
