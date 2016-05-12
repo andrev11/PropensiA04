@@ -176,9 +176,10 @@ class PenjualanController extends Controller
             $tglkirim = Yii::$app->request->get('tgl_kirim');
             $ubahStatus = "UPDATE PENJUALAN SET status_del = 'Dikirim' WHERE idbayar = '".$idbayar."' and tgl_kirim='".$tglkirim."';";
             $masukin = pg_query($ubahStatus);
-                return $this->render('view', [
-                        'model' => $this->findModel($idbayar),
-                    ]);
+            echo PenjualanController::actionIndex2();
+                /***return $this->render('view', [
+                        'model' => $this->findModel($idbayar,$tglkirim),
+                    ]); **/
     }
 
     /**

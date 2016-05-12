@@ -225,6 +225,14 @@ insert into pembayaran_out values
 (200000010, 'PT. Bina Mentari Tunggal', '2016-05-03', '2016-05-07', 300000000, 'Lunas');
 insert into pembayaran_out values (200000011, 'PT. Indoguna', '2015-12-02', '2015-12-10', 500000000, 'Lunas');
 insert into pembayaran_out values (200000012, 'PT. Indoguna', '2015-12-06', '2015-12-10', 550000000, 'Lunas');
+insert into pembayaran_out values 
+(200000018,	'Widodo Makmur',	'2016-05-12', null,	7500000,	'Hutang'),
+(200000014,	'PT. Bina Mentari Tunggal',	'2016-05-12', null,	4800000,	'Hutang'),
+(200000017,	'PT. Agro Giri Perkasa',	'2016-05-12', null,	8000000, 'Hutang'),
+(200000015,	'PT. Andini Karya Makmur',	'2016-05-12', null,	6000000,	'Hutang'),
+(200000019,	'Agri Satwa Kencana',	'2016-05-12', null, 4500000,	'Hutang'),
+(200000013,	'PT. Indoguna',	'2016-05-12',	null,	20900000,	'Hutang'),
+(200000016,	'Jaya Sentosa',	'2016-05-12',	null,	13000000,	'Hutang');
 
 insert into pembayaran_in values (200000001, 'Modena Resto', '2016-01-23', '2016-01-26', 500000000, 'Lunas');
 insert into pembayaran_in values (200000002, 'Burger King', '2016-01-23', '2016-01-26', 400000000, 'Lunas');
@@ -238,6 +246,44 @@ insert into pembayaran_in values (200000009, 'Modena Resto', '2016-05-02', '2016
 insert into pembayaran_in values (200000010, 'Burger King', '2016-05-06', '2016-05-10', 550000000, 'Lunas');
 insert into pembayaran_in values (200000011, 'Modena Resto', '2015-12-02', '2015-12-10', 400000000, 'Lunas');
 insert into pembayaran_in values (200000012, 'Burger King', '2015-12-06', '2015-12-10', 550000000, 'Lunas');
+insert into pembayaran_in values 
+(200000020,	'Hotel Bumiwiyata','2016-05-12',	null,	9900000,	'Piutang'),
+(200000014,	'Burger King', '2016-05-12', null,	11250000,	'Piutang'),
+(200000017,	'Resto AW',	  '2016-05-12'	, null	,6250000,	'Piutang'),
+(200000015,	'Lotte Mart', '2016-05-12',	null,	30300000,	'Piutang'),
+(200000019,	'Resto KFC', '2016-05-12',	null,	15500000,	'Piutang'),
+(200000016,	'Hollycow',	'2016-05-12',	null, 13000000,	'Piutang'),
+(200000013,	'Hotel Santika',	'2016-05-12',	null, 6750000,	'Piutang'),
+(200000018,	'Resto McDonald',	'2016-05-12', null,	28300000,	'Piutang');
+
+insert into pembelian values
+(100000001,	200000013,	'PT. Indoguna',	'Sirloin Affco',	2016-05-12	2016-05-13	Diantar	Transfer	Belum Diterima	4800000	4	40	Bekasi
+(100000002,	200000013,	'PT. Indoguna',	'Striploin Teys',	2016-05-12	2016-05-14	Diantar	Cash	Belum Diterima	4600000	10	40	Bekasi
+(100000003,	200000015,	'PT. Andini Karya Makmur',	'Sirloin Affco',	2016-05-12	2016-05-13	Diantar	Cash	Belum Diterima	6000000	4	50	Cakung
+(100000004,	200000016,	'Jaya Sentosa',	'Chuck Raplh',	2016-05-12	2016-05-14	Diantar	Transfer	Belum Diterima	13000000	10	100	Bekasi
+(100000005,	200000017,	'PT. Agro Giri Perkasa',	'Shank Teys',	2016-05-12	2016-05-14	Diantar	Cash	Belum Diterima	8000000	10	50	Cakung
+(100000006,	200000018,	'Widodo Makmur',	'Rib eye Harvey',	2016-05-12	2016-05-16	Dijemput	Transfer	Belum Diterima	7500000	10	50	Cakung
+(100000007,	200000013,	'PT. Indoguna',	'Sirloin Affco',	2016-05-12	2016-05-13	Diantar	Cash	Belum Diterima	6000000	50	50	Bekasi
+(100000008,	200000014,	'PT. Bina Mentari Tunggal',	'Sirloin Affco',	2016-05-12	2016-05-13	Diantar	Cash	Belum Diterima	4800000	40	40	Bekasi
+(100000009,	200000013,	'PT. Indoguna',	'Sirloin Moonbeef',	2016-05-12	2016-05-13	Diantar	Cash	Belum Diterima	5500000	10	50	Bekasi
+(100000010,	200000019,	'Agri Satwa Kencana',	'Oxtail Hantervaley',	2016-05-12	2016-05-14	Diantar	Transfer	Belum Diterima	4500000	5	50	Cakung
+
+
+insert into penjualan values
+4	200000015	Lotte Mart	Cubroll Riverland	2016-05-12	2016-05-13	2016-05-14	Delivery	Cash	Belum Dikirim	4600000	10	40	Bekasi
+5	200000015	Lotte Mart	Sirloin Moonbeef	2016-05-12	2016-05-13	2016-05-14	Delivery	Cash	Belum Dikirim	6500000	10	50	Bekasi
+6	200000015	Lotte Mart	Knuckle G.Lea	2016-05-12	2016-05-14	2016-05-15	Delivery	Cash	Belum Dikirim	9600000	12	60	Cakung
+7	200000016	Hollycow	Sirloin Moonbeef	2016-05-12	2016-05-14	2016-05-21	Delivery	Transfer	Belum Dikirim	13000000	15	100	Bekasi
+8	200000017	Resto AW	Striploin Teys	2016-05-12	2016-05-14	2016-05-15	Delivery	Cash	Belum Dikirim	6250000	10	50	Bekasi
+14	200000020	Hotel Bumiwiyata	Rib eye Harvey	2016-05-12	2016-05-24	2016-05-31	Delivery	Transfer	Belum Dikirim	9900000	6	60	Cakung
+1	200000013	Hotel Santika	Sirloin Affco	2016-05-12	2016-05-13	2016-05-14	Delivery	Cash	Dikirim	6750000	4	50	Bekasi
+2	200000014	Burger King	Sirloin Affco	2016-05-12	2016-05-14	2016-05-14	PickUp	Transfer	Dikirim	4050000	3	30	Bekasi
+9	200000018	Resto McDonald	Shank Alliance	2016-05-12	2016-05-14	2016-05-14	Delivery	Cash	Belum Dikirim	22000000	10	100	Bekasi
+10	200000018	Resto McDonald	Oxtail Hantervaley	2016-05-12	2016-05-14	2016-05-16	Delivery	Transfer	Belum Dikirim	6300000	6	60	Cakung
+11	200000019	Resto KFC	Chuck Raplh	2016-05-12	2016-05-16	2016-05-21	Delivery	Transfer	Belum Dikirim	7250000	5	50	Cakung
+12	200000019	Resto KFC	Shorttrib Hill Top	2016-05-12	2016-05-14	2016-05-21	Delivery	Transfer	Belum Dikirim	8250000	5	50	Bekasi
+13	200000014	Burger King	Sirloin Teys	2016-05-12	2016-05-17	2016-05-14	Delivery	Transfer	Belum Dikirim	7200000	6	60	Bekasi
+3	200000015	Lotte Mart	Knuckle G.Lea	2016-05-12	2016-05-13	2016-05-13	Delivery	Cash	Belum Dikirim	9600000	10	60	Bekasi
  
  create table role (
 					id int primary key,
@@ -275,6 +321,7 @@ create table lokasi (id int primary key,
 					lokasi varchar(50));
 insert into lokasi values (1, 'Bekasi'),
 						(2, 'Cakung') ;
+
 						
 
 

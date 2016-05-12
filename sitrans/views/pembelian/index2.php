@@ -20,12 +20,12 @@ $this->params['breadcrumbs'][] = $this->title;
             <!-- <th> idbeli </th> -->
             <!-- <th> idbayar </th>-->
              <th align="center">#</th>
+             <th align="center">Supplier</th>
             <th align="center">Nama Produk</th>
             <th align="center">Tanggal Pembelian</th>
             <th align="center">Tanggal Terima</th>
             <th align="center">Cara Penerimaan</th>
             <!-- <th> <th>    cara_bayar</th>-->
-            <th align="center">Status Deliveri</th>
             <!-- <th> <th>    harga_total</th>-->
             <th align="center">Jumlah Karton</th>
             <th align="center">Jumlah Kilo</th>
@@ -38,12 +38,12 @@ $this->params['breadcrumbs'][] = $this->title;
                     <!--<td><?= $beli->idbeli ?></td>-->
                     <!--<td><?= $beli->idbayar ?></td>-->
                     <td><?= $number++ ?></td>
+                    <td><?= $beli->supplier ?></td>
                     <td><?= $beli->produk ?></td>
                     <td align="center"><?= $beli->tgl_beli ?></td>
                     <td align="center"><?= $beli->tgl_terima ?></td>
                     <td align="center"><?= $beli->cara_terima ?></td>
                     <!--<td><?= $beli->cara_bayar ?></td>-->
-                    <td align="center"><?= $beli->status_del ?></td>
                     <!--<td><?= $beli->harga_total ?></td>-->
                     <td align="center"><?= $beli->karton ?></td>
                     <td align="center"><?= $beli->kilo ?></td>

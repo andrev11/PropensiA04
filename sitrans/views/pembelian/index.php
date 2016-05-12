@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a(Yii::t('app', 'Tambah Pembelian'), ['create'], ['class' => 'btn btn-success']) ?>
         <?php 
           echo SiteController::connect();
-          $query="Select * from pembayaran_in where jumlahbayar is null;";
+          $query="Select * from pembayaran_out where jumlahbayar is null;";
           $isRecap1=pg_num_rows(pg_query($query));
           $query2= "Select sum(harga_total) as totalharga from pembelian p, pembayaran_out po where p.idbayar=po.idbayar 
                     group by p.idbayar, po.jumlahbayar HAVING sum(harga_total) > jumlahbayar;";
@@ -48,9 +48,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'cara_bayar',
             'status_del',
             'harga_total',
-            'karton',
             'kilo',
-
+            'karton',
             ['class' => 'yii\grid\ActionColumn' , 'visible' => !Yii::$app->user->isGuest && Yii::$app->user->identity->role != 'purchasing'],
         ],
     ]); ?>

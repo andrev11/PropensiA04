@@ -11,7 +11,7 @@ use app\controllers\SiteController;
 /* @var $searchModel app\models\PembelianSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Daftar Untuk Pengiriman');
+$this->title = Yii::t('app', 'Daftar Penjualan Belum Diterima atau Belum Lunas');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="penjualan-index4">    
@@ -24,15 +24,15 @@ $this->params['breadcrumbs'][] = $this->title;
                     $query = "SELECT customer, tgl_jual, idbayar FROM Penjualan WHERE status_del='Belum Dikirim' and cara_kirim= 'Delivery'
                     GROUP BY customer, tgl_jual, idbayar;";
                 } else if (Yii::$app->user->identity->role == 'finance'){
-                    $query = "SELECT customer, tgl_jual, idbayar FROM Penjualan WHERE status_del='Belum Dikirim' 
-                    GROUP BY customer, tgl_jual, idbayar;";
+                    $query = "SELECT pn.customer, tgl_jual, pn.idbayar FROM Penjualan pn, pembayaran_in pi WHERE status_del='Belum Dikirim' or (pn.idbayar=pi.idbayar and status_bayar='Piutang')
+                    GROUP BY pn.customer, tgl_jual, pn.idbayar;";
                 }
                 $result = pg_query($query);                 
                 echo "<table class='table table-striped table-bordered'>"; 
                 echo "<thead>";
                 echo "<th>#</th>";
                 echo "<th>Customer</th>";
-                echo "<th>Tanggal Transaksi</th>";
+                echo "<th>Tanggal Penjualan</th>";
                 echo "</thead>";
                 echo "<tbody>"; 
                    

@@ -65,7 +65,17 @@ insert into pembayaran_out values
 insert into pembayaran_out values 
 (200000009, 'PT. Indoguna', '2016-05-02', '2016-05-06', 500000000, 'Lunas');
 insert into pembayaran_out values 
-(200000010, 'PT. Bina Mentari Tunggal', '2016-05-03', '2016-05-07', 300000000, 'Lunas');
+(200000010, 'PT. Bina Mentari Tunggal', '2016-05-03', '2016-05-07', 300000000, 'Lunas'),
+(200000011,	'PT. Indoguna',	'2015-12-02',	'2015-12-10',	500000000,	'Lunas'),
+(200000012,	'PT. Indoguna',	'2015-12-06',	'2015-12-10',	550000000,	'Lunas'),
+(200000018,	'Widodo Makmur',	'2016-05-12', null,	7500000,	'Hutang'),
+(200000014,	'PT. Bina Mentari Tunggal',	'2016-05-12', null,	4800000,	'Hutang'),
+(200000017,	'PT. Agro Giri Perkasa',	'2016-05-12', null,	8000000, 'Hutang'),
+(200000015,	'PT. Andini Karya Makmur',	'2016-05-12', null,	6000000,	'Hutang),
+(200000019,	'Agri Satwa Kencana',	'2016-05-12', null, 4500000,	'Hutang'),
+(200000013,	'PT. Indoguna',	2016-05-12',	null,	20900000,	'Hutang'),
+(200000016,	'Jaya Sentosa',	2016-05-12',	null,	13000000,	'Hutang');
+
 
 insert into pembayaran_in values (200000001, 'Modena Resto', '2016-01-23', '2016-01-26', 500000000, 'Lunas');
 insert into pembayaran_in values (200000002, 'Burger King', '2016-01-23', '2016-01-26', 400000000, 'Lunas');
@@ -77,4 +87,15 @@ insert into pembayaran_in values (200000007, 'Modena Resto', '2016-04-23', '2016
 insert into pembayaran_in values (200000008, 'Burger King', '2016-04-23', '2016-04-26', 400000000, 'Lunas');
 insert into pembayaran_in values (200000009, 'Modena Resto', '2016-05-02', '2016-05-10', 400000000, 'Lunas');
 insert into pembayaran_in values (200000010, 'Burger King', '2016-05-06', '2016-05-10', 550000000, 'Lunas');
+insert into pembayaran_in values 
+(200000011, 'Modena Resto', '2015-12-02', '2015-12-10', 400000000,	'Lunas'),
+(200000012,	'Burger King',	'2015-12-06',	'2015-12-10',	550000000,	'Lunas'),
+(200000020,	'Hotel Bumiwiyata','2016-05-12',	null,	9900000,	'Piutang'),
+(200000014,	'Burger King', '2016-05-12', null,	11250000,	'Piutang'),
+(200000017,	'Resto AW',	  '2016-05-12'	, null	,6250000,	'Piutang'),
+(200000015,	'Lotte Mart', '2016-05-12',	null,	30300000,	'Piutang'),
+(200000019,	'Resto KFC', '2016-05-12',	null,	15500000,	'Piutang'),
+(200000016,	'Hollycow',	'2016-05-12',	null, 13000000,	'Piutang'),
+(200000013,	'Hotel Santika',	'2016-05-12',	null, 6750000,	'Piutang'),
+(200000018,	'Resto McDonald',	'2016-05-12', null,	28300000,	'Piutang');
 

@@ -8,7 +8,7 @@ use yii\db\Query;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Daftar Barang Akan Keluar';
+$this->title = 'Daftar Penjualan Belum Dikirim';
 $this->params['breadcrumbs'][] = $this->title;
        
 ?>

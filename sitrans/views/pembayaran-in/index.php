@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'tgl_trans',
             'customer',
             'status_bayar',
-            //'tgl_bayar',
+            'tgl_bayar',
             'jumlahbayar',
 
             ['class' => 'yii\grid\ActionColumn'],

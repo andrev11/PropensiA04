@@ -20,14 +20,12 @@ $this->params['breadcrumbs'][] = $this->title;
             <!-- <th> idbeli </th> -->
             <!-- <th> idbayar </th>-->
              <th align="center">#</th>
-            <th align="center">Id Transaksi</th>
             <th align="center">Customer</th>
             <th align="center">Nama Produk</th>
             <th align="center">Tanggal Penjualan</th>
             <th align="center">Tanggal Kirim</th>
             <th align="center">Cara Kirim</th>
             <!-- <th> <th>    cara_bayar</th>-->
-            <th align="center">Status Deliveri</th>
             <!-- <th> <th>    harga_total</th>-->
             <th align="center">Jumlah Karton</th>
             <th align="center">Jumlah Kilo</th>
@@ -40,13 +38,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 $idbayarprev= $model->idbayar; ?>
                 <tr>
                     <td><?= $number++ ?></td>
-                    <td><?= $model->idbayar ?></td>
                     <td><?= $model->customer ?></td>
                     <td><?= $model->produk ?></td>
                     <td align="center"><?= $model->tgl_jual ?></td>
                     <td align="center"><?= $model->tgl_kirim ?></td>
                     <td align="center"><?= $model->cara_kirim ?></td>
-                    <td align="center"><?= $model->status_del ?></td>
                     <td align="center"><?= $model->karton ?></td>
                     <td align="center"><?= $model->kilo ?></td>
                     <td align="center"><?= Html::a('View', ['view', 'id' => $model->idjual], ['class' => 'btn btn-primary']) ?></td>
