@@ -11,7 +11,12 @@ use app\controllers\SiteController;
 /* @var $searchModel app\models\PembelianSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Daftar Penjualan Belum Diterima atau Belum Lunas');
+if(Yii::$app->user->identity->role == 'admin inventori'){
+   $this->title = Yii::t('app', 'Daftar Surat Jalan'); 
+} else if (Yii::$app->user->identity->role == 'finance'){
+   $this->title = Yii::t('app', 'Daftar Faktur Penjualan');
+}
+
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="penjualan-index4">    

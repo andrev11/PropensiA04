@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\PembelianOutSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Pembayaran Keluar');
+$this->title = Yii::t('app', 'Daftar Pembayaran Keluar');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="pembayaran-out-index">

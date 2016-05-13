@@ -6,13 +6,13 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Pengguna';
+$this->title = 'Daftar Pengguna';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="pengguna-index">
 
     <p>
-        <?= Html::a('Create Pengguna', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Tambah Pengguna', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([

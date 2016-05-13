@@ -10,7 +10,7 @@ use app\controllers\SiteController;
 
 /*ini cobain*/
 
-$this->title = Yii::t('app', 'Penjualan');
+$this->title = Yii::t('app', 'Daftar Penjualan');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="penjualan-index">
@@ -44,16 +44,16 @@ $this->params['breadcrumbs'][] = $this->title;
             'customer',
             'produk',
             'tgl_jual',
-            'tgl_kirim',
-            'lokasi',
-            'jatuh_tempo',
+            //'tgl_kirim',
+            //'lokasi',
+            //'jatuh_tempo',
             // 'jam_kirim',
             // 'cara_kirim',
             // 'cara_bayar',
             'status_del',
-            'harga_total',
-            // 'karton',
-            // 'kilo',
+             'harga_total',
+             'kilo',
+             'karton',
 
             ['class' => 'yii\grid\ActionColumn' , 'visible' => !Yii::$app->user->isGuest && Yii::$app->user->identity->role != 'sales marketing'],
         ],

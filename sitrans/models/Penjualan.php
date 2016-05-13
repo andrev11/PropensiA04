@@ -68,8 +68,8 @@ class Penjualan extends \yii\db\ActiveRecord
             'cara_bayar' => Yii::t('app', 'Cara Bayar'),
             'status_del' => Yii::t('app', 'Status Deliveri'),
             'harga_total' => Yii::t('app', 'Harga Total'),
-            'karton' => Yii::t('app', 'Karton'),
-            'kilo' => Yii::t('app', 'Kilo'),
+            'kilo' => Yii::t('app', 'Jumlah KG'),
+            'karton' => Yii::t('app', 'Jumlah Karton'),
             'lokasi' => 'Lokasi'
         ];
     }

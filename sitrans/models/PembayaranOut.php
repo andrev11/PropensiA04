@@ -49,7 +49,7 @@ class PembayaranOut extends \yii\db\ActiveRecord
         return [
             'idbayar' => Yii::t('app', 'Idbayar'),
             'supplier' => Yii::t('app', 'Supplier'),
-            'tgl_trans' => Yii::t('app', 'Tanggal Transaksi'),
+            'tgl_trans' => Yii::t('app', 'Tanggal Pembelian'),
             'tgl_bayar' => Yii::t('app', 'Tanggal Pembayaran'),
             'jumlahbayar' => Yii::t('app', 'Jumlah Harga'),
             'status_bayar' => Yii::t('app', 'Status Pembayaran'),

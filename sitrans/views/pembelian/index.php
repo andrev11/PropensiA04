@@ -8,7 +8,7 @@ use app\controllers\SiteController;
 /* @var $searchModel app\models\PembelianSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Pembelian');
+$this->title = Yii::t('app', 'Daftar Pembelian');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="pembelian-index">
@@ -43,9 +43,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'supplier',
             'produk',
             'tgl_beli',
-            'tgl_terima',
-            'cara_terima',
-            'cara_bayar',
+            //'tgl_terima',
+            //'cara_terima',
+            //'cara_bayar',
             'status_del',
             'harga_total',
             'kilo',

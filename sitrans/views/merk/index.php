@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\MerkSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Merk');
+$this->title = Yii::t('app', 'Daftar Merk Produk');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="merk-index">
@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Merk'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Tambah Merk'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([

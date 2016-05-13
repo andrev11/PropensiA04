@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\JenisSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Jenis');
+$this->title = Yii::t('app', 'Daftar Jenis Produk');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="jenis-index">
@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?php if (!\Yii::$app->user->isGuest){
 			if (Yii::$app->user->identity->role == 'purchasing')
-				echo Html::a(Yii::t('app', 'Create Jenis'), ['create'], ['class' => 'btn btn-success']);} 
+				echo Html::a(Yii::t('app', 'Tambah Jenis'), ['create'], ['class' => 'btn btn-success']);} 
 			?>
     </p>
 

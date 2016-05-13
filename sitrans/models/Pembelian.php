@@ -78,7 +78,7 @@ class Pembelian extends \yii\db\ActiveRecord
             'status_del' => 'Status Delivery',
             'harga_total' => 'Harga Total',
             'karton' => 'Jumlah Karton',
-            'kilo' => 'Jumlah Kilo',
+            'kilo' => 'Jumlah KG',
             'lokasi' => 'Lokasi',
         ];
     }

@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\PembayaranInSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Pembayaran Masuk');
+$this->title = Yii::t('app', 'Daftar Pembayaran Masuk');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="pembayaran-in-index">
@@ -15,9 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
     <!--
-    <p>
-        <?= Html::a(Yii::t('app', 'Create Pembayaran In'), ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+   
     -->
 
     <?= GridView::widget([
