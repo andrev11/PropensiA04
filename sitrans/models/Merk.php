@@ -34,6 +34,7 @@ class Merk extends \yii\db\ActiveRecord
             [['idmerk', 'idsupplier','namasupplier'], 'required'],
             [['idmerk', 'idsupplier'], 'integer'],
             [['namasupplier'], 'string', 'max' => 50],
+            [['namasupplier'],'match', 'not' => true, 'pattern' => '/[^a-zA-Z_ 0-9]/', 'message' => 'Invalid characters in nama merk'],
             [['status'], 'string', 'max' => 25]
         ];
     }

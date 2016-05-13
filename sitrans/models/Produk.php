@@ -45,11 +45,13 @@ class Produk extends \yii\db\ActiveRecord
             [['kilo', 'karton'], 'number','min'=>0],
             [['lokasi'], 'string', 'max' => 25],
             [['namaproduk'], 'string', 'max' => 50],
+            [['namaproduk'],'match', 'not' => true, 'pattern' => '/[^a-zA-Z_ 0-9]/', 'message' => 'Invalid characters in nama produk'],
             [['newstokkilo','newstokkarton'], 'number','min'=>0],
-           [['newstokkilo'],'compare', 'compareAttribute' => 'kilo', 'operator'=>'<', 'message' => 'Updated Stok Kilo must be less than current Stok Kilo'], 
+            [['newstokkilo'],'compare', 'compareAttribute' => 'kilo', 'operator'=>'<', 'message' => 'Updated Stok Kilo must be less than current Stok Kilo'], 
             [['newstokkilo'],'setkilo'],
-           [['newstokkarton'],'compare', 'compareAttribute' => 'karton', 'operator'=>'<', 'message' => 'Updated Stok Karton must be less than current Stok Karton'], 
+            [['newstokkarton'],'compare', 'compareAttribute' => 'karton', 'operator'=>'<', 'message' => 'Updated Stok Karton must be less than current Stok Karton'], 
             [['newstokkarton'],'setkarton'],
+            [['harga_jual'], 'required', 'on'=>'update'],
        ];
     }
 
