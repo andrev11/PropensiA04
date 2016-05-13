@@ -100,6 +100,23 @@ class PembelianController extends Controller
         }
     }
 
+    public function actionIndex5()
+    {
+
+        $beli = Pembelian::find()
+            ->where("status_del= 'Belum Diterima'")
+            ->orderBy(['tgl_beli' => SORT_DESC])
+            ->all();
+        
+        if (!\Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'purchasing'){
+            return $this->render('index5', [
+                'beli' => $beli,
+            ]);
+        } else {
+            return $this->redirect(Yii::$app->user->loginUrl);
+        }
+    }
+
 
     /**
      * Displays a single Pembelian model.
