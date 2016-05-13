@@ -50,7 +50,7 @@ use app\themes\adminLTE\components\ThemeNav;
 					  ['label' => ThemeNav::link('Set ROP', 'fa fa-table'), 'url' => ['jenis/index'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'sales marketing'],
 					  ['label' => ThemeNav::link('Produk', 'fa fa-table'), 'url' => ['produk/index'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role != 'admin' && Yii::$app->user->identity->role != 'deactivated'],
 					  ['label' => ThemeNav::link('Pembelian', 'fa fa-circle-o text-red'), 'url' => ['pembelian/index'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'purchasing'],
-					  ['label' => ThemeNav::link('Penjualan', 'fa fa-circle-o text-green'), 'url' => ['penjualan/index'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'sales marketing'],
+					  
 					  ['label' => ThemeNav::link('Barang Masuk', 'fa fa-circle-o text-blue'), 'url' => ['pembelian/index2'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'admin inventori'],
 					  ['label' => ThemeNav::link('Barang Keluar', 'fa fa-circle-o text-blue'), 'url' => ['penjualan/index2'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'admin inventori'],
 					  ['label' => ThemeNav::link('Daftar Hutang', 'fa fa-circle-o text-red'), 'url' => ['pembayaran-out/index2'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'finance'],
@@ -61,12 +61,29 @@ use app\themes\adminLTE\components\ThemeNav;
 					  ['label' => ThemeNav::link('Rekap Penjualan', 'fa fa-circle-o'), 'url' => ['penjualan/index3'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'bod'],
 					  ['label' => ThemeNav::link('Rekap Pembayaran Keluar', 'fa fa-circle-o'), 'url' => ['pembayaran-out/index3'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'bod'],
 					  ['label' => ThemeNav::link('Rekap Pembayaran Masuk', 'fa fa-circle-o'), 'url' => ['pembayaran-in/index3'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'bod'],
-            ['label' => ThemeNav::link('Surat Jalan', 'fa fa-circle-o'), 'url' => ['penjualan/index4'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'admin inventori'],
-            ['label' => ThemeNav::link('Faktur Penjualan', 'fa fa-circle-o'), 'url' => ['penjualan/index4'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'finance'],
+				   	  ['label' => ThemeNav::link('Surat Jalan', 'fa fa-circle-o'), 'url' => ['penjualan/index4'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'admin inventori'],
+					  ['label' => ThemeNav::link('Faktur Penjualan', 'fa fa-circle-o'), 'url' => ['penjualan/index4'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'finance'],
                   ],
                 ]);
             ?>
-
+			<?=Menu::widget([
+				'options' => ['class' => 'sidebar-menu treeview'],
+				'items' => [
+					['label' => ThemeNav::link('Penjualan', 'fa fa-circle-o text-green'),
+						'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'sales marketing',
+						'url' => ['#'],
+						'template' => '<a href="{url}" >{label}<i class="fa fa-angle-left pull-right"></i></a>',
+						'items' => [
+							['label' => ThemeNav::link('Penjualan', 'fa fa-circle text-green'), 'url' => ['penjualan/index'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'sales marketing'],
+							['label' => ThemeNav::link('Penjualan2', 'fa fa-circle text-green'), 'url' => ['penjualan/index5'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'sales marketing'],
+						],
+					],
+				],
+				'submenuTemplate' => "\n<ul class='treeview-menu'>\n{items}\n</ul>\n",
+				'encodeLabels' => false, //allows you to use html in labels
+				'activateParents' => true,
+				]);	  
+			?>
         </section>
   <!-- /.sidebar -->
 </aside>
