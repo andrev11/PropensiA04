@@ -32,10 +32,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     <td><?= $model->tgl_trans ?></td>
                     <td><?= $model->jumlahbayar ?></td>
                     
-                    <td><?= Html::a('Confirm', ['confirm', 'id' => $model->idbayar], [
+                    <td><?= Html::a('Konfirmasi', ['confirm', 'id' => $model->idbayar], [
                         'class' => 'btn btn-danger',
                         'data' => [
-                            'confirm' => 'Are you sure you want to confirm this item?',
+                            'confirm' => 'Apakah anda yakin ingin mengkonfirmasi transaksi ini ?',
                             'method' => 'post',
                         ],
                     ]) ?></td>

@@ -49,7 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         echo "<td align='left'>".$value['customer']."</td>";
                         echo "<td align='left'>".$value['tgl_jual']."</td>";
                         echo "<td align='left'>";
-                        echo  Html::a(Yii::t('app', 'Print'), ['print', 'idbayar' => $idbayar ], ['class' => 'btn btn-success']);
+                        echo  Html::a(Yii::t('app', 'Cetak'), ['print', 'idbayar' => $idbayar ], ['class' => 'btn btn-success']);
                         echo "</td>";
                         echo "</tr>";
                     }

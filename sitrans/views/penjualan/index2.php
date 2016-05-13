@@ -45,12 +45,12 @@ $this->params['breadcrumbs'][] = $this->title;
                     <td align="center"><?= $model->cara_kirim ?></td>
                     <td align="center"><?= $model->karton ?></td>
                     <td align="center"><?= $model->kilo ?></td>
-                    <td align="center"><?= Html::a('View', ['view', 'id' => $model->idjual], ['class' => 'btn btn-primary']) ?></td>
+                    <td align="center"><?= Html::a('Lihat', ['view', 'id' => $model->idjual], ['class' => 'btn btn-primary']) ?></td>
 
-                    <td align="center"><?= Html::a('Confirm', ['confirm', 'idbayar' => $model->idbayar, 'tgl_kirim'=> $model->tgl_kirim], [
+                    <td align="center"><?= Html::a('Konfirmasi', ['confirm', 'idbayar' => $model->idbayar, 'tgl_kirim'=> $model->tgl_kirim], [
                         'class' => 'btn btn-danger',
                         'data' => [
-                            'confirm' => 'Are you sure you want to confirm this item?',
+                            'confirm' => 'Apakah anda yakin ingin mengkonfirmasi transaksi ini?',
                             'method' => 'post',
                         ],
                     ]) ?></td>
