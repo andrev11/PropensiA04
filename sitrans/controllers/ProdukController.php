@@ -163,6 +163,9 @@ class ProdukController extends Controller
     {
         $model = $this->findModel($idmerk, $idjenis, $lokasi); 
         $oldname=$model->namaproduk; 
+        if(Yii::$app->user->identity->role == 'sales marketing'){
+            $model->scenario = 'update2';
+        }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $namaproduk=$model->namaproduk;
