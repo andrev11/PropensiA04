@@ -34,8 +34,14 @@ use app\models\Lokasi;
             ) ;
         }
     ?>
-
-    <?= $form->field($model, 'namaproduk')->textInput(['readonly'=>!$model->isNewRecord]) ?>
+   <?php
+        if($model->isNewRecord || Yii::$app->user->identity->role == 'purchasing'){
+             echo $form->field($model, 'namaproduk')->textInput();
+            } 
+            if (Yii::$app->user->identity->role == 'sales marketing'){
+               echo $form->field($model, 'namaproduk')->textInput(['readonly'=>!$model->isNewRecord]);
+            }
+   ?>
 
    <?php
         if($model->isNewRecord) {

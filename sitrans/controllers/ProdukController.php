@@ -161,12 +161,14 @@ class ProdukController extends Controller
     }
     public function actionSalesPurchasing($idmerk, $idjenis, $lokasi)
     {
-        $model = $this->findModel($idmerk, $idjenis, $lokasi);  
+        $model = $this->findModel($idmerk, $idjenis, $lokasi); 
+        $oldname=$model->namaproduk; 
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $namaproduk=$model->namaproduk;
             $hargabeli=$model->harga_beli;
             $hargajual=$model->harga_jual;
+            echo ProdukController::UpdateNama($oldname,$namaproduk);
             echo ProdukController::UpdateHarga($namaproduk,$hargabeli,$hargajual);
             return $this->redirect(['view', 'idmerk' => $model->idmerk, 'idjenis' => $model->idjenis, 'lokasi' => $model->lokasi]);
         } else {
@@ -181,6 +183,11 @@ class ProdukController extends Controller
         $queryhargajual="Update produk set harga_jual=".$hargajual." where namaproduk='".$namaproduk."';";
         pg_query($queryhargabeli);
         pg_query($queryhargajual);
+    }
+     public function UpdateNama($oldname,$namaproduk){
+        echo SiteController::connect();
+        $query="Update produk set namaproduk='".$namaproduk."' where namaproduk='".$oldname."';";
+        pg_query($query);
     }
 
     public function actionUpdateStok($currentkiloProduk, $currentkartonProduk, $kiloupdated, $kartonupdated, $idjenis)
