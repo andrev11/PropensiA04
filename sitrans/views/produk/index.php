@@ -15,12 +15,16 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        
+        <?php 
+            if (Yii::$app->user->identity->role == 'purchasing') {
+                echo Html::a(Yii::t('app', 'Tambah Produk'), ['create'], ['class' => 'btn btn-success']);
+            }
+        ?>
 		<?php if (!\Yii::$app->user->isGuest){
 			if (Yii::$app->user->identity->role == 'admin inventori') 
-		echo Html::a(Yii::t('app', 'Cetak'), ['print'], ['class' => 'btn btn-success']);}
-			?>
-			
+		       echo Html::a(Yii::t('app', 'Cetak'), ['print'], ['class' => 'btn btn-success']);
+            }
+		?>	
     </p>
 
     <?= GridView::widget([

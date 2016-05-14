@@ -29,7 +29,7 @@ use app\models\Lokasi;
         }
     ?>
 
-    <?= Html::a(Yii::t('app', 'Create Produk'), ['produk/create'], ['class' => 'btn btn-success']) ?>
+    <?= Html::a(Yii::t('app', 'Tambah Produk'), ['produk/create'], ['class' => 'btn btn-success']) ?>
 
     <?php 
         if($model->isNewRecord) {
