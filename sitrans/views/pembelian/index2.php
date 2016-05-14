@@ -47,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <!--<td><?= $beli->harga_total ?></td>-->
                     <td align="center"><?= $beli->karton ?></td>
                     <td align="center"><?= $beli->kilo ?></td>
-                    <td align="center"><?= Html::a('Lihat', ['view', 'id' => $beli->idbeli], ['class' => 'btn btn-primary']) ?></td>
+                    <td align="center"><?= Html::a('View', ['view', 'id' => $beli->idbeli], ['class' => 'btn btn-primary']) ?></td>
                     <td align="center"><?= Html::a('Konfirmasi', ['confirm', 'id' => $beli->idbeli], [
                         'class' => 'btn btn-danger',
                         'data' => [

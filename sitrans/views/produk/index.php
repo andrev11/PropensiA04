@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ?>
 		<?php if (!\Yii::$app->user->isGuest){
 			if (Yii::$app->user->identity->role == 'admin inventori') 
-		       echo Html::a(Yii::t('app', 'Cetak'), ['print'], ['class' => 'btn btn-success']);
+		       echo Html::a(Yii::t('app', 'Print'), ['print'], ['class' => 'btn btn-success']);
             }
 		?>	
     </p>

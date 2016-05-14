@@ -45,7 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <td align="center"><?= $model->cara_kirim ?></td>
                     <td align="center"><?= $model->karton ?></td>
                     <td align="center"><?= $model->kilo ?></td>
-                    <td align="center"><?= Html::a('Lihat', ['view', 'id' => $model->idjual], ['class' => 'btn btn-primary']) ?></td>
+                    <td align="center"><?= Html::a('View', ['view', 'id' => $model->idjual], ['class' => 'btn btn-primary']) ?></td>
 
                     <td align="center"><?= Html::a('Konfirmasi', ['confirm', 'idbayar' => $model->idbayar, 'tgl_kirim'=> $model->tgl_kirim], [
                         'class' => 'btn btn-danger',
