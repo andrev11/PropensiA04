@@ -38,8 +38,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     <td><?= $model->supplier ?></td>
                     <td><?= $model->produk ?></td>
                     <td align="center"><?= $model->tgl_beli ?></td>
-                    <td align="center"><?= $model->tgl_kirim ?></td>
-                    <td align="center"><?= $model->cara_kirim ?></td>
+                    <td align="center"><?= $model->tgl_terima ?></td>
+                    <td align="center"><?= $model->cara_terima ?></td>
                     <td align="center"><?= $model->cara_bayar ?></td>
                     <td align="center"><?= $model->kilo ?></td>
                     <td align="center"><?= $model->karton ?></td>
