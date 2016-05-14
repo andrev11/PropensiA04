@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
             echo Html::a(Yii::t('app', 'Rekap'), ['recap'], ['class' => 'btn btn-success']);
           }
         ?>
-        <?= Html::a(Yii::t('app', 'Cetak'), ['print', 'tgl_beli' => $searchModel->tgl_jual], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Print'), ['print', 'tgl_beli' => $searchModel->tgl_jual], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
