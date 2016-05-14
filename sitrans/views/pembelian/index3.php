@@ -45,10 +45,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php 
                   $right_now = getdate();
                   $this_year = $right_now['year'];
-                  $start_year = 1995;
+                  $start_year = 2000;
                   while ($start_year <= $this_year) {
-                      echo "<option>{$start_year}</option>";
-                      $start_year++;
+                      echo "<option>{$this_year}</option>";
+                      $this_year--;
                   }
                  ?>
             </datalist>
