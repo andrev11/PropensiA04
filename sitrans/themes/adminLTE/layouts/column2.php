@@ -75,7 +75,7 @@ use app\themes\adminLTE\components\ThemeNav;
 						'template' => '<a href="{url}" >{label}<i class="fa fa-angle-left pull-right"></i></a>',
 						'items' => [
 							['label' => ThemeNav::link('Semua', 'fa fa-circle text-green'), 'url' => ['penjualan/index'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'sales marketing'],
-							['label' => ThemeNav::link('Belum Diterima', 'fa fa-circle text-green'), 'url' => ['penjualan/index5'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'sales marketing'],
+							['label' => ThemeNav::link('Belum Dikirim', 'fa fa-circle text-green'), 'url' => ['penjualan/index5'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'sales marketing'],
 						],
 					],
 					['label' => ThemeNav::link('Pembelian', 'fa fa-circle-o text-red'),
