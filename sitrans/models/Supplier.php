@@ -48,7 +48,7 @@ class Supplier extends \yii\db\ActiveRecord
     {
         return [
             'idsupplier' => Yii::t('app', 'Id Supplier'),
-            'namasupplier' => Yii::t('app', 'Nama Supplier'),
+            'namasupplier' => Yii::t('app', 'Nama'),
             'telponsupplier' => Yii::t('app', 'Telpon'),
             'alamatsupplier' => Yii::t('app', 'Alamat'),
             'no_rekening' => Yii::t('app', 'No Rekening'),
