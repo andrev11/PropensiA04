@@ -24,7 +24,8 @@ $this->title = 'Dashboard';
 		
         <?php
 			if(Yii::$app->user->identity->role=='bod'){
-			 
+			 	
+			 	date_default_timezone_set('Asia/Jakarta');
 				echo SiteController::connect();
 
 				$result = pg_query("select date_trunc('month', pembayaran_in.tgl_bayar), sum(pembayaran_in.jumlahbayar) 

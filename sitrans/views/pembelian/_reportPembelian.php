@@ -57,11 +57,12 @@ echo date("d F Y");
   </tr>
 <?php 
 $tgl_beli = Yii::$app->request->get('tgl_beli');
-$query = "SELECT * FROM pembelian ORDER BY tgl_beli DESC";
+$query = "SELECT * FROM pembelian";
 if(null !== $tgl_beli){ 
 	$query = $query." WHERE tgl_beli = '".$tgl_beli."'";
 }
-$result = pg_query($query.";"); 
+$query = $query." ORDER BY tgl_beli DESC;";
+$result = pg_query($query); 
 	$i = 1;
 	while($row = pg_fetch_assoc($result)) { ?>
   <tr>
