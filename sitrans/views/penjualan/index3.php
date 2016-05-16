@@ -53,7 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
                  ?>
             </datalist>
         </input>        
-        <input id="submit" type="submit" value="Submit">
+        <input id="submit" type="submit" value="Submit" class = "btn btn-success">
 
     </p>
     </form>
