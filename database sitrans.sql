@@ -232,6 +232,15 @@ insert into pembayaran_out values
 (200000019,	'Agri Satwa Kencana',	'2016-05-12', null, 4500000,	'Hutang'),
 (200000013,	'PT. Indoguna',	'2016-05-12',	null,	20900000,	'Hutang'),
 (200000016,	'Jaya Sentosa',	'2016-05-12',	null,	13000000,	'Hutang');
+insert into pembayaran_out values 
+(200000030,	'Agri Satwa Kencana'	, '2016-04-14',	'2016-04-15',	120000000,	'Lunas'),
+(200000025,	'PT. Agro Giri Perkasa'	, '2016-04-14'	, '2016-04-15',	16800000,	'Lunas'),
+(200000027,	'PT. Bina Mentari Tunggal'	, '2016-03-14'	, '2016-03-15',	17220000	, 'Lunas'),
+(200000029,	'PT. Andini Karya Makmur'	, '2016-03-14'	, '2016-03-15',	21000000	, 'Lunas'),
+(200000023,	'Tanjung Unggul Mandiri'	, '2016-02-14'	, '2016-02-15',	10800000	, 'Lunas'),
+(200000026,	'Widodo Makmur'	, '2016-02-14'	, '2016-02-15',	3220000	, 'Lunas'),
+(200000024,	'PT. Indoguna'	, '2016-01-14'	, '2016-01-15',	18000000	, 'Lunas'),
+(200000028,	'PT. Pasir Tengah'	, '2016-01-14',	'2016-01-15',	13800000	, 'Lunas');
 
 insert into pembayaran_in values (200000001, 'Modena Resto', '2016-01-23', '2016-01-26', 500000000, 'Lunas');
 insert into pembayaran_in values (200000002, 'Burger King', '2016-01-23', '2016-01-26', 400000000, 'Lunas');
@@ -255,6 +264,15 @@ insert into pembayaran_in values
 (200000013,	'Hotel Santika',	'2016-05-12',	null, 6750000,	'Piutang'),
 (200000018,	'Resto McDonald',	'2016-05-12', null,	28300000,	'Piutang');
 
+insert into pembayaran_in values
+(200000028,	'Modena Resto'	, '2016-04-14'	, '2016-04-19',	138250000	, 'Lunas'),
+(200000023,	'Hollycow'	, '2016-04-14'	, '2016-04-15',	163650000	, 'Lunas'),
+(200000029,	'Resto AW'	, '2016-03-14'	, '2016-03-15',	175950000	, 'Lunas'),
+(200000025,	'Lotte Mart'	, '2016-03-14'	, '2016-03-15',	3500000	, 'Lunas'),
+(200000027,	'Hotel Bumiwiyata'	, '2016-02-14'	, '2016-02-15',	40800000	, 'Lunas'),
+(200000026,	'Burger King'	, '2016-02-14'	, '2016-02-15',	156375000	, 'Lunas'),
+(200000024,	'Hotel Santika'	, '2016-01-14'	, '2016-01-15',	47400000	, 'Lunas');
+
 insert into pembelian values
 (100000001,	200000013,	'PT. Indoguna',	'Sirloin Affco',	'2016-05-12',	'2016-05-13',	'Diantar',	'Transfer',	'Belum Diterima',	4800000,	4,	40,	'Bekasi'),
 (100000002,	200000013,	'PT. Indoguna',	'Striploin Teys',	'2016-05-12',	'2016-05-14',	'Diantar',	'Cash',	'Belum Diterima',	4600000,	10,	40,	'Bekasi'),
@@ -267,7 +285,15 @@ insert into pembelian values
 (100000009,	200000013,	'PT. Indoguna',	'Sirloin Moonbeef',	'2016-05-12',	'2016-05-13',	'Diantar',	'Cash',	'Belum Diterima',	5500000,	10,	50,	'Bekasi'),
 (100000010,	200000019,	'Agri Satwa Kencana',	'Oxtail Hantervaley',	'2016-05-12',	'2016-05-14',	'Diantar',	'Transfer',	'Belum Diterima',	4500000,	5,	50,	'Cakung');
 
-
+insert into pembelian values
+(100000011,	200000024,	 'PT. Indoguna',	'Rib eye Harvey',	'2016-01-14',	'2016-01-18'	, 'Dijemput' ,	'Cash',	'Diterima' , 	18000000,	60,	120,	'Bekasi'),
+(100000012,	200000026,	'Widodo Makmur',	'Chuck Alliance',	'2016-02-14',	'2016-02-25'	, 'Dijemput' ,	'Cash',	'Diterima' , 	3220000,	5,	23,	'Cakung'),
+(100000013,	200000030,	 'Agri Satwa Kencana',	'Knuckle Hantervalley',	'2016-04-14',	'2016-04-24',	'Diantar',	'Cash',	'Diterima' , 	120000000,	123,	750,	'Bekasi'),
+(100000014,	200000027,	 'PT. Bina Mentari Tunggal',	'Chuck Alliance',	'2016-03-14',	'2016-03-24'	, 'Dijemput' ,	'Cash',	'Diterima' , 	17220000,	15,	123,	'Cakung'),
+(100000015,	200000028,	 'PT. Pasir Tengah',	'Striploin Teys',	'2016-01-14',	'2016-01-19',	'Diantar',	'Cash',	'Diterima' , 	13800000,	15,	120,	'Bekasi'),
+(100000016,	200000023,	 'Tanjung Unggul Mandiri',	'Oxtail Hantervaley',	'2016-02-14',	'2016-02-18'	, 'Dijemput' ,	'Cash',	'Diterima' , 	10800000,	12,	120,	'Bekasi'),
+(100000017,	200000029,	 'PT. Andini Karya Makmur',	'Rib eye Hill Top',	'2016-03-14',	'2016-03-18',	'Diantar',	'Transfer',	'Diterima' , 	21000000,	34,	150,	'Cakung'),
+(100000018,	200000025,	 'PT. Agro Giri Perkasa',	'Rib eye Hill Top',	'2016-04-14',	'2016-04-18',	'Diantar',	'Cash',	'Diterima' , 	16800000,	45,	120,	'Cakung');
 
 insert into penjualan values
 (100000001, 200000015,	'Lotte Mart',	'Cubroll Riverland',	'2016-05-12',	'2016-05-13',	'2016-05-14',	'Delivery',	'Cash',	'Belum Dikirim',	4600000,	10,	40,	'Bekasi'),
@@ -284,7 +310,21 @@ insert into penjualan values
 (100000012,	200000019,	'Resto KFC',	'Shorttrib Hill Top',	'2016-05-12',	'2016-05-14',	'2016-05-21',	'Delivery',	'Transfer',	'Belum Dikirim',	8250000,	5,	50,	'Bekasi'),
 (100000013,	200000014,	'Burger King',	'Sirloin Teys',	'2016-05-12',	'2016-05-17',	'2016-05-14',	'Delivery',	'Transfer',	'Belum Dikirim',	7200000,	6,	60,	'Bekasi'),
 (100000014,	200000015,	'Lotte Mart',	'Knuckle G.Lea',	'2016-05-12',	'2016-05-13',	'2016-05-13',	'Delivery',	'Cash',	'Belum Dikirim',	9600000,	10,	60,	'Bekasi');
- 
+
+insert into penjualan values
+(100000016,	200000026,	'Burger King'	,'Knuckle G.Lea'	, '2016-02-14' 	, '2016-02-18'	, '2016-02-17'	, 'PickUp',	'Cash', 	'Dikirim',	96000000,	300,	600	, 'Cakung'),
+(100000017,	200000026,	'Burger King'	,'Shank Teys'	, '2016-02-14' 	, '2016-02-18'	, '2016-02-27'	, 'PickUp',	'Transfer', 	'Dikirim',	60375000,	130,	345	, 'Cakung'),
+(100000018,	200000028,	'Modena Resto'	,'Sirloin Moonbeef'	, '2016-04-14' 	, '2016-04-17'	, '2016-04-17'	, 'PickUp',	'Cash', 	'Dikirim',	44200000,	120,	340	, 'Bekasi'),
+(100000019,	200000023,	'Hollycow'	,'Shank Alliance'	, '2016-04-14' 	, '2016-04-15'	, '2016-04-23'	, 'Delivery', 	'Transfer', 	'Dikirim',	6600000,	12,	30	, 'Bekasi'),
+(100000020,	200000023,	'Hollycow'	,'Cubroll Riverland'	, '2016-04-14' 	, '2016-04-15'	, '2016-04-16'	, 'Delivery', 	'Transfer', 	'Dikirim',	6250000,	25,	50	, 'Cakung'),
+(100000021,	200000027,	'Hotel Bumiwiyata'	,'Sirloin Teys'	, '2016-02-14' 	, '2016-02-19'	, '2016-02-20'	, 'Delivery', 	'Transfer', 	'Dikirim',	40800000,	120,	340	, 'Cakung'),
+(100000022,	200000029,	'Resto AW'	,'Cubroll Hantervaley'	, '2016-03-14' 	, '2016-03-28'	, '2016-03-26'	, 'PickUp',	'Cash', 	'Dikirim',	175950000,	59,	765	, 'Bekasi'),
+(100000023,	200000024,	'Hotel Santika'	,'Sirloin Teys'	, '2016-01-14' 	, '2016-01-22'	, '2016-01-22'	, 'Delivery', 	'Cash', 	'Dikirim',	5400000,	20,	45	, 'Bekasi'),
+(100000024,	200000028,	'Modena Resto'	,'Rib eye Harvey'	, '2016-04-14' 	, '2016-04-21'	, '2016-04-16'	, 'Delivery', 	'Transfer', 	'Dikirim',	94050000,	340,	570	, 'Cakung'),
+(100000025,	200000023,	'Hollycow'	,'Knuckle G.Lea'	, '2016-04-14' 	, '2016-04-23'	, '2016-04-16'	, 'Delivery', 	'Transfer', 	'Dikirim',	108800000,	340,	680	, 'Cakung'),
+(100000026,	200000024,	'Hollycow'	,'Oxtail Hantervaley'	, '2016-01-14' 	, '2016-01-17'	, '2016-01-16'	, 'PickUp',	'Cash', 	'Dikirim',	42000000,	123,	400	, 'Bekasi'),
+(100000027,	200000025,	'Lotte Mart'	,'Shank Teys'	, '2016-03-14' 	, '2016-03-17'	, '2016-03-15'	, 'Delivery', 	'Transfer', 	'Dikirim',	3500000,	10,	20,	, 'Bekasi');
+
  create table role (
 					id int primary key,
 					role varchar(25));
