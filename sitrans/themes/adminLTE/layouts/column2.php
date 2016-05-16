@@ -49,7 +49,7 @@ use app\themes\adminLTE\components\ThemeNav;
 					  ['label' => ThemeNav::link('Jenis', 'fa fa-table'), 'url' => ['jenis/index'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'purchasing'],
 					  ['label' => ThemeNav::link('Set ROP', 'fa fa-table'), 'url' => ['jenis/index'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'sales marketing'],
 					  ['label' => ThemeNav::link('Produk', 'fa fa-table'), 'url' => ['produk/index'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role != 'admin' && Yii::$app->user->identity->role != 'deactivated'],
-					  ['label' => ThemeNav::link('Pembelian', 'fa fa-circle-o text-red'), 'url' => ['pembelian/index'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'purchasing'],
+					  
 					  
 					  ['label' => ThemeNav::link('Barang Masuk', 'fa fa-circle-o text-blue'), 'url' => ['pembelian/index2'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'admin inventori'],
 					  ['label' => ThemeNav::link('Barang Keluar', 'fa fa-circle-o text-blue'), 'url' => ['penjualan/index2'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'admin inventori'],
@@ -74,8 +74,17 @@ use app\themes\adminLTE\components\ThemeNav;
 						'url' => ['#'],
 						'template' => '<a href="{url}" >{label}<i class="fa fa-angle-left pull-right"></i></a>',
 						'items' => [
-							['label' => ThemeNav::link('Penjualan', 'fa fa-circle text-green'), 'url' => ['penjualan/index'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'sales marketing'],
-							['label' => ThemeNav::link('Penjualan2', 'fa fa-circle text-green'), 'url' => ['penjualan/index5'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'sales marketing'],
+							['label' => ThemeNav::link('Semua', 'fa fa-circle text-green'), 'url' => ['penjualan/index'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'sales marketing'],
+							['label' => ThemeNav::link('Belum Diterima', 'fa fa-circle text-green'), 'url' => ['penjualan/index5'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'sales marketing'],
+						],
+					],
+					['label' => ThemeNav::link('Pembelian', 'fa fa-circle-o text-red'),
+						'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'purchasing',
+						'url' => ['#'],
+						'template' => '<a href="{url}" >{label}<i class="fa fa-angle-left pull-right"></i></a>',
+						'items' => [
+							['label' => ThemeNav::link('Semua', 'fa fa-circle text-red'), 'url' => ['pembelian/index'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'purchasing'],
+							['label' => ThemeNav::link('Belum Diterima', 'fa fa-circle text-red'), 'url' => ['pembelian/index5'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'purchasing'],
 						],
 					],
 				],
