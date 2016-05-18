@@ -73,7 +73,7 @@
 	  
 	  //dari sini ndre
 	  echo "No. Surat Jalan : ";
-	  echo "HGH/ ".$idbayar;
+	  echo "HGH/".$idbayar;
 	  echo "<br>";
 	  // sampe sini
 	?>

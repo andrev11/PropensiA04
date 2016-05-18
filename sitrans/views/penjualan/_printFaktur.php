@@ -73,10 +73,10 @@
 
 	  // Ndre dari sini
 	  echo "No. Faktur : ";
-	  echo "HGH/ ".$idbayar;
+	  echo "HGH/".$idbayar;
 	  echo "<br>";
 	  echo "No. Surat Jalan : ";
-	  echo "HGH/ ".$idbayar;
+	  echo "HGH/".$idbayar;
 	  echo "<br>";
 	  // Sampai sini ndre
 	  
