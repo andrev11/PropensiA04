@@ -11,7 +11,7 @@
     -moz-box-sizing: content-box;
     box-sizing: content-box;
     border: none;
-    font: normal normal bold 16px/2 Verdana, Geneva, sans-serif;
+    font: normal normal bold 14px/2 Verdana, Geneva, sans-serif;
     color: black;
     text-align: center;
     -o-text-overflow: ellipsis;
@@ -25,7 +25,7 @@
     -moz-box-sizing: content-box;
     box-sizing: content-box;
     border: none;
-    font: normal normal 16px/2 Verdana, Geneva, sans-serif;
+    font: normal normal 12px/2 Verdana, Geneva, sans-serif;
     color: black;
     -o-text-overflow: ellipsis;
     text-overflow: ellipsis;
@@ -33,10 +33,15 @@
     word-spacing: 1px;
   }
 	
-	th, td {
-    padding: 10px;
+	table#t01 td, th {
+    padding: 5px;
     text-align: left;
     border-bottom: 1px solid #ddd;
+	}
+	
+	table#t02 td, th {
+    text-align: left;
+	
 	}
 </style>
 
@@ -66,26 +71,30 @@
 	  echo "<br>";
 	  echo "KEPADA YTH : ";
 	  $datacustomer=pg_fetch_array(pg_query("select * from customer where namacustomer='".$namacustomer."';"));
-	  echo "<br>".$namacustomer; 
-	  echo " - (".$datacustomer['telponcustomer'].")"; 
-	  echo "<br>".$datacustomer['alamatcustomer'];
-	  echo "<br>";
 
-	  // Ndre dari sini
-	  echo "No. Faktur : ";
-	  echo "HGH/".$idbayar;
-	  echo "<br>";
-	  echo "No. Surat Jalan : ";
-	  echo "HGH/".$idbayar;
-	  echo "<br>";
-	  // Sampai sini ndre
-	  
 	?>
+	
+	<table id="t02">  
+	  <tr>
+		<td width="200px"><?php echo "".$namacustomer." - ".$datacustomer['telponcustomer'].""; ?></td>
+		<td></td>
+		<td width="600px"></td>
+		<td><?php echo "No. Faktur : HGH/".$idbayar; ?></td>
+	  </tr>
+	  
+	  <tr>
+		<td width="200px"><?php echo "".$datacustomer['alamatcustomer']; ?></td>
+		<td></td>
+		<td width="600px"></td>
+		<td><?php echo "No. Surat Jalan : HGH/".$idbayar; ?></td>
+	  </tr>
+	</table>
+	
 </div>
 
 <br>
 
-<table align="center" class="tg">
+<table align="center" id="t01">
 	<tr align="center">
 		<th >No.</th>
 		<th width="200px">Nama Produk</th>
@@ -164,7 +173,8 @@
 				?>
 				<br>
 				<br>
-				
+				<br>
+				<br>
 				<br>
 				<br>
 				<br>
