@@ -62,7 +62,7 @@ use app\themes\adminLTE\components\ThemeNav;
 					  ['label' => ThemeNav::link('Rekap Pembayaran Keluar', 'fa fa-circle-o text-red'), 'url' => ['pembayaran-out/index3'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'bod'],
 					  ['label' => ThemeNav::link('Rekap Pembayaran Masuk', 'fa fa-circle-o text-red'), 'url' => ['pembayaran-in/index3'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'bod'],
 				   	  ['label' => ThemeNav::link('Surat Jalan', 'fa fa-circle-o'), 'url' => ['penjualan/index4'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'admin inventori'],
-					  ['label' => ThemeNav::link('Faktur Penjualan', 'fa fa-circle-o'), 'url' => ['penjualan/index4'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'finance'],
+					  ['label' => ThemeNav::link('Faktur Pembayaran', 'fa fa-circle-o'), 'url' => ['penjualan/index4'], 'visible'=>!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'finance'],
                   ],
                 ]);
             ?>

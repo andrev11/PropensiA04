@@ -52,7 +52,7 @@
 <br>
 
 <div class="enjoy-css">
-  FAKTUR PENJUALAN
+  FAKTUR PEMBAYARAN
 
 </div>
 
