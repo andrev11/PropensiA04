@@ -17,8 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <form method="POST">
     <p>
         <label for="year"> Tahun </label>
-        <input list="year" name="year" placeholder="Masukkan Tahun">
-            <datalist id="year">
+        <select list="year" name="year" id="year" placeholder="Masukkan Tahun">
                 <?php 
                   $right_now = getdate();
                   $this_year = $right_now['year'];
@@ -28,8 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
                       $this_year--;
                   }
                  ?>
-            </datalist>
-        </input> 
+        </select> 
         <input id="submit" type="submit" value="Submit" class = "btn btn-success">
 
     </p>

@@ -21,27 +21,26 @@ $this->params['breadcrumbs'][] = $this->title;
     <form method="POST">
     <p>
         <label for="month"> Bulan </label>
-        <input class ="input" name="month" type="text" id="txtList"  
+         <select class ="input" name="month" type="text" id="txtList"  
                 placeholder="Masukkan Bulan" list="month" 
                 required autofocus >
-                <datalist id="month">
-                    <option value="Januari">
-                    <option value="Februari">
-                    <option value="Maret">
-                    <option value="April">
-                    <option value="Mei">
-                    <option value="Juni">
-                    <option value="Juli">
-                    <option value="Agustus">
-                    <option value="September">
-                    <option value="Oktober">
-                    <option value="November">
-                    <option value="Desember">
-                </datalist>
+                    <option value="Januari"> Januari </option>
+                    <option value="Februari"> Februari </option>
+                    <option value="Maret"> Maret</option>
+                    <option value="April"> April </option>
+                    <option value="Mei"> Mei </option>
+                    <option value="Juni"> Juni </option>
+                    <option value="Juli"> Juli </option>
+                    <option value="Agustus"> Agustus </option>
+                    <option value="September"> September</option>
+                    <option value="Oktober">Oktober </option>
+                    <option value="November"> November </option>
+                    <option value="Desember"> Desember </option>
+        </select>
         
         <label for="year"> Tahun </label>
-        <input list="year" name="year" placeholder="Masukkan Tahun">
-            <datalist id="year">
+        
+        <select list="year" name="year" placeholder="Masukkan Tahun">
                 <?php 
                   $right_now = getdate();
                   $this_year = $right_now['year'];
@@ -51,8 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
                       $this_year--;
                   }
                  ?>
-            </datalist>
-        </input> 
+        </select>  
         <input id="submit" type="submit" value="Submit" class = "btn btn-success">
 
     </p>
