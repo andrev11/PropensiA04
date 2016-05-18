@@ -72,6 +72,9 @@
 	  echo "<br>";
 	  
 	  //dari sini ndre
+	  echo "No. PO : ";
+	  echo "HGH/".$idbayar;
+	  echo "<br>";
 	  echo "No. Surat Jalan : ";
 	  echo "HGH/".$idbayar;
 	  echo "<br>";
