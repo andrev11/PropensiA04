@@ -70,6 +70,15 @@
 	  echo " - (".$datacustomer['telponcustomer'].")"; 
 	  echo "<br>".$datacustomer['alamatcustomer'];
 	  echo "<br>";
+
+	  // Ndre dari sini
+	  echo "No. Faktur : SP ";
+	  echo "HGH/ ".$idbayar;
+	  echo "<br>";
+	  echo "No. Surat Jalan : SP ";
+	  echo "HGH/ ".$idbayar;
+	  echo "<br>";
+	  // Sampai sini ndre
 	  
 	?>
 </div>

@@ -71,6 +71,11 @@
 	  echo "<br>".$datacustomer['alamatcustomer'];
 	  echo "<br>";
 	  
+	  //dari sini ndre
+	  echo "No. Surat Jalan : SP ";
+	  echo "HGH/ ".$idbayar;
+	  echo "<br>";
+	  // sampe sini
 	?>
 </div>
 
