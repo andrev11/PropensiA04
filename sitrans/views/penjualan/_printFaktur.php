@@ -137,13 +137,13 @@
 
 			<td>
 				<br>
-				Penerima,
+				<center> Penerima, </center>
 				<br>
 				<br>
 				<br>
 				<br>
 				<br>
-				(Nama Lengkap)
+				<center> (Nama Lengkap) </center>
 			</td>
 			<td  width="312px">
 			</td>
@@ -155,7 +155,7 @@
 				<br>
 				<br>
 				<br>
-				(Danur)
+				<center> (Danur) </center>
 			</td>
 			<td align="left">
 				Bekasi, 
@@ -164,11 +164,11 @@
 				?>
 				<br>
 				<br>
+				
 				<br>
 				<br>
 				<br>
-				<br>
-				(Sularjo)
+				<center> (Sularjo) </center>
 			</td>
 		</tr>
 	</table>
