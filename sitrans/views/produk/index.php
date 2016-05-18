@@ -15,8 +15,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?php 
-            if (Yii::$app->user->identity->role == 'purchasing') {
+        <?php if (!\Yii::$app->user->isGuest){
+            if (Yii::$app->user->identity->role == 'purchasing') 
                 echo Html::a(Yii::t('app', 'Tambah Produk'), ['create'], ['class' => 'btn btn-success']);
             }
         ?>
@@ -41,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'kilo',
             'karton',
             'lokasi',
-            ['class' => 'yii\grid\ActionColumn', 'visible' => !Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'admin inventori' || Yii::$app->user->identity->role == 'purchasing' || Yii::$app->user->identity->role == 'sales marketing'],
+            ['class' => 'yii\grid\ActionColumn', 'visible' => !Yii::$app->user->isGuest && (Yii::$app->user->identity->role == 'admin inventori' || Yii::$app->user->identity->role == 'purchasing' || Yii::$app->user->identity->role == 'sales marketing')],
         ],
     ]); ?>
 
