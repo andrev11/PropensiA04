@@ -48,7 +48,7 @@ $this->title = 'Dashboard';
 					'options'=>[
 						'title' => ['text' => 'Data Pendapatan dan Pengeluaran PT. HIJRAH GIZI HEWANI'],
 						'xAxis' => ['categories' => $kategori],
-						'yAxis' => ['title' => ['text' => 'Dalam Juta Rupiah']],
+						'yAxis' => ['title' => ['text' => 'Dalam Million Rupiah']],
 						'series' => [
 										['name' => 'Pendapatan', 'data' => $pembayaran_in, 'color' => '#0000FF'],
 										['name' => 'Pengeluaran', 'data' => $pembayaran_out, 'color' => '#000000']
