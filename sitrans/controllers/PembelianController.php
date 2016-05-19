@@ -70,7 +70,7 @@ class PembelianController extends Controller
 
         $beli2 = Pembelian::find()
             ->where("status_del= 'Belum Diterima'")
-            ->orderBy(['tgl_terima' => SORT_DESC])
+            ->orderBy(['tgl_terima' => SORT_ASC])
             ->all();
         
 		if (!\Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'admin inventori'){

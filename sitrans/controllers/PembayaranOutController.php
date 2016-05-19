@@ -88,22 +88,22 @@ class PembayaranOutController extends Controller
             'dataProvider' => $dataProvider,
         ]);
         **/
+        $searchModel = new PembayaranOutSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         
-            $rekap = PembayaranOut::find()
-                ->where("status_bayar= 'Lunas'")
-                ->andWhere("EXTRACT(MONTH FROM tgl_bayar) = 4")
-                ->andWhere("EXTRACT(YEAR FROM tgl_bayar) = 2016")
-                ->orderBy(['tgl_bayar' => SORT_ASC])
-                ->all();
-		if (!\Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'bod'){
+        if (!\Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'bod'){
             return $this->render('index3', [
-                'rekap' => $rekap,
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
             ]);
-		} else {
+        } else {
             return $this->redirect(Yii::$app->user->loginUrl);
         }
+
+       
     }
 
+   
     /**
      * Displays a single PembayaranOut model.
      * @param integer $id

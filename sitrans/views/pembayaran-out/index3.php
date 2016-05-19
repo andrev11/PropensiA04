@@ -63,43 +63,53 @@ $this->params['breadcrumbs'][] = $this->title;
                             echo "<td align='left'>".$count."</td>";
 
                             if($value['bulan'] == 1) {
-                                
                                 echo "<td align='left'>Januari</td>";
                                 echo "<td align='left'>".$value['pembayaran']."</td>";
-                              
+                                                         
                             } else if($value['bulan'] == 2) {
                                 echo "<td align='left'>Februari</td>";
                                 echo "<td align='left'>".$value['pembayaran']."</td>";
+                                 
                             }else if($value['bulan'] == 3) {
                                 echo "<td align='left'>Maret</td>";
                                 echo "<td align='left'>".$value['pembayaran']."</td>";
+                               
                             }else if($value['bulan'] == 4) {
                                 echo "<td align='left'>April</td>";
                                 echo "<td align='left'>".$value['pembayaran']."</td>";
+                               
                             } else if($value['bulan'] == 5) {
                                 echo "<td align='left'>Mei</td>";
                                 echo "<td align='left'>".$value['pembayaran']."</td>";
+                               
                             } else if($value['bulan'] == 6) {
                                 echo "<td align='left'>Juni</td>";
                                 echo "<td align='left'>".$value['pembayaran']."</td>";
+                               
                             } else if($value['bulan'] == 7) {
                                 echo "<td align='left'>Juli</td>";
                                 echo "<td align='left'>".$value['pembayaran']."</td>";
+                                
                             } else if($value['bulan'] == 8) {
                                 echo "<td align='left'>Agustus</td>";
                                 echo "<td align='left'>".$value['pembayaran']."</td>";
+                                
                             } else if($value['bulan'] == 9) {
                                 echo "<td align='left'>September</td>";
                                 echo "<td align='left'>".$value['pembayaran']."</td>";
+                                
                             } else if($value['bulan'] == 10) {
                                 echo "<td align='left'>Oktober</td>";
                                 echo "<td align='left'>".$value['pembayaran']."</td>";
+                                
                             } else if($value['bulan'] == 11) {
                                 echo "<td align='left'>November</td>";
                                 echo "<td align='left'>".$value['pembayaran']."</td>";
+                                
                             } else if($value['bulan'] == 12) {
                                 echo "<td align='left'>Desember</td>";
                                 echo "<td align='left'>".$value['pembayaran']."</td>";
+                                
                             }
                               echo "</tr>";
                            }
