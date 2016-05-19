@@ -47,7 +47,8 @@ class Pengguna extends \yii\db\ActiveRecord
             [['nama'],'match', 'not' => true, 'pattern' => '/[^a-zA-Z ]/', 'message' => 'Only letters allowed'],
             [['repeatpassword'], 'compare', 'compareAttribute' => 'password_field', 'message' => 'Your password doesnt match'],
 			[['passwordlama'], 'findPasswords', 'on' => 'update'],
-			[['passwordlama'], 'required', 'on' => 'update']
+			[['passwordlama'], 'required', 'on' => 'update'],
+			['password_field', 'compare', 'compareAttribute' => 'passwordlama', 'operator' => '!=']
         ];
     }
 	
