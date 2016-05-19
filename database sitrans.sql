@@ -323,7 +323,7 @@ insert into penjualan values
 (100000024,	200000028,	'Modena Resto'	,'Rib eye Harvey'	, '2016-04-14' 	, '2016-04-21'	, '2016-04-16'	, 'Delivery', 	'Transfer', 	'Dikirim',	94050000,	340,	570	, 'Cakung'),
 (100000025,	200000023,	'Hollycow'	,'Knuckle G.Lea'	, '2016-04-14' 	, '2016-04-23'	, '2016-04-16'	, 'Delivery', 	'Transfer', 	'Dikirim',	108800000,	340,	680	, 'Cakung'),
 (100000026,	200000024,	'Hollycow'	,'Oxtail Hantervaley'	, '2016-01-14' 	, '2016-01-17'	, '2016-01-16'	, 'PickUp',	'Cash', 	'Dikirim',	42000000,	123,	400	, 'Bekasi'),
-(100000027,	200000025,	'Lotte Mart'	,'Shank Teys'	, '2016-03-14' 	, '2016-03-17'	, '2016-03-15'	, 'Delivery', 	'Transfer', 	'Dikirim',	3500000,	10,	20,	, 'Bekasi');
+(100000027,	200000025,	'Lotte Mart'	,'Shank Teys'	, '2016-03-14' 	, '2016-03-17'	, '2016-03-15'	, 'Delivery', 	'Transfer', 	'Dikirim',	3500000,	10,	20,	 'Bekasi');
 
  create table role (
 					id int primary key,
