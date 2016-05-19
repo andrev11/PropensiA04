@@ -116,16 +116,20 @@
 		   $totalkilo +=$row['kilo'];
 		   $totalkarton += $row['karton'];
 		   $harga_satuan = $totalharga/$totalkilo;
+		   $harga_satuanbulet = ceil($harga_satuan);
 	?>
     <tr>
       <td><?php echo $i++; ?></td>
       <td><?php echo $row['produk'];?></td>
       <td><?php echo $row['kilo'];?></td>
       <td><?php echo $row['karton'];?></td>
-	  <td><?php echo 'Rp. '.$harga_satuan;?></td>
+	  <td><?php echo 'Rp. '.$harga_satuanbulet;?></td>
       <td><?php echo 'Rp. '.$row['harga_total'];?></td>
     </tr>
 
+	  <?php } ?>
+
+	
 	<tr>
 		<td></td>
 		<td><?php echo "Total"?></td>
@@ -134,8 +138,7 @@
 		<td></td>
 		<td><?php echo "Rp. ".$totalharga?></td>
 	</tr>
-    <?php } ?>
-
+  
 </table>
 
 <div class="cihuy-css">
