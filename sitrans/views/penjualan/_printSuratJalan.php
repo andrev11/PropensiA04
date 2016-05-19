@@ -97,7 +97,7 @@
 <table align="center" id="t01">
 	<tr align="center">
 		<th >No.</th>
-		<th width="470px">Nama Produk</th>
+		<th width="500px">Nama Produk</th>
 		<th width="100px">KG</th>
 		<th width="100px">Karton</th>
 	</tr>
