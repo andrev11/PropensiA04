@@ -101,7 +101,7 @@
 		<th width="100px">KG</th>
 		<th width="100px">Karton</th>
 		<th width="150px">Harga Satuan</th>
-		<th width="100px">Jumlah</th>
+		<th width="150px">Jumlah</th>
 	</tr>
 	<?php 
 	  $idbayar = Yii::$app->request->get('idbayar');
