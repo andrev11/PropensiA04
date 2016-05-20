@@ -11,10 +11,12 @@ $this->title = Yii::t('app', 'Daftar Produk');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="produk-index">
-
+   
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
+	
+
         <?php if (!\Yii::$app->user->isGuest){
             if (Yii::$app->user->identity->role == 'purchasing') 
                 echo Html::a(Yii::t('app', 'Tambah Produk'), ['create'], ['class' => 'btn btn-success']);

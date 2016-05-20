@@ -122,17 +122,8 @@ class PenjualanController extends Controller
 
     public function actionIndex3()
     {
-        $searchModel = new PenjualanSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProvider ->setSort([
-            'defaultOrder' => ['tgl_jual'=>SORT_DESC],
-            ]);
-
         if (!\Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'bod'){
-            return $this->render('index3', [
-                'searchModel' => $searchModel,
-                'dataProvider' => $dataProvider,
-            ]);
+            return $this->render('index3');
         } else {
             return $this->redirect(Yii::$app->user->loginUrl);
         }
@@ -159,7 +150,7 @@ class PenjualanController extends Controller
 
         $jual = Penjualan::find()
             ->where("status_del= 'Belum Dikirim'")
-            ->orderBy(['tgl_jual' => SORT_DESC])
+            ->orderBy(['tgl_kirim' => SORT_ASC])
             ->all();
         
         if (!\Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'sales marketing'){

@@ -29,7 +29,12 @@ use app\models\Lokasi;
         }
     ?>
 
-    <?= Html::a(Yii::t('app', 'Tambah Produk'), ['produk/create'], ['class' => 'btn btn-success']) ?>
+	<?php
+		if($model->isNewRecord){
+			echo Html::a(Yii::t('app', 'Tambah Produk'), ['produk/create'], ['class' => 'btn btn-success']);
+	}
+    ?> 
+
 
     <?php 
         if($model->isNewRecord) {
@@ -42,10 +47,15 @@ use app\models\Lokasi;
         }
     ?>
 
-    <?= $form->field($model, 'lokasi')->dropDownList(
-        ArrayHelper::map(Lokasi::find()->all(),'lokasi','lokasi'),
-        ['prompt' => 'Select Lokasi']
-        )
+    <?php
+	 if($model->isNewRecord){
+		echo $form->field($model, 'lokasi')->dropDownList(
+        	ArrayHelper::map(Lokasi::find()->all(),'lokasi','lokasi'),
+        	['prompt' => 'Select Lokasi']
+        	);
+	} else {
+		echo $form->field($model, 'lokasi')->textInput(['readonly'=>!$model->isNewRecord]);
+	}
     ?> 
    
     <?= $form->field($model, 'tgl_terima')->textInput(['type' => 'date', 'min' => date('Y-m-d')]) ?>

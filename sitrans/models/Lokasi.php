@@ -17,7 +17,7 @@ class Lokasi extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'lokasi';
+        return 'propensi.lokasi';
     }
 
     /**

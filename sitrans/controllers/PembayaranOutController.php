@@ -18,7 +18,7 @@ use app\controllers\SiteController;
 class PembayaranOutController extends Controller
 {
     public function beforeAction($action)
-        {
+    {
 		if (Yii::$app->user->isGuest){
 			return $this->redirect(Yii::$app->user->loginUrl);
 		} else if (Yii::$app->user->identity->role == 'finance' || Yii::$app->user->identity->role == 'bod'){
@@ -28,7 +28,7 @@ class PembayaranOutController extends Controller
 		}
     }
 	
-	public function behaviors()
+    public function behaviors()
     {
         return [
             'verbs' => [
@@ -87,15 +87,13 @@ class PembayaranOutController extends Controller
         return $this->render('index2', [
             'dataProvider' => $dataProvider,
         ]);
-        **/
-        $searchModel = new PembayaranOutSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         
+        //$searchModel = new PembayaranOutSearch();
+        //$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        **/
+
         if (!\Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'bod'){
-            return $this->render('index3', [
-                'searchModel' => $searchModel,
-                'dataProvider' => $dataProvider,
-            ]);
+            return $this->render('index3');
         } else {
             return $this->redirect(Yii::$app->user->loginUrl);
         }
@@ -114,24 +112,6 @@ class PembayaranOutController extends Controller
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
-    }
-
-    /**
-     * Creates a new PembayaranOut model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
-    public function actionCreate()
-    {
-        $model = new PembayaranOut();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idbayar]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
-        }
     }
 
     /**
@@ -168,8 +148,8 @@ class PembayaranOutController extends Controller
 
     public function actionConfirm($id)
     {
-                 echo SiteController::connect();
-             $tglBayar = date('Y-m-d'); 
+            echo SiteController::connect();
+            $tglBayar = date('Y-m-d'); 
             //$ambilStatus = "SELECT status_del FROM pembelian WHERE idbeli = '".$id."';";
             $ubahStatus = "UPDATE PEMBAYARAN_OUT SET status_bayar = 'Lunas' WHERE idbayar = '".$id."';";
             $ubahTanggal = "UPDATE PEMBAYARAN_OUT SET tgl_bayar = '".$tglBayar."' WHERE idbayar = '".$id."';";

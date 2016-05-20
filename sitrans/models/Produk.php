@@ -28,7 +28,7 @@ class Produk extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'produk';
+        return 'propensi.produk';
     }
 
     /**
@@ -40,18 +40,22 @@ class Produk extends \yii\db\ActiveRecord
     {
         return [
             [['idmerk', 'idjenis', 'lokasi', 'namaproduk','harga_beli'], 'required'],
+	     [['idmerk', 'idjenis', 'lokasi', 'namaproduk'], 'unique', 'targetAttribute' => ['idmerk', 'idjenis', 'lokasi', 'namaproduk']],
             [['idmerk', 'idjenis', 'harga_beli', 'harga_jual'], 'integer'],
             [['newstokkilo', 'newstokkarton'], 'required', 'on' => 'update'], 
             [['kilo', 'karton'], 'number','min'=>0],
             [['lokasi'], 'string', 'max' => 25],
             [['namaproduk'], 'string', 'max' => 50],
             [['namaproduk'],'match', 'not' => true, 'pattern' => '/[^a-zA-Z_ .0-9]/', 'message' => 'Invalid characters in nama produk'],
-            [['newstokkilo','newstokkarton'], 'number','min'=>0],
+            [['newstokkilo'], 'number','min'=>0],
+	     [['newstokkarton'],'integer','min'=>0], 
             [['newstokkilo'],'compare', 'compareAttribute' => 'kilo', 'operator'=>'<', 'message' => 'Updated Stok Kilo must be less than current Stok Kilo'], 
             [['newstokkilo'],'setkilo'],
             [['newstokkarton'],'compare', 'compareAttribute' => 'karton', 'operator'=>'<', 'message' => 'Updated Stok Karton must be less than current Stok Karton'], 
             [['newstokkarton'],'setkarton'],
             [['harga_jual'], 'required', 'on'=>'update2'],
+		[['harga_jual', 'harga_beli'], 'integer','min'=>0],
+
        ];
     }
 

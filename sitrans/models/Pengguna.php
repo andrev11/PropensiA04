@@ -21,7 +21,7 @@ class Pengguna extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'pengguna';
+        return 'propensi.pengguna';
     }
 	
 	public $passwordlama;

@@ -84,17 +84,8 @@ class PembelianController extends Controller
 
     public function actionIndex3()
     {
-        $searchModel = new PembelianSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProvider ->setSort([
-            'defaultOrder' => ['tgl_beli'=>SORT_DESC],
-            ]);
-
         if (!\Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'bod'){
-            return $this->render('index3', [
-                'searchModel' => $searchModel,
-                'dataProvider' => $dataProvider,
-            ]);
+            return $this->render('index3');
         } else {
             return $this->redirect(Yii::$app->user->loginUrl);
         }
@@ -105,7 +96,7 @@ class PembelianController extends Controller
 
         $beli = Pembelian::find()
             ->where("status_del= 'Belum Diterima'")
-            ->orderBy(['tgl_beli' => SORT_DESC])
+            ->orderBy(['tgl_terima' => SORT_ASC])
             ->all();
         
         if (!\Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'purchasing'){

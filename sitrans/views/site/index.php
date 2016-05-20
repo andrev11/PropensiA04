@@ -39,8 +39,8 @@ $this->title = 'Dashboard';
 				$pembayaran_out = array();
 				while($row = pg_fetch_assoc($result)) {
 					array_push($kategori, date("F Y", strtotime($row['date_trunc'])));
-					array_push($pembayaran_in, (int)$row['pembayaran_in']/2);
-					array_push($pembayaran_out, (int)$row['pembayaran_out']/2);
+					array_push($pembayaran_in, (double)$row['pembayaran_in']/2);
+					array_push($pembayaran_out, (double)$row['pembayaran_out']/2);
 				}
 				 
 
@@ -48,7 +48,7 @@ $this->title = 'Dashboard';
 					'options'=>[
 						'title' => ['text' => 'Data Pendapatan dan Pengeluaran PT. HIJRAH GIZI HEWANI'],
 						'xAxis' => ['categories' => $kategori],
-						'yAxis' => ['title' => ['text' => 'Dalam Million Rupiah']],
+						'yAxis' => ['title' => ['text' => 'Dalam Gillion /Billion Rupiah']],
 						'series' => [
 										['name' => 'Pendapatan', 'data' => $pembayaran_in, 'color' => '#0000FF'],
 										['name' => 'Pengeluaran', 'data' => $pembayaran_out, 'color' => '#000000']

@@ -22,13 +22,16 @@ $this->params['breadcrumbs'][] = $this->title;
              <th align="center">#</th>
              <th align="center">Supplier</th>
             <th align="center">Nama Produk</th>
-            <th align="center">Tanggal Pembelian</th>
             <th align="center">Tanggal Terima</th>
             <th align="center">Cara Penerimaan</th>
             <!-- <th> <th>    cara_bayar</th>-->
             <!-- <th> <th>    harga_total</th>-->
-            <th align="center">Jumlah Karton</th>
+	    
+            <th align="center">Lokasi</th>
+
+           
             <th align="center">Jumlah Kilo</th>
+	     <th align="center">Jumlah Karton</th>
         </thead>
         <tbody>
                                           
@@ -40,12 +43,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     <td><?= $number++ ?></td>
                     <td><?= $beli->supplier ?></td>
                     <td><?= $beli->produk ?></td>
-                    <td align="center"><?= $beli->tgl_beli ?></td>
                     <td align="center"><?= $beli->tgl_terima ?></td>
                     <td align="center"><?= $beli->cara_terima ?></td>
                     <!--<td><?= $beli->cara_bayar ?></td>-->
                     <!--<td><?= $beli->harga_total ?></td>-->
-                    <td align="center"><?= $beli->karton ?></td>
+		     <td align="center"><?= $beli->lokasi ?></td>
                     <td align="center"><?= $beli->kilo ?></td>
                     <td align="center"><?= Html::a('View', ['view', 'id' => $beli->idbeli], ['class' => 'btn btn-primary']) ?></td>
                     <td align="center"><?= Html::a('Konfirmasi', ['confirm', 'id' => $beli->idbeli], [

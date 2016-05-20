@@ -23,7 +23,7 @@ class PembayaranOut extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'pembayaran_out';
+        return 'propensi.pembayaran_out';
     }
 
     /**

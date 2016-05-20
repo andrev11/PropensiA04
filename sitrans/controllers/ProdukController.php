@@ -11,6 +11,7 @@ use yii\filters\VerbFilter;
 use mPDF;
 use app\controllers\SiteController;
 use app\models\Jenis;
+use app\controllers\PembelianController;
 
 /**
  * ProdukController implements the CRUD actions for Produk model.
@@ -82,10 +83,11 @@ class ProdukController extends Controller
     {   
         $model = new Produk();  
         $model->kilo=0;
-        $model->karton=0;      
+        $model->karton=0;  
+	 $model->harga_jual=0;    
         
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'idmerk' => $model->idmerk, 'idjenis' => $model->idjenis, 'lokasi' => $model->lokasi]);
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {          
+ return $this->redirect(['view', 'idmerk' => $model->idmerk, 'idjenis' => $model->idjenis, 'lokasi' => $model->lokasi]);
         } else {
             return $this->render('create', [
                 'model' => $model,

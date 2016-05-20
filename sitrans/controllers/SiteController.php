@@ -32,15 +32,17 @@ class SiteController extends Controller
     public function connect(){
 
         $myHost = "localhost";
-        $myUser = "postgres";
-        $myPassword = "1234";
+        $myUser = "a04";
+        $myPassword = "hn;2016";
         $myPort = "5432";
         // Create connection
-        $conn = "host = ".$myHost." user = ".$myUser." password = ".$myPassword." port = ".$myPort." dbname = sitrans";
+        $conn = "host = ".$myHost." user = ".$myUser." password = ".$myPassword." port = ".$myPort." dbname = a04";
+	
         // Check connection
         if (!$database = pg_connect($conn)) {
             die("Connection failed");
         }
+	pg_query("set search_path to propensi;");
         
     }
     public function actions()

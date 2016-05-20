@@ -17,7 +17,7 @@ class Carakirim extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'carakirim';
+        return 'propensi.carakirim';
     }
 
     /**

@@ -17,7 +17,7 @@ class Role extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'role';
+        return 'propensi.role';
     }
 
     /**

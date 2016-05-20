@@ -17,7 +17,7 @@ class Carabayar extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'carabayar';
+        return 'propensi.carabayar';
     }
 
     /**

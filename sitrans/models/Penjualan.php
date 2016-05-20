@@ -31,7 +31,7 @@ class Penjualan extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'penjualan';
+        return 'propensi.penjualan';
     }
 
     /**

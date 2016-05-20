@@ -29,7 +29,7 @@ class Pembelian extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'pembelian';
+        return 'propensi.pembelian';
     }
 
     //public $lokasi;
@@ -41,7 +41,7 @@ class Pembelian extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['idbeli','tgl_terima', 'kilo','karton', 'supplier','produk','cara_terima','cara_bayar'], 'required'],
+            [['idbeli','tgl_terima', 'kilo','karton', 'supplier','produk','cara_terima','cara_bayar', 'lokasi'], 'required'],
             [['idbeli', 'idbayar'], 'integer'],
             [['tgl_beli', 'tgl_terima'], 'safe'],
             [['harga_total'], 'number'],

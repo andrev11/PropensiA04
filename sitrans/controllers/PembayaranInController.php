@@ -89,17 +89,16 @@ class PembayaranInController extends Controller
             'dataProvider' => $dataProvider,
         ]);
         **/
-        
+        /**
             $rekap = PembayaranIn::find()
                 ->where("status_bayar= 'Lunas'")
                 ->andWhere("EXTRACT(MONTH FROM tgl_bayar) = 4")
                 ->andWhere("EXTRACT(YEAR FROM tgl_bayar) = 2016")
                 ->orderBy(['tgl_bayar' => SORT_ASC])
                 ->all();
+	**/
 		if (!\Yii::$app->user->isGuest && Yii::$app->user->identity->role == 'bod'){
-            return $this->render('index3', [
-                'rekap' => $rekap,
-            ]);
+            return $this->render('index3');
 		} else {
             return $this->redirect(Yii::$app->user->loginUrl);
         }
@@ -114,24 +113,6 @@ class PembayaranInController extends Controller
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
-    }
-
-    /**
-     * Creates a new PembayaranIn model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
-    public function actionCreate()
-    {
-        $model = new PembayaranIn();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idbayar]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
-        }
     }
 
     /**

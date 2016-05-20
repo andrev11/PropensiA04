@@ -14,7 +14,7 @@ use app\controllers\SiteController;
 if(Yii::$app->user->identity->role == 'admin inventori'){
    $this->title = Yii::t('app', 'Daftar Surat Jalan'); 
 } else if (Yii::$app->user->identity->role == 'finance'){
-   $this->title = Yii::t('app', 'Daftar Faktur Penjualan');
+   $this->title = Yii::t('app', 'Daftar Faktur Pembayaran');
 }
 
 $this->params['breadcrumbs'][] = $this->title;
@@ -27,10 +27,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 //surat jalan AI, faktur Finance
                 if(Yii::$app->user->identity->role == 'admin inventori'){
                     $query = "SELECT customer, tgl_jual, idbayar FROM Penjualan WHERE status_del='Belum Dikirim' and cara_kirim= 'Delivery'
-                    GROUP BY customer, tgl_jual, idbayar;";
+                    GROUP BY customer, tgl_jual, idbayar order by tgl_jual asc;";
                 } else if (Yii::$app->user->identity->role == 'finance'){
                     $query = "SELECT pn.customer, tgl_jual, pn.idbayar FROM Penjualan pn, pembayaran_in pi WHERE status_del='Belum Dikirim' or (pn.idbayar=pi.idbayar and status_bayar='Piutang')
-                    GROUP BY pn.customer, tgl_jual, pn.idbayar;";
+                    GROUP BY pn.customer, tgl_jual, pn.idbayar order by tgl_jual asc;";
                 }
                 $result = pg_query($query);                 
                 echo "<table class='table table-striped table-bordered'>"; 

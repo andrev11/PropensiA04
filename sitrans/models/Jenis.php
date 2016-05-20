@@ -22,7 +22,7 @@ class Jenis extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'jenis';
+        return 'propensi.jenis';
     }
     public $newrop;
 

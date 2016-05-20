@@ -13,11 +13,15 @@ use app\models\Supplier;
 <div class="merk-form">
 
     <?php $form = ActiveForm::begin(); ?>
-
-    <?= $form->field($model, 'idsupplier')->dropDownList(
+	
+    <?php
+	if ($model->isNewRecord){
+		echo $form->field($model, 'idsupplier')->dropDownList(
 		ArrayHelper::map(Supplier::find()->all(),'idsupplier','namasupplier'),
 		['prompt'=>'Select Supplier']
-	) ?>
+		);
+	} 
+    ?>
 
     <?= $form->field($model, 'namasupplier')->textInput(['maxlength' => true]) ?>
 

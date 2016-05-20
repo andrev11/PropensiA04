@@ -20,7 +20,6 @@ $this->params['breadcrumbs'][] = $this->title;
             <th align="center">#</th>
             <th align="center">Customer</th>
             <th align="center">Nama Produk</th>
-            <th align="center">Tanggal <br> Penjualan</th>
             <th align="center">Tanggal <br> Kirim</th>
             <th align="center">Jatuh <br> Tempo </th>
             <th align="center">Cara Kirim</th>
@@ -38,7 +37,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     <td><?= $number++ ?></td>
                     <td><?= $model->customer ?></td>
                     <td><?= $model->produk ?></td>
-                    <td align="center"><?= $model->tgl_jual ?></td>
                     <td align="center"><?= $model->tgl_kirim ?></td>
                     <td align="center"><?= $model->jatuh_tempo ?></td>
                     <td align="center"><?= $model->cara_kirim ?></td>
